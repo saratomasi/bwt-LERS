@@ -1,3 +1,3 @@
 # bwt-LERS
-repository for testing
+repository for group project
 
