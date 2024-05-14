@@ -1,2 +1,3 @@
 # bwt-LERS
-repository for the Biomedical wearable technologies project
+repository for testing
+
