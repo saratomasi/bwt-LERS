@@ -4,13 +4,11 @@ void main() {
   runApp(const MainApp());
 }
 
-// comme
+// commento inutile
 // commento prova
 
 class MainApp extends StatelessWidget {
   const MainApp({super.key});
-
-  //commento inutile
 
   @override
   Widget build(BuildContext context) {
