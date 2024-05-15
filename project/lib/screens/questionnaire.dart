@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-
-
+import'package:shared_preferences/shared_preferences.dart'; 
+import 'package:project/screens/homepage.dart';
 
 class Questionnaire extends StatefulWidget {
   @override
@@ -19,13 +19,24 @@ class _Questionnaire extends State<Questionnaire> {
   final List<String> eta = ['16/30 anni', '30/50 anni', '50/60 anni', '+60 anni'];
   final List<String> frequenzaAllenamento = ['Nessun allenamento', '1-2 volte alla settimana', '3+ volte alla settimana'];
   final List<String> avatars = [
-    'https://example.com/avatar1.jpg', // URL dell'immagine per Avatar 1
-    'https://example.com/avatar2.jpg', // URL dell'immagine per Avatar 2
-    'https://example.com/avatar3.jpg', // URL dell'immagine per Avatar 3
+    'lib/assets/avatar1.png', 
+    'lib/assets/avatar2.png', 
+    'lib/assets/avatar3.png',
+    'lib/assets/avatar4.png'
   ];
+  final List<String> nomi_avatar = ['Fuoco','Acqua','Aria','Terra'];
 
   bool get isWarningVisible => _nome.isNotEmpty && _cognome.isNotEmpty && _eta.isNotEmpty && _sede.isNotEmpty && _allenaSettimana.isNotEmpty && _avatar.isNotEmpty;
-  
+   Future<void> saveData() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString('nome', _nome);
+    prefs.setString('cognome', _cognome);
+    prefs.setString('eta', _eta);
+    prefs.setString('sede', _sede);
+    prefs.setString('frequenzaAllenamento', _allenaSettimana);
+    prefs.setString('avatar', _avatar);
+  }
+
   
   
 
@@ -109,18 +120,20 @@ class _Questionnaire extends State<Questionnaire> {
                     _avatar = value!;
                   });
                 },
-                items: avatars.map((avatar) {
+                items: avatars.asMap().entries.map((entry) {
+                  int index = entry.key;
+                  String avatar = entry.value;
                   return DropdownMenuItem(
                     value: avatar,
                     child: Row(
                       children: [
-                        Image.network(
+                        Image.asset(
                           avatar,
                           width: 30,
                           height: 30,
                         ),
                         SizedBox(width: 10),
-                        Text('Avatar'),
+                        Text(nomi_avatar[index]), 
                       ],
                     ),
                   );
@@ -134,13 +147,13 @@ class _Questionnaire extends State<Questionnaire> {
                 ),
               ElevatedButton(
                 onPressed: () {
-                  // Eseguire azione al click del pulsante, ad esempio salvare i dati
-                  print('Nome: $_nome');
-                  print('Cognome: $_cognome');
-                  print('Età: $_eta');
-                  print('Sede: $_sede');
-                  print('Frequenza allenamento: $_allenaSettimana');
-                  print('Avatar: $_avatar');
+                  if (isWarningVisible) {
+                    saveData();
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(builder: (_) => MyHomePage(title: 'HomePage')),
+                    );
+                  }
                 },
                 child: Text('Invia'),
               ),
