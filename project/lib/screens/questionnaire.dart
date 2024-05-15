@@ -25,6 +25,7 @@ class _Questionnaire extends State<Questionnaire> {
     'lib/assets/avatar4.png'
   ];
   final List<String> nomi_avatar = ['Fuoco','Acqua','Aria','Terra'];
+  
 
   bool get isWarningVisible => _nome.isNotEmpty && _cognome.isNotEmpty && _eta.isNotEmpty && _sede.isNotEmpty && _allenaSettimana.isNotEmpty && _avatar.isNotEmpty;
    Future<void> saveData() async {
