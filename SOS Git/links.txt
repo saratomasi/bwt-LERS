@@ -1,0 +1,9 @@
+website:
+https://ohshitgit.com/
+
+Learn git in 1 hour (youtube):
+https://www.youtube.com/watch?v=8JJ101D3knE
+
+Git commit and branches with Visual Studio Code:
+https://youtu.be/i_23KUAEtUM?si=Ufj2BUdUFZEyt63W
+
