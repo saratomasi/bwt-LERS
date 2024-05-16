@@ -36,7 +36,7 @@ class SplashScreen extends StatelessWidget {
   Future<Widget> checkLogin(BuildContext context) async {
     final result = await Impact().refreshTokens();
     if (result == 200) {
-      return HomePage(title:'HomePage') ;
+      return HomePage() ;
     } else {
       return LoginPage() ;
     }
