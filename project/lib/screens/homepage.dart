@@ -13,11 +13,11 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int _index = 0;
+  int _showIndex = 0;
 
   void _onItemTapped(int index) {
     setState(() {
-      _index = index;
+      _showIndex = index;
     });
   }
 
@@ -86,14 +86,14 @@ class _HomePageState extends State<HomePage> {
         ]),
       ),
       
-      body: _showPage(index: _index),
+      body: _showPage(index: _showIndex),
       bottomNavigationBar: BottomNavigationBar(
         onTap: (index) {
           setState(() {
-           _index = index ;
+           _showIndex = index ;
           });
         },
-        currentIndex: _index,
+        currentIndex: _showIndex,
         items: <BottomNavigationBarItem>[
         BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
         BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile')
