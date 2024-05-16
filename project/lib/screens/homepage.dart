@@ -1,33 +1,51 @@
 import 'package:flutter/material.dart';
+import 'package:project/screens/profile.dart';
 import 'package:project/menu/achievements.dart';
 import 'package:project/menu/explorelater.dart';
 import 'package:project/menu/favorites.dart';
 import 'package:project/menu/sessions.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key, required this.title});
-
-  final String title;
+  const HomePage({super.key});
 
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
-  int _counter = 0;
+  int _index = 0;
 
-  void _incrementCounter() {
+  void _onItemTapped(int index) {
     setState(() {
-      _counter++;
+      _index = index;
     });
   }
+
+  List<Widget> screenList = const [
+    HomePage(),
+    ProfilePage(),
+  ];
+
+ Widget _showPage({
+    required int index,
+  }) {
+    switch (index) {
+      case 0:
+        return HomePage();
+      case 1:
+        return ProfilePage();
+      default:
+        return HomePage();
+    }
+  }
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
+        title: Text('Home Page'),
       ),
       drawer: Drawer(
         child: ListView(children: [
@@ -67,31 +85,26 @@ class _HomePageState extends State<HomePage> {
           )
         ]),
       ),
-      bottomNavigationBar: BottomNavigationBar(items: <BottomNavigationBarItem>[
-        BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
-        BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home')
+      
+      body: _showPage(index: _index),
+      bottomNavigationBar: BottomNavigationBar(
+        onTap: (index) {
+          setState(() {
+           _index = index ;
+          });
+        },
+        currentIndex: _index,
+        items: <BottomNavigationBarItem>[
+        BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+        BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile')
+        
         //aggiungere bottone nuova sessione
       ]),
-      //TODO NAVIGATION BAR (VEDI VIDEO DI FLUTTER SULLA NAVIGATION BAR)
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ),
+      //floatingActionButton: FloatingActionButton(
+        //onPressed: _incrementCounter,
+        //tooltip: 'Increment',
+        //child: const Icon(Icons.add),
+      //),
     );
   }
 }
