@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart' ;
-import 'package:project/screens/homepage.dart';
+import 'package:project/screens/questionnaire.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:project/utils/impact.dart';
 
 
 class LoginPage extends StatefulWidget {
@@ -11,6 +13,7 @@ class _LoginPageState extends State<LoginPage> {
 
   TextEditingController userController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  final Impact impact = Impact();
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +27,6 @@ class _LoginPageState extends State<LoginPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Padding(
-              //padding: const EdgeInsets.only(left:15.0,right: 15.0,top:0,bottom: 0),
               padding: EdgeInsets.symmetric(horizontal: 15),
               child: TextField(
                 controller: userController,
@@ -37,7 +39,6 @@ class _LoginPageState extends State<LoginPage> {
             Padding(
               padding: const EdgeInsets.only(
                   left: 15.0, right: 15.0, top: 15, bottom: 15),
-              //padding: EdgeInsets.symmetric(horizontal: 15),
               child: 
               TextField(
                 obscureText: true,
@@ -53,10 +54,18 @@ class _LoginPageState extends State<LoginPage> {
               width: 250,
               decoration: BoxDecoration(borderRadius: BorderRadius.circular(20)),
               child: ElevatedButton(
-                onPressed: () {
-                  if(userController.text == 'bug@expert.com' && passwordController.text == 'ciao'){
-                    Navigator.pushReplacement(
-                        context, MaterialPageRoute(builder: (_) => MyHomePage(title: 'HomePage')));
+                onPressed: () async {
+                  if(userController.text == Impact.username && passwordController.text == Impact.password){
+                    final result = await impact.getAndStoreTokens(
+                            userController.text, passwordController.text);
+                        if (result == 200) {
+                          final sp = await SharedPreferences.getInstance();
+                          await sp.setString('username', userController.text);
+                          await sp.setString('password', passwordController.text);
+                          Navigator.of(context).pushReplacement(
+                                MaterialPageRoute(
+                                    builder: (context) => Questionnaire()));
+                          }
                   }else{
                     ScaffoldMessenger.of(context)
                     ..removeCurrentSnackBar()

@@ -1,42 +1,44 @@
+import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:project/screens/homepage.dart';
+import 'package:project/screens/login.dart';
+import 'package:project/utils/impact.dart';
 
-class Splash extends StatefulWidget {
-  const Splash({super.key});
-
-  @override
-  State<Splash> createState() => _SplashState();
-}
-
-class _SplashState extends State<Splash> {
-  @override
-  void initState() {
-    super.initState() ;
-    _navigateToHome() ;
-  }
-
-  _navigateToHome() async {
-    await Future.delayed(Duration(milliseconds: 1500), () {}) ;
-    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> MyHomePage(title: 'HomePage'))) ;
-  }
+class SplashScreen extends StatelessWidget {
+  const SplashScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(height:100, width:100, color: Colors.blue),
-            Container(
-              child: Text(
-                'Splash Screen',
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-              ),
+  Widget build(BuildContext context) { 
+    return AnimatedSplashScreen.withScreenFunction(
+            splash: SizedBox(
+              height: 100, width: 100,
+              child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset('lib/assets/leaf.png'),
+                      //SizedBox(height:100,width:100),  -> serve per lasciare eventualmente spazio tra immagine e text: aggiunge un box bianco
+                      Text(
+                        'Splash Screen',
+                        style:
+                            TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                      ),
+                    ]),
             ),
-          ],
-        ),
-      ),
-    );
+
+            duration: 3000,
+            splashTransition:
+                SplashTransition.fadeTransition, // per cambiare la transizione
+            backgroundColor: Colors.white, // per cambiare il colore sfondo
+            screenFunction:  () async {return checkLogin(context) ; } );
+          
   }
+
+  Future<Widget> checkLogin(BuildContext context) async {
+    final result = await Impact().refreshTokens();
+    if (result == 200) {
+      return HomePage(title:'HomePage') ;
+    } else {
+      return LoginPage() ;
+    }
+  } 
 }
