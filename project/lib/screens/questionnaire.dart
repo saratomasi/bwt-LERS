@@ -152,7 +152,7 @@ class _Questionnaire extends State<Questionnaire> {
                     saveData();
                     Navigator.pushReplacement(
                       context,
-                      MaterialPageRoute(builder: (_) => MyHomePage(title: 'HomePage')),
+                      MaterialPageRoute(builder: (_) => HomePage(title: 'HomePage')),
                     );
                   }
                 },
