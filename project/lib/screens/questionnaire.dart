@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:project/screens/bottomnavigationpage.dart';
 import'package:shared_preferences/shared_preferences.dart'; 
-import 'package:project/screens/homepage.dart';
-// prova branch
+
 class Questionnaire extends StatefulWidget {
   @override
   _Questionnaire createState() => _Questionnaire();
@@ -47,121 +47,118 @@ class _Questionnaire extends State<Questionnaire> {
       appBar: AppBar(
         title: Text('Questionario'),
       ),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                TextField(
-                  decoration: InputDecoration(labelText: 'Nome'),
-                  onChanged: (value) {
-                    setState(() {
-                      _nome = value;
-                    });
-                  },
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              TextField(
+                decoration: InputDecoration(labelText: 'Nome'),
+                onChanged: (value) {
+                  setState(() {
+                    _nome = value;
+                  });
+                },
+              ),
+              TextField(
+                decoration: InputDecoration(labelText: 'Cognome'),
+                onChanged: (value) {
+                  setState(() {
+                    _cognome = value;
+                  });
+                },
+              ),
+              DropdownButtonFormField<String>(
+                value: _eta.isEmpty ? null : _eta,
+                onChanged: (value) {
+                  setState(() {
+                    _eta = value!;
+                  });
+                },
+                items: eta.map((eta) {
+                  return DropdownMenuItem(
+                    value: eta,
+                    child: Text(eta),
+                  );
+                }).toList(),
+                decoration: InputDecoration(labelText: 'Età'),
+              ),
+              DropdownButtonFormField<String>(
+                value: _sede.isEmpty ? null : _sede,
+                onChanged: (value) {
+                  setState(() {
+                    _sede = value!;
+                  });
+                },
+                items: sedi.map((sede) {
+                  return DropdownMenuItem(
+                    value: sede,
+                    child: Text(sede),
+                  );
+                }).toList(),
+                decoration: InputDecoration(labelText: 'Sede'),
+              ),
+              DropdownButtonFormField<String>(
+                value: _allenaSettimana.isEmpty ? null : _allenaSettimana,
+                onChanged: (value) {
+                  setState(() {
+                    _allenaSettimana = value!;
+                  });
+                },
+                items: frequenzaAllenamento.map((frequenza) {
+                  return DropdownMenuItem(
+                    value: frequenza,
+                    child: Text(frequenza),
+                  );
+                }).toList(),
+                decoration: InputDecoration(labelText: 'Frequenza allenamento'),
+              ),
+              DropdownButtonFormField<String>(
+                value: _avatar.isEmpty ? null : _avatar,
+                onChanged: (value) {
+                  setState(() {
+                    _avatar = value!;
+                  });
+                },
+                items: avatars.asMap().entries.map((entry) {
+                  int index = entry.key;
+                  String avatar = entry.value;
+                  return DropdownMenuItem(
+                    value: avatar,
+                    child: Row(
+                      children: [
+                        Image.asset(
+                          avatar,
+                          width: 30,
+                          height: 30,
+                        ),
+                        SizedBox(width: 10),
+                        Text(nomi_avatar[index]), 
+                      ],
+                    ),
+                  );
+                }).toList(),
+                decoration: InputDecoration(labelText: 'Avatar'),
+              ),
+              if (!isWarningVisible)
+                Text(
+                  'Si prega di compilare tutti i campi',
+                  style: TextStyle(color: Colors.red),
                 ),
-                TextField(
-                  decoration: InputDecoration(labelText: 'Cognome'),
-                  onChanged: (value) {
-                    setState(() {
-                      _cognome = value;
-                    });
-                  },
-                ),
-                DropdownButtonFormField<String>(
-                  value: _eta.isEmpty ? null : _eta,
-                  onChanged: (value) {
-                    setState(() {
-                      _eta = value!;
-                    });
-                  },
-                  items: eta.map((eta) {
-                    return DropdownMenuItem(
-                      value: eta,
-                      child: Text(eta),
+              ElevatedButton(
+                onPressed: () {
+                  if (isWarningVisible) {
+                    saveData();
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(builder: (_) => BottomNavigationBarPage()),
                     );
-                  }).toList(),
-                  decoration: InputDecoration(labelText: 'Età'),
-                ),
-                DropdownButtonFormField<String>(
-                  value: _sede.isEmpty ? null : _sede,
-                  onChanged: (value) {
-                    setState(() {
-                      _sede = value!;
-                    });
-                  },
-                  items: sedi.map((sede) {
-                    return DropdownMenuItem(
-                      value: sede,
-                      child: Text(sede),
-                    );
-                  }).toList(),
-                  decoration: InputDecoration(labelText: 'Sede'),
-                ),
-                DropdownButtonFormField<String>(
-                  value: _allenaSettimana.isEmpty ? null : _allenaSettimana,
-                  onChanged: (value) {
-                    setState(() {
-                      _allenaSettimana = value!;
-                    });
-                  },
-                  items: frequenzaAllenamento.map((frequenza) {
-                    return DropdownMenuItem(
-                      value: frequenza,
-                      child: Text(frequenza),
-                    );
-                  }).toList(),
-                  decoration: InputDecoration(labelText: 'Frequenza allenamento'),
-                ),
-                DropdownButtonFormField<String>(
-                  value: _avatar.isEmpty ? null : _avatar,
-                  onChanged: (value) {
-                    setState(() {
-                      _avatar = value!;
-                    });
-                  },
-                  items: avatars.asMap().entries.map((entry) {
-                    int index = entry.key;
-                    String avatar = entry.value;
-                    return DropdownMenuItem(
-                      value: avatar,
-                      child: Row(
-                        children: [
-                          Image.asset(
-                            avatar,
-                            width: 30,
-                            height: 30,
-                          ),
-                          SizedBox(width: 10),
-                          Text(nomi_avatar[index]), 
-                        ],
-                      ),
-                    );
-                  }).toList(),
-                  decoration: InputDecoration(labelText: 'Avatar'),
-                ),
-                if (!isWarningVisible)
-                  Text(
-                    'Si prega di compilare tutti i campi',
-                    style: TextStyle(color: Colors.red),
-                  ),
-        
-                ElevatedButton(
-                  onPressed: () {
-                    if (isWarningVisible) {
-                      saveData();
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(builder: (_) => HomePage()),
-                      );
-                    }
-                  },
-                  child: Text('Invia'),
-                ),
-              ],
-            ),
+                  }
+                },
+                child: Text('Invia'),
+              ),
+            ],
           ),
         ),
       ),

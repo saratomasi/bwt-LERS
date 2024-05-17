@@ -1,6 +1,6 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:project/screens/homepage.dart';
+import 'package:project/screens/bottomnavigationpage.dart';
 import 'package:project/screens/login.dart';
 import 'package:project/utils/impact.dart';
 
@@ -36,7 +36,7 @@ class SplashScreen extends StatelessWidget {
   Future<Widget> checkLogin(BuildContext context) async {
     final result = await Impact().refreshTokens();
     if (result == 200) {
-      return HomePage() ;
+      return BottomNavigationBarPage() ;
     } else {
       return LoginPage() ;
     }
