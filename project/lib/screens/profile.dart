@@ -10,6 +10,7 @@ import 'package:project/screens/login.dart';
     return Scaffold(
       body: Center(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             ElevatedButton(
               onPressed: () async {

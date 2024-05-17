@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:project/screens/bottomnavigationpage.dart';
 import'package:shared_preferences/shared_preferences.dart'; 
-import 'package:project/screens/homepage.dart';
 
 class Questionnaire extends StatefulWidget {
   @override
@@ -152,7 +152,7 @@ class _Questionnaire extends State<Questionnaire> {
                     saveData();
                     Navigator.pushReplacement(
                       context,
-                      MaterialPageRoute(builder: (_) => HomePage()),
+                      MaterialPageRoute(builder: (_) => BottomNavigationBarPage()),
                     );
                   }
                 },
