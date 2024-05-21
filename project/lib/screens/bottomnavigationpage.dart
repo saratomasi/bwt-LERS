@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:project/screens/profile.dart';
 import 'package:project/screens/homepage.dart';
+import 'package:project/widgets/expandableFab.dart';
+import 'package:project/widgets/actionButton.dart';
 
 class BottomNavigationBarPage extends StatefulWidget {
   const BottomNavigationBarPage({super.key});
@@ -17,6 +19,7 @@ class _HomePageState extends State<BottomNavigationBarPage> {
       _showIndex = index;
     });
   }
+
 
   List<Widget> screenList = const [
     HomePage(),
@@ -36,6 +39,25 @@ class _HomePageState extends State<BottomNavigationBarPage> {
     }
   }
 
+//x button che si espande:
+  static const _actionTitles = ['AI advice!', 'Search page'];
+
+  void _showAction(BuildContext context, int index) {
+    showDialog<void>(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          content: Text(_actionTitles[index]),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: const Text('CLOSE'),
+            ),
+          ],
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -54,6 +76,14 @@ class _HomePageState extends State<BottomNavigationBarPage> {
         
         //aggiungere bottone nuova sessione
       ]),
+
+      floatingActionButton: ExpandableFab(
+        distance: 112,
+        children: [
+          ActionButton(onPressed: () => _showAction(context, 0), icon: const Icon(Icons.auto_awesome),),
+          ActionButton(onPressed: () => _showAction(context, 1), icon: const Icon(Icons.travel_explore),),
+        ],
+      ),
       //floatingActionButton: FloatingActionButton(
         //onPressed: _incrementCounter,
         //tooltip: 'Increment',
