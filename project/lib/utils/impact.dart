@@ -1,7 +1,10 @@
 import 'dart:convert';
+import 'package:intl/intl.dart';
 import 'package:http/http.dart' as http ;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
+import 'package:project/models/heartrate.dart';
+
 
 class Impact{
 
@@ -98,5 +101,66 @@ class Impact{
     }
     return true;
   } //checkToken
+
+   //This method prepares the Bearer header for the calls
+  Future<Map<String, String>> getBearer() async {
+    if (!await checkSavedToken()) {
+      await refreshTokens();
+    }
+    final sp = await SharedPreferences.getInstance();
+    final token = sp.getString('access');
+
+    return {'Authorization': 'Bearer $token'};
+  }
+
+  Future<void> getPatient() async {
+    var header = await getBearer();
+    final r = await http.get(
+        Uri.parse('${Impact.baseUrl}study/v1/patients/active'),
+        headers: header);
+
+    final decodedResponse = jsonDecode(r.body);
+    final sp = await SharedPreferences.getInstance();
+
+    sp.setString('impactPatient', decodedResponse['data'][0]['username']);
+  }
+
+  Future<List<HR>> getDataFromDay(DateTime startTime) async {
+    final sp = await SharedPreferences.getInstance();
+    String? user = sp.getString('impactPatient');
+    var header = await getBearer();
+    var end = DateFormat('y-M-d').format(startTime);
+    var start =
+        DateFormat('y-M-d').format(startTime.subtract(const Duration(days: 1)));
+    var r = await http.get(
+      Uri.parse(
+          '${Impact.baseUrl}data/v1/heart_rate/patients/$user/daterange/start_date/$start/end_date/$end/'),
+      headers: header,
+    );
+    if (r.statusCode != 200) return [];
+
+        List<dynamic> data = jsonDecode(r.body)['data'];
+    List<HR> hr = [];
+    for (var daydata in data) {
+      String day = daydata['date'];
+      for (var dataday in daydata['data']) {
+        String hour = dataday['time'];
+        String datetime = '${day}T$hour';
+        DateTime timestamp = _truncateSeconds(DateTime.parse(datetime));
+        HR hrnew = HR(timestamp: timestamp, value: dataday['value']);
+        if (!hr.any((e) => e.timestamp.isAtSameMomentAs(hrnew.timestamp))) {
+          hr.add(hrnew);
+        }
+      }
+    }
+    var hrlist = hr.toList()
+      ..sort((a, b) => a.timestamp.compareTo(b.timestamp));
+    return hrlist;
+  }
+
+  DateTime _truncateSeconds(DateTime input) {
+    return DateTime(
+        input.year, input.month, input.day, input.hour, input.minute);
+  }
 
 }//Impact
