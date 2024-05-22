@@ -69,6 +69,8 @@ flutter:
    - lib/assets/avatar2.png
    - lib/assets/avatar3.png
    - lib/assets/avatar4.png
+   - lib/assets/trophy.png
+   - lib/assets/trophy_locked.png
    
   #   - images/a_dot_ham.jpeg
 
