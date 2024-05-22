@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:project/models/heartrate.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+//import 'package:shared_preferences/shared_preferences.dart';
 import 'package:project/utils/impact.dart';
 
 // this is the change notifier. it will manage all the logic of the home page: fetching the correct data from the online services
-class HomeProvider extends ChangeNotifier {
+class DataProvider extends ChangeNotifier {
   // data to be used by the UI
   List<HR> heartRates = [];
   String nick = 'User';
@@ -15,7 +15,7 @@ class HomeProvider extends ChangeNotifier {
   final Impact impact = Impact();
 
   // constructor of provider which manages the fetching of all data from the servers and then notifies the ui to build
-  HomeProvider() {
+  DataProvider() {
     getDataOfDay(showDate);
   }
 
@@ -35,3 +35,6 @@ class HomeProvider extends ChangeNotifier {
     notifyListeners();
   }
 }
+
+// Quindi in teoria su getDataOfDay inserisco la data corrente - 1 (quindi la data di ieri) e su impact la prende come END,
+// mentre lo START è pari a END-7 (per ora)

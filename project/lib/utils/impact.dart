@@ -131,7 +131,7 @@ class Impact{
     var header = await getBearer();
     var end = DateFormat('y-M-d').format(startTime);
     var start =
-        DateFormat('y-M-d').format(startTime.subtract(const Duration(days: 1)));
+        DateFormat('y-M-d').format(startTime.subtract(const Duration(days: 7)));
     var r = await http.get(
       Uri.parse(
           '${Impact.baseUrl}data/v1/heart_rate/patients/$user/daterange/start_date/$start/end_date/$end/'),
