@@ -76,12 +76,12 @@ class _HomePageState extends State<BottomNavigationBarPage> {
         
         //aggiungere bottone nuova sessione
       ]),
-
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: ExpandableFab(
-        distance: 112,
+        distance: 80,
         children: [
-          ActionButton(onPressed: () => _showAction(context, 0), icon: const Icon(Icons.auto_awesome),),
-          ActionButton(onPressed: () => _showAction(context, 1), icon: const Icon(Icons.travel_explore),),
+          ActionButton(onPressed: () => _showAction(context, 0), icon: const Icon(Icons.auto_awesome),text: 'Get advice'),
+          ActionButton(onPressed: () => _showAction(context, 1), icon: const Icon(Icons.travel_explore),text: 'Manual search'),
         ],
       ),
       //floatingActionButton: FloatingActionButton(

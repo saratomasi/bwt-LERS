@@ -17,16 +17,18 @@ class ExpandingActionButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return AnimatedBuilder(
       animation: progress,
-      builder: (context, child) {
+      builder: (context, child,) {
         final offset = Offset.fromDirection(
           directionInDegrees * (math.pi / 180.0),
           progress.value * maxDistance,
         );
         return Positioned(
-          right: 4.0 + offset.dx,
-          bottom: 4.0 + offset.dy,
+          
+          right: 160 + offset.dx,
+          bottom: offset.dy,
           child: Transform.rotate(
             angle: (1.0 - progress.value) * math.pi / 2,
             child: child!,
