@@ -6,4 +6,9 @@ class HR {
   final int value;
 
   HR({required this.timestamp, required this.value});
+
+   @override
+  String toString() {
+    return 'HR(time: $timestamp, value: $value)';
+  }
 }
