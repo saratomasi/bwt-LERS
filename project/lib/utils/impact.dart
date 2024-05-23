@@ -1,18 +1,16 @@
 import 'dart:convert';
 import 'package:intl/intl.dart';
-import 'package:http/http.dart' as http ;
+import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:project/models/heartrate.dart';
 
-
-class Impact{
-
+class Impact {
   static String baseUrl = 'https://impact.dei.unipd.it/bwthw/';
   static String pingEndpoint = 'gate/v1/ping/';
   static String tokenEndpoint = 'gate/v1/token/';
   static String refreshEndpoint = 'gate/v1/refresh/';
-  
+
   static String username = '2VM2HKMb35';
   static String password = '12345678!';
 
@@ -102,7 +100,7 @@ class Impact{
     return true;
   } //checkToken
 
-   //This method prepares the Bearer header for the calls
+  //This method prepares the Bearer header for the calls
   Future<Map<String, String>> getBearer() async {
     if (!await checkSavedToken()) {
       await refreshTokens();
@@ -139,7 +137,7 @@ class Impact{
     );
     if (r.statusCode != 200) return [];
 
-        List<dynamic> data = jsonDecode(r.body)['data'];
+    List<dynamic> data = jsonDecode(r.body)['data'];
     List<HR> hr = [];
     for (var daydata in data) {
       String day = daydata['date'];

@@ -16,15 +16,16 @@ class DataProvider extends ChangeNotifier {
 
   // constructor of provider which manages the fetching of all data from the servers and then notifies the ui to build
   DataProvider() {
-    getDataOfDay(showDate);
+    fetchData(showDate);
   }
 
   // method to get the data of the chosen day
-  void getDataOfDay(DateTime showDate) async {
+  void fetchData(DateTime showDate) async {
     showDate = DateUtils.dateOnly(showDate);
     this.showDate = showDate;
     _loading(); // method to give a loading ui feedback to the user
     heartRates = await impact.getDataFromDay(showDate);
+    //print(heartRates) ;
     
     // after selecting all data we notify all consumers to rebuild
     notifyListeners();

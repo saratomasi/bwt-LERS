@@ -17,11 +17,6 @@ class SplashScreen extends StatelessWidget {
                     children: [
                       Image.asset('lib/assets/leaf.png'),
                       //SizedBox(height:100,width:100),  -> serve per lasciare eventualmente spazio tra immagine e text: aggiunge un box bianco
-                      Text(
-                        'Splash Screen',
-                        style:
-                            TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
-                      ),
                     ]),
             ),
 

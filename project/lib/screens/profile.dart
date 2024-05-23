@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import'package:shared_preferences/shared_preferences.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:project/screens/login.dart';
 import 'package:provider/provider.dart';
 import 'package:project/providers/dataprovider.dart';
- 
- class ProfilePage extends StatelessWidget {
+
+class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
 
   @override
@@ -14,36 +14,37 @@ import 'package:project/providers/dataprovider.dart';
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            ChangeNotifierProvider(
+              create: (context) => DataProvider(),
+              child:
+                  Consumer<DataProvider>(builder: (context, provider, child) {
+                return ElevatedButton(
+                  onPressed: () {
+                    //provider.fetchData(provider.showDate.subtract(const Duration(days: 7)));
+                    provider.fetchData(provider.showDate);
+                    print(provider.heartRates) ;
+                  },
+                  child: Text('Sync your device'),
+                );
+              }),
+            ),
             ElevatedButton(
               onPressed: () async {
-                  _toLogin(context);
-                },
+                _toLogin(context);
+              },
               child: Text('Log out'),
-              ),
-              Consumer<DataProvider>(builder: (context, provider, child) {
-              return ElevatedButton(
-                onPressed: () {
-                  //provider.getDataOfDay(provider.showDate.subtract(const Duration(days: 7)));
-                  provider.getDataOfDay(provider.showDate);
-                  //print(provider.heartRates) ; 
-                }, 
-                child: Text('Sync your device'),
-                ) ;
-              }
-              ),
+            ),
           ],
         ),
       ),
-    ) ;
+    );
   }
 }
- // TODO INSERIRE IL PROVIDER NEL MAIN E FIXARE IL PROVIDER IN QUESTA PAGINA
- 
- 
- _toLogin(BuildContext context) async {
-    final sp = await SharedPreferences.getInstance();
-    await sp.clear();
-    Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: ((context) => LoginPage())));
- }
- //
+
+_toLogin(BuildContext context) async {
+  final sp = await SharedPreferences.getInstance();
+  await sp.clear();
+  Navigator.of(context)
+      .pushReplacement(MaterialPageRoute(builder: ((context) => LoginPage())));
+}
+//
