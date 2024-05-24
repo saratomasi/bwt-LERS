@@ -16,7 +16,7 @@ class DataProvider extends ChangeNotifier {
 
   // constructor of provider which manages the fetching of all data from the servers and then notifies the ui to build
   DataProvider() {
-    fetchData(showDate);
+    //fetchData(showDate); -> non ci va se vogliamo che il provider funzioni solo premendo il bottone
   }
 
   // method to get the data of the chosen day
@@ -25,7 +25,7 @@ class DataProvider extends ChangeNotifier {
     this.showDate = showDate;
     _loading(); // method to give a loading ui feedback to the user
     heartRates = await impact.getDataFromDay(showDate);
-    //print(heartRates) ;
+    print(heartRates) ;
     
     // after selecting all data we notify all consumers to rebuild
     notifyListeners();

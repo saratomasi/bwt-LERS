@@ -13,6 +13,7 @@ class Impact {
 
   static String username = '2VM2HKMb35';
   static String password = '12345678!';
+  static String patientUsername = 'Jpefaq6m58';
 
   //This method allows to check if the IMPACT backend is up
   Future<bool> isImpactUp() async {
@@ -131,8 +132,9 @@ class Impact {
     var start =
         DateFormat('y-M-d').format(startTime.subtract(const Duration(days: 7)));
     var r = await http.get(
-      Uri.parse(
-          '${Impact.baseUrl}data/v1/heart_rate/patients/$user/daterange/start_date/$start/end_date/$end/'),
+      //Uri.parse(
+      //    '${Impact.baseUrl}data/v1/heart_rate/patients/$user/daterange/start_date/$start/end_date/$end/'),
+      Uri.parse('https://impact.dei.unipd.it/bwthw/data/v1/heart_rate/patients/$patientUsername/daterange/start_date/$start/end_date/$end/'),
       headers: header,
     );
     if (r.statusCode != 200) return [];

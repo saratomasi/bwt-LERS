@@ -22,7 +22,7 @@ class ProfilePage extends StatelessWidget {
                   onPressed: () {
                     //provider.fetchData(provider.showDate.subtract(const Duration(days: 7)));
                     provider.fetchData(provider.showDate);
-                    print(provider.heartRates) ;
+                    //print(provider.heartRates.length) ;
                   },
                   child: Text('Sync your device'),
                 );
