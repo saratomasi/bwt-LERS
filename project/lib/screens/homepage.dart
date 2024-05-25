@@ -3,6 +3,7 @@ import 'package:project/menu/achievements.dart';
 import 'package:project/menu/explorelater.dart';
 import 'package:project/menu/favorites.dart';
 import 'package:project/menu/sessions.dart';
+import 'package:project/gpxMap.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -49,7 +50,7 @@ class _HomePageState extends State<HomePage> {
           ElevatedButton(
             onPressed: () {
               Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => Sessions()));
+                  context, MaterialPageRoute(builder: (context) => GpxMapScreen()));
             },
             child: ListTile(
                 leading: Icon(Icons.run_circle_outlined),

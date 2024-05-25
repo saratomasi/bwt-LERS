@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:project/screens/homepage.dart';
 import 'package:project/screens/splash.dart';
+import 'package:project/screens/bottomnavigationpage.dart';
 
 void main() {
   runApp(const MyApp());

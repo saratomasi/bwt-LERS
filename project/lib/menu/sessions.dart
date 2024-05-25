@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:gpx/gpx.dart';
 
 class Sessions extends StatelessWidget {
   const Sessions({super.key});
@@ -41,15 +42,6 @@ class Sessions extends StatelessWidget {
   }
 
   Widget mapView() {
-    /*return const GoogleMap(
-        initialCameraPosition: CameraPosition(
-          target: LatLng(45.4642, 9.1900), // Posizione di esempio
-          zoom: 12,
-        ),
-        markers: {
-        // Aggiungi i marker per ogni percorso completato
-        },
-      );**/
       return Card(
         margin: EdgeInsets.symmetric(vertical: 8.0),
         child: FlutterMap(

@@ -47,6 +47,7 @@ dev_dependencies:
     sdk: flutter
   flutter_map: ^6.1.0
   url_launcher: ^6.2.6
+  gpx: ^2.2.2
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
@@ -75,6 +76,7 @@ flutter:
    - lib/assets/avatar4.png
    - lib/assets/trophy.png
    - lib/assets/trophy_locked.png
+   - lib/assets/Euganei-Trek_Teolo_Fiorine-Madonna-Grande.gpx
    
   #   - images/a_dot_ham.jpeg
 
