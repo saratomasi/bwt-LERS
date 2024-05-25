@@ -19,10 +19,13 @@ class ProfilePage extends StatelessWidget {
               child:
                   Consumer<DataProvider>(builder: (context, provider, child) {
                 return ElevatedButton(
-                  onPressed: () {
+                  onPressed: () async{
                     //provider.fetchData(provider.showDate.subtract(const Duration(days: 7)));
-                    provider.fetchData(provider.showDate);
-                    //print(provider.heartRates.length) ;
+                    await provider.fetchData(provider.showDate);
+                    provider.getLevel() ;
+                    final sp = await SharedPreferences.getInstance() ;
+                    print(sp.getString('level')) ;
+
                   },
                   child: Text('Sync your device'),
                 );
@@ -47,4 +50,11 @@ _toLogin(BuildContext context) async {
   Navigator.of(context)
       .pushReplacement(MaterialPageRoute(builder: ((context) => LoginPage())));
 }
-//
+
+// heart_rate
+// calories
+// sleep
+// distance
+// resting_heart_rate
+// steps
+// exercise

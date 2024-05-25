@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:project/screens/bottomnavigationpage.dart';
 import'package:shared_preferences/shared_preferences.dart'; 
 
@@ -10,13 +11,13 @@ class Questionnaire extends StatefulWidget {
 class _Questionnaire extends State<Questionnaire> {
   String _nome = '';
   String _cognome = '';
-  String _eta = '';
+  int eta = 0 ;
   String _sede = '';
   String _allenaSettimana = '';
   String _avatar = '';
 
   final List<String> sedi = ['Padova'];
-  final List<String> eta = ['16/30 anni', '30/50 anni', '50/60 anni', '+60 anni'];
+  //final List<String> eta = ['16/30 anni', '30/50 anni', '50/60 anni', '+60 anni'];
   final List<String> frequenzaAllenamento = ['Nessun allenamento', '1-2 volte alla settimana', '3+ volte alla settimana'];
   final List<String> avatars = [
     'lib/assets/avatar1.png', 
@@ -27,12 +28,12 @@ class _Questionnaire extends State<Questionnaire> {
   final List<String> nomi_avatar = ['Fuoco','Acqua','Aria','Terra'];
   
 
-  bool get isWarningVisible => _nome.isNotEmpty && _cognome.isNotEmpty && _eta.isNotEmpty && _sede.isNotEmpty && _allenaSettimana.isNotEmpty && _avatar.isNotEmpty;
+  bool get isWarningVisible => _nome.isNotEmpty && _cognome.isNotEmpty && eta!=0 && _sede.isNotEmpty && _allenaSettimana.isNotEmpty && _avatar.isNotEmpty;
    Future<void> saveData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString('nome', _nome);
     prefs.setString('cognome', _cognome);
-    prefs.setString('eta', _eta);
+    prefs.setInt('eta', eta);
     prefs.setString('sede', _sede);
     prefs.setString('frequenzaAllenamento', _allenaSettimana);
     prefs.setString('avatar', _avatar);
@@ -70,20 +71,34 @@ class _Questionnaire extends State<Questionnaire> {
                     });
                   },
                 ),
-                DropdownButtonFormField<String>(
-                  value: _eta.isEmpty ? null : _eta,
+                // DropdownButtonFormField<String>(
+                //   value: _eta.isEmpty ? null : _eta,
+                //   onChanged: (value) {
+                //     setState(() {
+                //       _eta = value!;
+                //     });
+                //   },
+                //   items: eta.map((eta) {
+                //     return DropdownMenuItem(
+                //       value: eta,
+                //       child: Text(eta),
+                //     );
+                //   }).toList(),
+                //   decoration: InputDecoration(labelText: 'Età'),
+                // ),
+
+                // MODIFICATO IL CAMPO ETA' METTENDO DEI CONSTRAINTS ALLA TASTIERA
+                   TextField(
+                  decoration: InputDecoration(labelText: 'Età'),
+                  keyboardType: TextInputType.numberWithOptions(decimal: false, signed: false),
+                  inputFormatters: <TextInputFormatter>[
+                    FilteringTextInputFormatter.digitsOnly,
+                    LengthLimitingTextInputFormatter(2)],
                   onChanged: (value) {
                     setState(() {
-                      _eta = value!;
+                      eta = int.parse(value) ;
                     });
                   },
-                  items: eta.map((eta) {
-                    return DropdownMenuItem(
-                      value: eta,
-                      child: Text(eta),
-                    );
-                  }).toList(),
-                  decoration: InputDecoration(labelText: 'Età'),
                 ),
                 DropdownButtonFormField<String>(
                   value: _sede.isEmpty ? null : _sede,

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:project/models/heartrate.dart';
 //import 'package:shared_preferences/shared_preferences.dart';
 import 'package:project/utils/impact.dart';
+import 'package:collection/collection.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 // this is the change notifier. it will manage all the logic of the home page: fetching the correct data from the online services
 class DataProvider extends ChangeNotifier {
@@ -20,13 +22,13 @@ class DataProvider extends ChangeNotifier {
   }
 
   // method to get the data of the chosen day
-  void fetchData(DateTime showDate) async {
+  Future<void> fetchData(DateTime showDate) async {
     showDate = DateUtils.dateOnly(showDate);
     this.showDate = showDate;
     _loading(); // method to give a loading ui feedback to the user
     heartRates = await impact.getDataFromDay(showDate);
-    print(heartRates) ;
-    
+    //print(heartRates) ;
+
     // after selecting all data we notify all consumers to rebuild
     notifyListeners();
   }
@@ -35,7 +37,35 @@ class DataProvider extends ChangeNotifier {
     heartRates = [];
     notifyListeners();
   }
+
+  Future<String> getLevel() async {
+    String level = '';
+    final sp = await SharedPreferences.getInstance();
+    int? age = sp.getInt('eta');
+    if (age != null) {
+      int FCmax = 200 - age; // Frequenza cardiaca massima teorica
+      if (heartRates.isNotEmpty) {
+        List<int> values =
+            heartRates.map((heartRates) => heartRates.value).toList();
+        double average = values.average;
+        if (average < FCmax * 0.6) {
+          level = 'Not an Expert';
+        } else {
+          level = 'Expert';
+        }
+        sp.setString('level', level) ;
+        return level;
+      } else {
+        return 'No available data';
+      }
+    } else {
+      return 'No age data available' ;
+    }
+  }
 }
+// TODO SALVARE LEVEL IN SHARED PREFERENCES
+
+
 
 // Quindi in teoria su getDataOfDay inserisco la data corrente - 1 (quindi la data di ieri) e su impact la prende come END,
 // mentre lo START è pari a END-7 (per ora)

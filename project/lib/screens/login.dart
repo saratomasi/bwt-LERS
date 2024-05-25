@@ -32,8 +32,8 @@ class _LoginPageState extends State<LoginPage> {
                 controller: userController,
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
-                    labelText: 'Email',
-                    hintText: 'Enter valid email id as abc@gmail.com'),
+                    labelText: 'ID',
+                    hintText: 'Enter valid id'),
               ),
             ),
             Padding(
