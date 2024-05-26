@@ -50,7 +50,7 @@ class _HomePageState extends State<HomePage> {
           ElevatedButton(
             onPressed: () {
               Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => GpxMapScreen()));
+                  context, MaterialPageRoute(builder: (context) => Sessions()));
             },
             child: ListTile(
                 leading: Icon(Icons.run_circle_outlined),

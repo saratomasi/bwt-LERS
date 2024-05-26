@@ -38,7 +38,7 @@ class _GpxMapScreenState extends State<GpxMapScreen> {
   }
 
   Future<void> loadGpx() async {
-    final gpx = await loadGpxFile('lib/assets/Euganei-Trek_Teolo_Fiorine-Madonna-Grande.gpx');
+    final gpx = await loadGpxFile('lib/assets/PiazzadellaFrutta_PiazzadeiSignori_anellodaSantaRita.gpx');
     final points = getCoordinatesFromGpx(gpx);
     setState(() {
       gpxPoints = points;

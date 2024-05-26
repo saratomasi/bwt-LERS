@@ -3,6 +3,8 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:gpx/gpx.dart';
+import 'package:project/database/trails.dart';
+import 'package:project/objects/trail.dart';
 
 class Sessions extends StatelessWidget {
   const Sessions({super.key});
@@ -70,13 +72,14 @@ class Sessions extends StatelessWidget {
   Widget sessionList() {
     return ListView.builder(
       padding: const EdgeInsets.all(8.0),
-      itemCount: 10,
+      itemCount: trailsDatabase.length,
       itemBuilder: (context, index) {
+        Trail tmp = trailsDatabase[index+1]!;
         return Card(
           margin: const EdgeInsets.symmetric(vertical: 8.0),
           child: ListTile(
-            title: Text('Percorso ${index + 1}'),
-            subtitle: Text('Dettagli del percorso ${index + 1}'),
+            title: Text('Percorso ${tmp.name}'),
+            subtitle: Text('Livello ${tmp.level}'),
             onTap: () {
             // Implementa la navigazione ai dettagli del percorso
             },

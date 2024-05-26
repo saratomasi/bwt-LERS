@@ -1,0 +1,1284 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<gpx xmlns="http://www.topografix.com/GPX/1/1" creator="MapSource 6.11.6" version="1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+
+  <metadata>
+    <link href="http://www.garmin.com">
+      <text>Garmin International</text>
+    </link>
+    <time>2008-06-03T08:12:28Z</time>
+    <bounds maxlat="45.575708" maxlon="11.939576" minlat="45.396742" minlon="11.872304"/>
+  </metadata>
+
+  <wpt lat="45.575708" lon="11.932058">
+    <name>00-SantuarioDelNoce</name>
+    <cmt>Santuario del Noce</cmt>
+    <desc>Santuario del Noce</desc>
+    <sym>Flag, Green</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+
+  <wpt lat="45.573910" lon="11.931286">
+    <ele>29.000000</ele>
+    <time>2008-06-03T06:23:13Z</time>
+    <name>01-Santuario</name>
+    <cmt>Santuario della Visione</cmt>
+    <desc>Santuario della Visione</desc>
+    <sym>Church</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+
+  <wpt lat="45.571783" lon="11.931607">
+    <ele>30.000000</ele>
+    <time>2008-06-03T06:25:06Z</time>
+    <name>02-Camposampiero</name>
+    <cmt>Camposampiero-Municipio piazza Castello</cmt>
+    <desc>Camposampiero-Municipio piazza Castello</desc>
+    <sym>Beacon</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+
+  <wpt lat="45.571099" lon="11.932722">
+    <ele>30.000000</ele>
+    <time>2008-06-03T06:27:34Z</time>
+    <name>03</name>
+    <cmt>attraversamento strada statale</cmt>
+    <desc>attraversamento strada statale</desc>
+    <sym>Trail Head</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+
+  <wpt lat="45.571249" lon="11.934026">
+    <ele>29.000000</ele>
+    <time>2008-06-03T06:28:23Z</time>
+    <name>04</name>
+    <cmt>piazzetta</cmt>
+    <desc>piazzetta</desc>
+    <sym>Trail Head</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+
+  <wpt lat="45.570201" lon="11.934072">
+    <ele>28.000000</ele>
+    <name>05</name>
+    <cmt>ponte</cmt>
+    <desc>ponte</desc>
+    <sym>Trail Head</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+
+  <wpt lat="45.569046" lon="11.939573">
+    <ele>28.000000</ele>
+    <time>2008-06-03T06:30:54Z</time>
+    <name>06-Argine</name>
+    <cmt>inizio argine dx Muson dei Sassi</cmt>
+    <desc>inizio argine dx Muson dei Sassi</desc>
+    <sym>Buoy, White</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+
+  <wpt lat="45.563160" lon="11.936929">
+    <ele>27.000000</ele>
+    <time>2008-06-03T06:33:34Z</time>
+    <name>07</name>
+    <cmt>ponte via Bonora</cmt>
+    <desc>ponte via Bonora</desc>
+    <sym>Trail Head</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+
+  <wpt lat="45.551943" lon="11.931861">
+    <ele>24.000000</ele>
+    <name>08</name>
+    <cmt>ponte via Nievo</cmt>
+    <desc>ponte via Nievo</desc>
+    <sym>Trail Head</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+
+  <wpt lat="45.551812" lon="11.932153">
+    <ele>24.000000</ele>
+    <time>2008-06-03T06:36:38Z</time>
+    <name>09</name>
+    <cmt>attraversamento ponte - argine sx Muson</cmt>
+    <desc>attraversamento ponte - argine sx Muson</desc>
+    <sym>Trail Head</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+
+  <wpt lat="45.537551" lon="11.925769">
+    <ele>24.000000</ele>
+    <name>10-S-Michele-Badesse</name>
+    <cmt>ponte via Desman (Micheletto)</cmt>
+    <desc>ponte via Desman (Micheletto)</desc>
+    <sym>Trail Head</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+
+  <wpt lat="45.537455" lon="11.925371">
+    <ele>23.000000</ele>
+    <name>11</name>
+    <cmt>argine dx Muson</cmt>
+    <desc>argine dx Muson</desc>
+    <sym>Trail Head</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+
+  <wpt lat="45.531465" lon="11.922702">
+    <ele>22.000000</ele>
+    <name>12</name>
+    <cmt>argine</cmt>
+    <desc>argine</desc>
+    <sym>Trail Head</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+
+  <wpt lat="45.527437" lon="11.920933">
+    <ele>21.000000</ele>
+    <name>13-Fiume-Tergola</name>
+    <cmt>ponte Canale</cmt>
+    <desc>ponte Canale</desc>
+    <sym>Beacon</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+
+  <wpt lat="45.530037" lon="11.916820">
+    <ele>21.000000</ele>
+    <time>2008-06-03T06:46:40Z</time>
+    <name>14-Torre-di-Burri</name>
+    <cmt>ponte Torre Burri, attraversamento statale</cmt>
+    <desc>ponte Torre Burri, attraversamento statale</desc>
+    <sym>Crossing</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+
+  <wpt lat="45.529789" lon="11.916606">
+    <ele>21.000000</ele>
+    <time>2008-06-03T06:46:57Z</time>
+    <name>15</name>
+    <cmt>argine dx Muson - chiesetta</cmt>
+    <desc>argine dx Muson - chiesetta</desc>
+    <sym>Beacon</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+
+  <wpt lat="45.520426" lon="11.913310">
+    <ele>21.000000</ele>
+    <time>2008-06-03T06:49:51Z</time>
+    <name>16</name>
+    <cmt>innesto strada Terza Bosco</cmt>
+    <desc>innesto strada Terza Bosco</desc>
+    <sym>Trail Head</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+
+  <wpt lat="45.509443" lon="11.909292">
+    <ele>19.000000</ele>
+    <time>2008-06-03T06:51:24Z</time>
+    <name>17</name>
+    <cmt>ponte (non attraversare)</cmt>
+    <desc>ponte (non attraversare)</desc>
+    <sym>Trail Head</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+
+  <wpt lat="45.503511" lon="11.906864">
+    <ele>20.000000</ele>
+    <name>18</name>
+    <cmt>ponte Muson, attraversare</cmt>
+    <desc>ponte Muson, attraversare</desc>
+    <sym>Trail Head</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+
+  <wpt lat="45.501956" lon="11.906947">
+    <ele>19.000000</ele>
+    <name>19-Campodarsego</name>
+    <cmt>chiesa di Campodarsego</cmt>
+    <desc>chiesa di Campodarsego</desc>
+    <sym>Church</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+
+  <wpt lat="45.500623" lon="11.906556">
+    <ele>28.000000</ele>
+    <time>2008-06-03T06:54:48Z</time>
+    <name>20</name>
+    <cmt>innesto argine sx Muson</cmt>
+    <desc>innesto argine sx Muson</desc>
+    <sym>Trail Head</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+
+  <wpt lat="45.497454" lon="11.905274">
+    <ele>23.000000</ele>
+    <time>2008-06-03T06:55:33Z</time>
+    <name>21</name>
+    <cmt>attraversare ponte, proseguire su argine dx</cmt>
+    <desc>attraversare ponte, proseguire su argine dx</desc>
+    <sym>Trail Head</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+
+  <wpt lat="45.491523" lon="11.902594">
+    <ele>23.000000</ele>
+    <time>2008-06-03T06:57:23Z</time>
+    <name>22</name>
+    <cmt>argine dx - incrocio via Perarello</cmt>
+    <desc>argine dx - incrocio via Perarello</desc>
+    <sym>Trail Head</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+
+  <wpt lat="45.488261" lon="11.901348">
+    <ele>22.000000</ele>
+    <time>2008-06-03T06:58:21Z</time>
+    <name>23</name>
+    <cmt>argine Muson</cmt>
+    <desc>argine Muson</desc>
+    <sym>Trail Head</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+
+  <wpt lat="45.486729" lon="11.900818">
+    <ele>21.000000</ele>
+    <time>2008-06-03T06:58:57Z</time>
+    <name>24</name>
+    <cmt>argine Muson</cmt>
+    <desc>argine Muson</desc>
+    <sym>Trail Head</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+
+  <wpt lat="45.483915" lon="11.899770">
+    <ele>21.000000</ele>
+    <name>25</name>
+    <cmt>incrocio via Terraglione</cmt>
+    <desc>incrocio via Terraglione</desc>
+    <sym>Trail Head</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+
+  <wpt lat="45.482693" lon="11.899389">
+    <ele>22.000000</ele>
+    <time>2008-06-03T07:01:57Z</time>
+    <name>26</name>
+    <cmt>ponte Terraglione (non attraversare)</cmt>
+    <desc>ponte Terraglione (non attraversare)</desc>
+    <sym>Trail Head</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+
+  <wpt lat="45.479394" lon="11.898203">
+    <ele>21.000000</ele>
+    <time>2008-06-03T07:03:46Z</time>
+    <name>27</name>
+    <cmt>argine dx Muson</cmt>
+    <desc>argine dx Muson</desc>
+    <sym>Trail Head</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+
+  <wpt lat="45.476803" lon="11.897272">
+    <ele>20.000000</ele>
+    <time>2008-06-03T07:05:17Z</time>
+    <name>28</name>
+    <cmt>argine dx Muson</cmt>
+    <desc>argine dx Muson</desc>
+    <sym>Trail Head</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+
+  <wpt lat="45.471843" lon="11.895475">
+    <ele>21.000000</ele>
+    <time>2008-06-03T07:06:33Z</time>
+    <name>29</name>
+    <cmt>argine dx Muson</cmt>
+    <desc>argine dx Muson</desc>
+    <sym>Trail Head</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+
+  <wpt lat="45.466628" lon="11.893529">
+    <ele>19.000000</ele>
+    <time>2008-06-03T07:06:52Z</time>
+    <name>30</name>
+    <cmt>argine dx Muson</cmt>
+    <desc>argine dx Muson</desc>
+    <sym>Trail Head</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+
+  <wpt lat="45.452123" lon="11.896235">
+    <ele>18.000000</ele>
+    <time>2008-06-03T07:08:12Z</time>
+    <name>31</name>
+    <cmt>incrocio via Verdi</cmt>
+    <desc>incrocio via Verdi</desc>
+    <sym>Trail Head</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+
+  <wpt lat="45.449051" lon="11.895546">
+    <ele>19.000000</ele>
+    <name>32-ponte-Castagnara</name>
+    <cmt>attraversare strada Castagnara</cmt>
+    <desc>attraversare strada Castagnara</desc>
+    <sym>Beacon</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+
+  <wpt lat="45.446680" lon="11.893764">
+    <ele>19.000000</ele>
+    <name>33-PonteVigodarzere</name>
+    <cmt>ponte sul Brenta a Vigodarzere</cmt>
+    <desc>ponte sul Brenta a Vigodarzere</desc>
+    <sym>Bridge</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+
+  <wpt lat="45.439104" lon="11.892979">
+    <ele>15.000000</ele>
+    <time>2008-06-03T07:13:43Z</time>
+    <name>34</name>
+    <cmt>rotonda sottopasso autostrada</cmt>
+    <desc>rotonda sottopasso autostrada</desc>
+    <sym>Danger Area</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+
+  <wpt lat="45.437450" lon="11.891659">
+    <ele>15.000000</ele>
+    <time>2008-06-03T07:15:30Z</time>
+    <name>35</name>
+    <cmt>fine rotonda</cmt>
+    <desc>fine rotonda</desc>
+    <sym>Danger Area</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+
+  <wpt lat="45.436609" lon="11.891878">
+    <ele>12.000000</ele>
+    <time>2008-06-03T07:16:31Z</time>
+    <name>36-Padova</name>
+    <cmt>inizio via Reni - via Tiziano Aspetti</cmt>
+    <desc>inizio via Reni - via Tiziano Aspetti</desc>
+    <sym>Building</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+
+  <wpt lat="45.430464" lon="11.889038">
+    <ele>12.000000</ele>
+    <time>2008-06-03T07:21:08Z</time>
+    <name>37</name>
+    <cmt>San Carlo</cmt>
+    <desc>San Carlo</desc>
+    <sym>Building</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+
+  <wpt lat="45.426328" lon="11.886020">
+    <ele>14.000000</ele>
+    <time>2008-06-03T07:22:20Z</time>
+    <name>38</name>
+    <cmt>incrocio</cmt>
+    <desc>incrocio</desc>
+    <sym>Building</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+
+  <wpt lat="45.422804" lon="11.883470">
+    <ele>13.000000</ele>
+    <time>2008-06-03T07:23:02Z</time>
+    <name>39</name>
+    <cmt>incrocio Arcella</cmt>
+    <desc>incrocio Arcella</desc>
+    <sym>Building</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+
+  <wpt lat="45.421721" lon="11.886146">
+    <ele>13.000000</ele>
+    <name>40-Arcella</name>
+    <cmt>Santuario Arcella</cmt>
+    <desc>Santuario Arcella</desc>
+    <sym>Church</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+
+  <wpt lat="45.420336" lon="11.879279">
+    <ele>17.000000</ele>
+    <time>2008-06-03T07:25:24Z</time>
+    <name>41</name>
+    <cmt>rotonda via Aspetti</cmt>
+    <desc>rotonda via Aspetti</desc>
+    <sym>Danger Area</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+
+  <wpt lat="45.419893" lon="11.878596">
+    <ele>18.000000</ele>
+    <time>2008-06-03T07:26:57Z</time>
+    <name>42</name>
+    <cmt>inizio cavalcavia Borgomagno</cmt>
+    <desc>inizio cavalcavia Borgomagno</desc>
+    <sym>Danger Area</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+
+  <wpt lat="45.418787" lon="11.878504">
+    <ele>21.000000</ele>
+    <name>43</name>
+    <cmt>Cavalcavia Borgomagno (ferrovia)</cmt>
+    <desc>Cavalcavia Borgomagno (ferrovia)</desc>
+    <sym>Danger Area</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+
+  <wpt lat="45.416750" lon="11.876631">
+    <ele>17.000000</ele>
+    <time>2008-06-03T07:28:19Z</time>
+    <name>44</name>
+    <cmt>incrocio viale Codalunga</cmt>
+    <desc>incrocio viale Codalunga</desc>
+    <sym>Danger Area</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+
+  <wpt lat="45.413536" lon="11.873486">
+    <ele>17.000000</ele>
+    <time>2008-06-03T07:30:13Z</time>
+    <name>45</name>
+    <cmt>via Mazzini - Carmine</cmt>
+    <desc>via Mazzini - Carmine</desc>
+    <sym>Building</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+
+  <wpt lat="45.411560" lon="11.873755">
+    <ele>20.000000</ele>
+    <time>2008-06-03T07:31:54Z</time>
+    <name>46-portaMolino</name>
+    <cmt>porta Molino</cmt>
+    <desc>porta Molino</desc>
+    <sym>Flag</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+
+  <wpt lat="45.409298" lon="11.873276">
+    <ele>22.000000</ele>
+    <time>2008-06-03T07:33:13Z</time>
+    <name>47</name>
+    <cmt>incrocio Corso Milano</cmt>
+    <desc>incrocio Corso Milano</desc>
+    <sym>Building</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+
+  <wpt lat="45.407813" lon="11.872866">
+    <ele>23.000000</ele>
+    <time>2008-06-03T07:33:48Z</time>
+    <name>48-PiazzaSignori</name>
+    <cmt>Torre Orologio - Piazza Signori</cmt>
+    <desc>Torre Orologio - Piazza Signori</desc>
+    <sym>Building</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+
+  <wpt lat="45.407373" lon="11.874600">
+    <ele>26.000000</ele>
+    <time>2008-06-03T07:35:36Z</time>
+    <name>49</name>
+    <cmt>Palazzo Ragione</cmt>
+    <desc>Palazzo Ragione</desc>
+    <sym>Building</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+
+  <wpt lat="45.406470" lon="11.876816">
+    <ele>26.000000</ele>
+    <time>2008-06-03T07:36:15Z</time>
+    <name>50</name>
+    <cmt>incrocio via Roma - Università</cmt>
+    <desc>incrocio via Roma - Università</desc>
+    <sym>Building</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+
+  <wpt lat="45.406144" lon="11.877809">
+    <ele>25.000000</ele>
+    <time>2008-06-03T07:37:50Z</time>
+    <name>51</name>
+    <cmt>incrocio Riviera Ponti Romani - piazza Antenore</cmt>
+    <desc>incrocio Riviera Ponti Romani - piazza Antenore</desc>
+    <sym>Building</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+
+  <wpt lat="45.405920" lon="11.879160">
+    <ele>26.000000</ele>
+    <time>2008-06-03T07:38:51Z</time>
+    <name>52</name>
+    <cmt>palazzo Zabarella - svolta via Del Santo</cmt>
+    <desc>palazzo Zabarella - svolta via Del Santo</desc>
+    <sym>Building</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+
+  <wpt lat="45.401585" lon="11.880036">
+    <ele>25.000000</ele>
+    <time>2008-06-03T07:39:49Z</time>
+    <name>53</name>
+    <cmt>Gattamelata - piazza del Santo</cmt>
+    <desc>Gattamelata - piazza del Santo</desc>
+    <sym>Beacon</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+
+  <wpt lat="45.401278" lon="11.880125">
+    <ele>24.000000</ele>
+    <name>54-SantAntonio</name>
+    <cmt>Basilica del Santo</cmt>
+    <desc>Basilica del Santo</desc>
+    <sym>Church</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+
+  <wpt lat="45.396742" lon="11.878938">
+    <ele>20.000000</ele>
+    <name>ChiesaSantaGiustina</name>
+    <cmt>Basilica Santa Giustina, Prato della Valle</cmt>
+    <desc>Basilica Santa Giustina, Prato della Valle</desc>
+    <sym>Scenic Area</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+
+  <wpt lat="45.403379" lon="11.888159">
+    <time>2008-04-18T06:32:49Z</time>
+    <name>Ospedale</name>
+    <cmt>Ospedale Civile - ingresso principale</cmt>
+    <desc>Ospedale Civile - ingresso principale</desc>
+    <sym>Scenic Area</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+
+  <wpt lat="45.406843" lon="11.872304">
+    <ele>27.000000</ele>
+    <name>PiazzaDuomo</name>
+    <cmt>Piazza del Duomo e Battistero</cmt>
+    <desc>Piazza del Duomo e Battistero</desc>
+    <sym>Scenic Area</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+
+  <wpt lat="45.400060" lon="11.875873">
+    <ele>20.000000</ele>
+    <name>PratoValle</name>
+    <cmt>Prato della Valle - lato nord</cmt>
+    <desc>Prato della Valle - lato nord</desc>
+    <sym>Scenic Area</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+
+  <wpt lat="45.417258" lon="11.880147">
+    <time>2008-04-18T06:23:06Z</time>
+    <name>StazioneTreni</name>
+    <cmt>Piazzale della Stazione</cmt>
+    <desc>Piazzale della Stazione</desc>
+    <sym>Scenic Area</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+
+  <trk>
+    <name>Camposampiero-Padova</name>
+    <extensions>
+      <gpxx:TrackExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:DisplayColor>LightGray</gpxx:DisplayColor>
+      </gpxx:TrackExtension>
+    </extensions>
+    <trkseg>
+      <trkpt lat="45.573902" lon="11.931336"/>
+      <trkpt lat="45.573282" lon="11.931195"/>
+      <trkpt lat="45.572842" lon="11.931965"/>
+      <trkpt lat="45.571962" lon="11.931388"/>
+      <trkpt lat="45.571827" lon="11.931657"/>
+      <trkpt lat="45.571548" lon="11.931606"/>
+      <trkpt lat="45.571279" lon="11.931863"/>
+      <trkpt lat="45.571117" lon="11.932761"/>
+      <trkpt lat="45.571261" lon="11.934134"/>
+      <trkpt lat="45.570219" lon="11.934198"/>
+      <trkpt lat="45.570018" lon="11.936712">
+        <ele>26.573608</ele>
+      </trkpt>
+      <trkpt lat="45.569057" lon="11.939561">
+        <ele>28.015503</ele>
+      </trkpt>
+      <trkpt lat="45.568947" lon="11.939576">
+        <ele>27.534912</ele>
+      </trkpt>
+      <trkpt lat="45.562892" lon="11.936804">
+        <ele>26.092896</ele>
+      </trkpt>
+      <trkpt lat="45.552096" lon="11.931924">
+        <ele>24.170288</ele>
+      </trkpt>
+      <trkpt lat="45.551889" lon="11.931903">
+        <ele>24.170288</ele>
+      </trkpt>
+      <trkpt lat="45.551804" lon="11.932155">
+        <ele>23.689575</ele>
+      </trkpt>
+      <trkpt lat="45.544265" lon="11.928730">
+        <ele>22.728271</ele>
+      </trkpt>
+      <trkpt lat="45.538060" lon="11.926039">
+        <ele>23.208984</ele>
+      </trkpt>
+      <trkpt lat="45.537582" lon="11.925785">
+        <ele>23.208984</ele>
+      </trkpt>
+      <trkpt lat="45.537514" lon="11.925672">
+        <ele>22.728271</ele>
+      </trkpt>
+      <trkpt lat="45.537463" lon="11.925384">
+        <ele>23.689575</ele>
+      </trkpt>
+      <trkpt lat="45.537085" lon="11.925276">
+        <ele>24.170288</ele>
+      </trkpt>
+      <trkpt lat="45.531628" lon="11.922838">
+        <ele>22.247559</ele>
+      </trkpt>
+      <trkpt lat="45.531476" lon="11.922719">
+        <ele>24.170288</ele>
+      </trkpt>
+      <trkpt lat="45.531399" lon="11.922698">
+        <ele>20.324951</ele>
+      </trkpt>
+      <trkpt lat="45.527591" lon="11.920977">
+        <ele>21.286377</ele>
+      </trkpt>
+      <trkpt lat="45.527455" lon="11.920950">
+        <ele>20.324951</ele>
+      </trkpt>
+      <trkpt lat="45.527408" lon="11.920872">
+        <ele>21.766968</ele>
+      </trkpt>
+      <trkpt lat="45.527468" lon="11.920264">
+        <ele>20.324951</ele>
+      </trkpt>
+      <trkpt lat="45.527984" lon="11.918811">
+        <ele>20.324951</ele>
+      </trkpt>
+      <trkpt lat="45.528425" lon="11.918075">
+        <ele>20.324951</ele>
+      </trkpt>
+      <trkpt lat="45.529222" lon="11.917599">
+        <ele>19.844360</ele>
+      </trkpt>
+      <trkpt lat="45.529371" lon="11.916985">
+        <ele>20.324951</ele>
+      </trkpt>
+      <trkpt lat="45.529462" lon="11.916913">
+        <ele>20.324951</ele>
+      </trkpt>
+      <trkpt lat="45.529930" lon="11.916945">
+        <ele>20.805664</ele>
+      </trkpt>
+      <trkpt lat="45.530046" lon="11.916801">
+        <ele>22.247559</ele>
+      </trkpt>
+      <trkpt lat="45.530158" lon="11.916416">
+        <ele>20.324951</ele>
+      </trkpt>
+      <trkpt lat="45.529899" lon="11.916249">
+        <ele>20.324951</ele>
+      </trkpt>
+      <trkpt lat="45.529862" lon="11.916598">
+        <ele>21.286377</ele>
+      </trkpt>
+      <trkpt lat="45.529770" lon="11.916604">
+        <ele>19.844360</ele>
+      </trkpt>
+      <trkpt lat="45.526963" lon="11.915772">
+        <ele>21.286377</ele>
+      </trkpt>
+      <trkpt lat="45.521018" lon="11.913520">
+        <ele>21.766968</ele>
+      </trkpt>
+      <trkpt lat="45.510045" lon="11.909549">
+        <ele>19.844360</ele>
+      </trkpt>
+      <trkpt lat="45.504032" lon="11.907325">
+        <ele>20.805664</ele>
+      </trkpt>
+      <trkpt lat="45.503446" lon="11.906851">
+        <ele>20.324951</ele>
+      </trkpt>
+      <trkpt lat="45.503348" lon="11.907097">
+        <ele>21.286377</ele>
+      </trkpt>
+      <trkpt lat="45.502412" lon="11.906937">
+        <ele>19.363770</ele>
+      </trkpt>
+      <trkpt lat="45.502234" lon="11.906979">
+        <ele>17.441162</ele>
+      </trkpt>
+      <trkpt lat="45.501908" lon="11.906945">
+        <ele>18.402344</ele>
+      </trkpt>
+      <trkpt lat="45.501825" lon="11.906755">
+        <ele>26.573608</ele>
+      </trkpt>
+      <trkpt lat="45.501608" lon="11.906640">
+        <ele>27.054321</ele>
+      </trkpt>
+      <trkpt lat="45.500559" lon="11.906550">
+        <ele>27.054321</ele>
+      </trkpt>
+      <trkpt lat="45.499882" lon="11.906171">
+        <ele>27.054321</ele>
+      </trkpt>
+      <trkpt lat="45.498219" lon="11.905610">
+        <ele>26.573608</ele>
+      </trkpt>
+      <trkpt lat="45.498088" lon="11.905497">
+        <ele>23.689575</ele>
+      </trkpt>
+      <trkpt lat="45.497487" lon="11.905304">
+        <ele>24.170288</ele>
+      </trkpt>
+      <trkpt lat="45.497450" lon="11.904931">
+        <ele>24.170288</ele>
+      </trkpt>
+      <trkpt lat="45.491767" lon="11.902721">
+        <ele>22.728271</ele>
+      </trkpt>
+      <trkpt lat="45.490558" lon="11.902223">
+        <ele>21.286377</ele>
+      </trkpt>
+      <trkpt lat="45.488289" lon="11.901357">
+        <ele>22.728271</ele>
+      </trkpt>
+      <trkpt lat="45.487373" lon="11.901014">
+        <ele>20.805664</ele>
+      </trkpt>
+      <trkpt lat="45.484811" lon="11.900194">
+        <ele>21.286377</ele>
+      </trkpt>
+      <trkpt lat="45.484055" lon="11.899891">
+        <ele>20.324951</ele>
+      </trkpt>
+      <trkpt lat="45.483884" lon="11.899751">
+        <ele>20.805664</ele>
+      </trkpt>
+      <trkpt lat="45.482347" lon="11.899263">
+        <ele>20.324951</ele>
+      </trkpt>
+      <trkpt lat="45.481478" lon="11.899083">
+        <ele>20.324951</ele>
+      </trkpt>
+      <trkpt lat="45.479239" lon="11.898133">
+        <ele>20.805664</ele>
+      </trkpt>
+      <trkpt lat="45.477458" lon="11.897541">
+        <ele>19.844360</ele>
+      </trkpt>
+      <trkpt lat="45.476610" lon="11.897192">
+        <ele>19.363770</ele>
+      </trkpt>
+      <trkpt lat="45.475419" lon="11.896840">
+        <ele>19.363770</ele>
+      </trkpt>
+      <trkpt lat="45.474061" lon="11.896270">
+        <ele>19.363770</ele>
+      </trkpt>
+      <trkpt lat="45.472320" lon="11.895683">
+        <ele>20.324951</ele>
+      </trkpt>
+      <trkpt lat="45.471859" lon="11.895479">
+        <ele>20.324951</ele>
+      </trkpt>
+      <trkpt lat="45.471087" lon="11.895182">
+        <ele>20.805664</ele>
+      </trkpt>
+      <trkpt lat="45.470830" lon="11.895190">
+        <ele>19.363770</ele>
+      </trkpt>
+      <trkpt lat="45.469625" lon="11.894703">
+        <ele>20.805664</ele>
+      </trkpt>
+      <trkpt lat="45.466968" lon="11.893710">
+        <ele>18.883057</ele>
+      </trkpt>
+      <trkpt lat="45.466559" lon="11.893492">
+        <ele>18.402344</ele>
+      </trkpt>
+      <trkpt lat="45.466313" lon="11.893432">
+        <ele>17.921753</ele>
+      </trkpt>
+      <trkpt lat="45.465479" lon="11.893079">
+        <ele>17.921753</ele>
+      </trkpt>
+      <trkpt lat="45.464855" lon="11.893085">
+        <ele>17.921753</ele>
+      </trkpt>
+      <trkpt lat="45.461045" lon="11.894208">
+        <ele>17.441162</ele>
+      </trkpt>
+      <trkpt lat="45.457197" lon="11.896164">
+        <ele>15.999023</ele>
+      </trkpt>
+      <trkpt lat="45.455951" lon="11.896414">
+        <ele>16.960449</ele>
+      </trkpt>
+      <trkpt lat="45.453020" lon="11.896349">
+        <ele>16.960449</ele>
+      </trkpt>
+      <trkpt lat="45.450691" lon="11.896128">
+        <ele>17.441162</ele>
+      </trkpt>
+      <trkpt lat="45.449396" lon="11.895785">
+        <ele>17.921753</ele>
+      </trkpt>
+      <trkpt lat="45.448968" lon="11.895497">
+        <ele>18.402344</ele>
+      </trkpt>
+      <trkpt lat="45.448973" lon="11.895601">
+        <ele>18.883057</ele>
+      </trkpt>
+      <trkpt lat="45.448944" lon="11.895578">
+        <ele>19.363770</ele>
+      </trkpt>
+      <trkpt lat="45.448885" lon="11.894896">
+        <ele>16.960449</ele>
+      </trkpt>
+      <trkpt lat="45.448557" lon="11.894443">
+        <ele>16.960449</ele>
+      </trkpt>
+      <trkpt lat="45.446862" lon="11.893826">
+        <ele>19.844360</ele>
+      </trkpt>
+      <trkpt lat="45.446207" lon="11.893625">
+        <ele>18.402344</ele>
+      </trkpt>
+      <trkpt lat="45.440008" lon="11.893344">
+        <ele>15.037720</ele>
+      </trkpt>
+      <trkpt lat="45.439315" lon="11.893154">
+        <ele>15.518433</ele>
+      </trkpt>
+      <trkpt lat="45.439205" lon="11.892986">
+        <ele>15.518433</ele>
+      </trkpt>
+      <trkpt lat="45.438979" lon="11.892905">
+        <ele>14.076416</ele>
+      </trkpt>
+      <trkpt lat="45.438942" lon="11.891846">
+        <ele>14.076416</ele>
+      </trkpt>
+      <trkpt lat="45.438849" lon="11.891354">
+        <ele>14.557007</ele>
+      </trkpt>
+      <trkpt lat="45.438539" lon="11.891101">
+        <ele>14.076416</ele>
+      </trkpt>
+      <trkpt lat="45.437911" lon="11.891219">
+        <ele>14.076416</ele>
+      </trkpt>
+      <trkpt lat="45.437410" lon="11.891673">
+        <ele>13.595825</ele>
+      </trkpt>
+      <trkpt lat="45.436816" lon="11.891943">
+        <ele>12.153809</ele>
+      </trkpt>
+      <trkpt lat="45.436618" lon="11.891885">
+        <ele>12.153809</ele>
+      </trkpt>
+      <trkpt lat="45.431448" lon="11.889413">
+        <ele>11.192505</ele>
+      </trkpt>
+      <trkpt lat="45.430837" lon="11.889240">
+        <ele>11.673218</ele>
+      </trkpt>
+      <trkpt lat="45.430141" lon="11.888839">
+        <ele>13.595825</ele>
+      </trkpt>
+      <trkpt lat="45.429828" lon="11.888578">
+        <ele>13.115112</ele>
+      </trkpt>
+      <trkpt lat="45.429065" lon="11.888044">
+        <ele>14.557007</ele>
+      </trkpt>
+      <trkpt lat="45.428427" lon="11.887716">
+        <ele>13.595825</ele>
+      </trkpt>
+      <trkpt lat="45.426319" lon="11.886014">
+        <ele>13.115112</ele>
+      </trkpt>
+      <trkpt lat="45.422801" lon="11.883468">
+        <ele>12.634399</ele>
+      </trkpt>
+      <trkpt lat="45.422619" lon="11.883586">
+        <ele>12.634399</ele>
+      </trkpt>
+      <trkpt lat="45.421721" lon="11.886159">
+        <ele>12.634399</ele>
+      </trkpt>
+      <trkpt lat="45.421664" lon="11.886124">
+        <ele>14.557007</ele>
+      </trkpt>
+      <trkpt lat="45.422609" lon="11.883385">
+        <ele>15.037720</ele>
+      </trkpt>
+      <trkpt lat="45.421694" lon="11.882554">
+        <ele>15.518433</ele>
+      </trkpt>
+      <trkpt lat="45.420286" lon="11.879913">
+        <ele>16.479736</ele>
+      </trkpt>
+      <trkpt lat="45.420258" lon="11.879686">
+        <ele>16.960449</ele>
+      </trkpt>
+      <trkpt lat="45.420519" lon="11.878622">
+        <ele>17.921753</ele>
+      </trkpt>
+      <trkpt lat="45.420451" lon="11.878442">
+        <ele>17.441162</ele>
+      </trkpt>
+      <trkpt lat="45.420344" lon="11.878386">
+        <ele>18.402344</ele>
+      </trkpt>
+      <trkpt lat="45.419835" lon="11.878610">
+        <ele>17.921753</ele>
+      </trkpt>
+      <trkpt lat="45.418980" lon="11.878607">
+        <ele>19.844360</ele>
+      </trkpt>
+      <trkpt lat="45.418456" lon="11.878303">
+        <ele>22.247559</ele>
+      </trkpt>
+      <trkpt lat="45.417125" lon="11.877101">
+        <ele>17.441162</ele>
+      </trkpt>
+      <trkpt lat="45.416569" lon="11.876453">
+        <ele>15.518433</ele>
+      </trkpt>
+      <trkpt lat="45.413956" lon="11.873791">
+        <ele>16.960449</ele>
+      </trkpt>
+      <trkpt lat="45.413534" lon="11.873483">
+        <ele>16.960449</ele>
+      </trkpt>
+      <trkpt lat="45.413193" lon="11.873253">
+        <ele>17.921753</ele>
+      </trkpt>
+      <trkpt lat="45.413015" lon="11.873279">
+        <ele>18.402344</ele>
+      </trkpt>
+      <trkpt lat="45.412809" lon="11.873666">
+        <ele>16.479736</ele>
+      </trkpt>
+      <trkpt lat="45.411723" lon="11.873886">
+        <ele>18.883057</ele>
+      </trkpt>
+      <trkpt lat="45.411475" lon="11.873739">
+        <ele>18.883057</ele>
+      </trkpt>
+      <trkpt lat="45.409321" lon="11.873305">
+        <ele>20.805664</ele>
+      </trkpt>
+      <trkpt lat="45.407812" lon="11.872859">
+        <ele>23.208984</ele>
+      </trkpt>
+      <trkpt lat="45.407750" lon="11.872966">
+        <ele>22.728271</ele>
+      </trkpt>
+      <trkpt lat="45.407791" lon="11.873873">
+        <ele>26.573608</ele>
+      </trkpt>
+      <trkpt lat="45.407690" lon="11.874036">
+        <ele>27.054321</ele>
+      </trkpt>
+      <trkpt lat="45.407455" lon="11.874154">
+        <ele>27.054321</ele>
+      </trkpt>
+      <trkpt lat="45.407340" lon="11.874614">
+        <ele>27.054321</ele>
+      </trkpt>
+      <trkpt lat="45.406931" lon="11.874765">
+        <ele>25.131714</ele>
+      </trkpt>
+      <trkpt lat="45.406467" lon="11.876843">
+        <ele>25.612305</ele>
+      </trkpt>
+      <trkpt lat="45.406061" lon="11.877909">
+        <ele>24.170288</ele>
+      </trkpt>
+      <trkpt lat="45.405982" lon="11.878994">
+        <ele>26.092896</ele>
+      </trkpt>
+      <trkpt lat="45.405853" lon="11.879207">
+        <ele>25.612305</ele>
+      </trkpt>
+      <trkpt lat="45.404040" lon="11.879157">
+        <ele>24.170288</ele>
+      </trkpt>
+      <trkpt lat="45.403087" lon="11.879239">
+        <ele>25.612305</ele>
+      </trkpt>
+      <trkpt lat="45.402684" lon="11.879491">
+        <ele>26.573608</ele>
+      </trkpt>
+      <trkpt lat="45.402055" lon="11.879763">
+        <ele>25.612305</ele>
+      </trkpt>
+      <trkpt lat="45.401680" lon="11.880033">
+        <ele>25.131714</ele>
+      </trkpt>
+      <trkpt lat="45.401260" lon="11.880111">
+        <ele>24.170288</ele>
+      </trkpt>
+    </trkseg>
+  </trk>
+
+</gpx>

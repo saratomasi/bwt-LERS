@@ -36,6 +36,10 @@ dependencies:
   jwt_decoder: ^2.0.1
   provider: ^6.1.2
   intl: ^0.19.0
+  flutter_map: ^6.1.0
+  url_launcher: ^6.2.6
+  gpx: ^2.2.2
+  maps_toolkit: ^3.0.0
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -45,9 +49,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_map: ^6.1.0
-  url_launcher: ^6.2.6
-  gpx: ^2.2.2
+  
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
@@ -69,14 +71,7 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-   - lib/assets/leaf.png
-   - lib/assets/avatar1.png
-   - lib/assets/avatar2.png
-   - lib/assets/avatar3.png
-   - lib/assets/avatar4.png
-   - lib/assets/trophy.png
-   - lib/assets/trophy_locked.png
-   - lib/assets/Euganei-Trek_Teolo_Fiorine-Madonna-Grande.gpx
+   - lib/assets/
    
   #   - images/a_dot_ham.jpeg
 
