@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'package:intl/intl.dart';
 import 'package:http/http.dart' as http;
+import 'package:project/models/resting_hr.dart';
+import 'package:project/models/steps.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:project/models/heartrate.dart';
@@ -124,13 +126,13 @@ class Impact {
     sp.setString('impactPatient', decodedResponse['data'][0]['username']);
   }
 
-  Future<List<HR>> getDataFromDay(DateTime startTime) async {
-    final sp = await SharedPreferences.getInstance();
-    String? user = sp.getString('impactPatient');
+  Future<List<HR>> getHeartRate(DateTime startTime) async {
+    //final sp = await SharedPreferences.getInstance();
+    //String? user = sp.getString('impactPatient');
     var header = await getBearer();
     var end = DateFormat('y-M-d').format(startTime);
     var start =
-        DateFormat('y-M-d').format(startTime.subtract(const Duration(days: 7)));
+        DateFormat('y-M-d').format(startTime.subtract(const Duration(days: 3)));
     var r = await http.get(
       //Uri.parse(
       //    '${Impact.baseUrl}data/v1/heart_rate/patients/$user/daterange/start_date/$start/end_date/$end/'),
@@ -156,6 +158,40 @@ class Impact {
     var hrlist = hr.toList()
       ..sort((a, b) => a.timestamp.compareTo(b.timestamp));
     return hrlist;
+  }
+
+    Future<List<RHR>> getRestingHeartRate(DateTime startTime) async {
+    //final sp = await SharedPreferences.getInstance();
+    //String? user = sp.getString('impactPatient');
+    var header = await getBearer();
+    var end = DateFormat('y-M-d').format(startTime);
+    var start =
+        DateFormat('y-M-d').format(startTime.subtract(const Duration(days: 1)));
+    var r = await http.get(
+      //Uri.parse(
+      //    '${Impact.baseUrl}data/v1/heart_rate/patients/$user/daterange/start_date/$start/end_date/$end/'),
+      Uri.parse('https://impact.dei.unipd.it/bwthw/data/v1/resting_heart_rate/patients/$patientUsername/daterange/start_date/$start/end_date/$end/'),
+      headers: header,
+    );
+    if (r.statusCode != 200) return [];
+
+    List<dynamic> data = jsonDecode(r.body)['data'];
+    List<RHR> rhr = [];
+    for (var daydata in data) {
+      String day = daydata['date'];
+    for (var dataday in daydata['data']) {
+         String hour = dataday['time'];
+        String datetime = '${day}T$hour';
+         DateTime timestamp = _truncateSeconds(DateTime.parse(datetime));
+           RHR rhrnew = RHR(timestamp: timestamp,value: dataday['value']);
+         if (!rhr.any((e) => e.timestamp.isAtSameMomentAs(rhrnew.timestamp))) {
+           rhr.add(rhrnew);
+         }
+       }
+     }
+     var rhrlist = rhr.toList()
+      ..sort((a, b) => a.timestamp.compareTo(b.timestamp));
+     return rhrlist;
   }
 
   DateTime _truncateSeconds(DateTime input) {
