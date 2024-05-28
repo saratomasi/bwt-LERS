@@ -3,6 +3,7 @@ import 'package:project/menu/achievements.dart';
 import 'package:project/menu/explorelater.dart';
 import 'package:project/menu/favorites.dart';
 import 'package:project/menu/sessions.dart';
+import 'package:fl_chart/fl_chart.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -10,6 +11,7 @@ class HomePage extends StatefulWidget {
   @override
   State<HomePage> createState() => _HomePageState();
 }
+
 
 class _HomePageState extends State<HomePage> {
 
@@ -61,3 +63,9 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
+
+
+
+
+
+

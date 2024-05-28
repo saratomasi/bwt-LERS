@@ -114,10 +114,10 @@ class Achievements extends StatelessWidget {
             final trofeo = trofei[index];
             return Container(
       decoration: BoxDecoration(
-        color: Color.fromARGB(255, 255, 255, 255), // Colore di sfondo
+        color: Color.fromARGB(255, 137, 227, 112), // Colore di sfondo
         border: Border.all(
           color: Colors.green, // Colore del bordo
-          width: 4.0, // Spessore del bordo
+          width: 8.0, // Spessore del bordo
         ),
         borderRadius: BorderRadius.circular(8)
       ),
@@ -126,14 +126,15 @@ class Achievements extends StatelessWidget {
         children: [
           Image.asset(
             trofeo.sbloccato ? trofeo.immagineSbloccata : trofeo.immagineNonSbloccata,
-            height: 100,
-            width: 100, 
+            height: 200,
+            width: 200, 
           ),
-          SizedBox(height: 8),
+          SizedBox(height: 20),
           Text(
             trofeo.nome,
             style: TextStyle(fontWeight: FontWeight.bold),
             textAlign: TextAlign.center,
+            textScaler: TextScaler.linear(3),
           )
         ],
       ),
