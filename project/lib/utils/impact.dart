@@ -1,8 +1,10 @@
 import 'dart:convert';
 import 'package:intl/intl.dart';
 import 'package:http/http.dart' as http;
+import 'package:project/models/distance.dart';
 import 'package:project/models/resting_hr.dart';
 import 'package:project/models/steps.dart';
+//import 'package:project/models/steps.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:project/models/heartrate.dart';
@@ -166,7 +168,7 @@ class Impact {
     var header = await getBearer();
     var end = DateFormat('y-M-d').format(startTime);
     var start =
-        DateFormat('y-M-d').format(startTime.subtract(const Duration(days: 1)));
+        DateFormat('y-M-d').format(startTime.subtract(const Duration(days: 3)));
     var r = await http.get(
       //Uri.parse(
       //    '${Impact.baseUrl}data/v1/heart_rate/patients/$user/daterange/start_date/$start/end_date/$end/'),
@@ -179,20 +181,98 @@ class Impact {
     List<RHR> rhr = [];
     for (var daydata in data) {
       String day = daydata['date'];
-    for (var dataday in daydata['data']) {
-         String hour = dataday['time'];
+      Map<String,dynamic> dataday = daydata['data'] ; 
+       String hour = dataday['time'];
         String datetime = '${day}T$hour';
          DateTime timestamp = _truncateSeconds(DateTime.parse(datetime));
            RHR rhrnew = RHR(timestamp: timestamp,value: dataday['value']);
-         if (!rhr.any((e) => e.timestamp.isAtSameMomentAs(rhrnew.timestamp))) {
-           rhr.add(rhrnew);
-         }
-       }
+           rhr.add(rhrnew) ;
+         //if (!rhr.any((e) => e.timestamp.isAtSameMomentAs(rhrnew.timestamp))) {
+         //  rhr.add(rhrnew);
+        
+         //}
+       //}
      }
      var rhrlist = rhr.toList()
       ..sort((a, b) => a.timestamp.compareTo(b.timestamp));
      return rhrlist;
   }
+
+  Future<List<Steps>> getSteps(DateTime startTime) async {
+    //final sp = await SharedPreferences.getInstance();
+    //String? user = sp.getString('impactPatient');
+    var header = await getBearer();
+    var end = DateFormat('y-M-d').format(startTime);
+    var start =
+        DateFormat('y-M-d').format(startTime.subtract(const Duration(days: 3)));
+    var r = await http.get(
+      //Uri.parse(
+      //    '${Impact.baseUrl}data/v1/heart_rate/patients/$user/daterange/start_date/$start/end_date/$end/'),
+      Uri.parse('https://impact.dei.unipd.it/bwthw/data/v1/steps/patients/$patientUsername/daterange/start_date/$start/end_date/$end/'),
+      headers: header,
+    );
+    if (r.statusCode != 200) return [];
+
+    List<dynamic> data = jsonDecode(r.body)['data'];
+    List<Steps> steps = [];
+    for (var daydata in data) {
+      String day = daydata['date'];
+      int  sum = 0 ;
+      for (var dataday in daydata['data']) {
+        //String hour = dataday['time'];
+        //String datetime = '${day}T$hour';
+        //DateTime timestamp = _truncateSeconds(DateTime.parse(datetime));
+        String ans = dataday['value'].toString();
+        sum = sum +int.parse(ans) ;
+        // if (!steps.any((e) => e.timestamp.isAtSameMomentAs(stepsnew.timestamp))) {
+        //   steps.add(stepsnew);
+        // }
+      }
+    Steps stepsnew = Steps(timestamp: DateTime.parse(day), value: sum);
+    steps.add(stepsnew) ;
+    }
+    var stepslist = steps.toList()
+      ..sort((a, b) => a.timestamp.compareTo(b.timestamp));
+    return stepslist;
+  }
+
+    Future<List<Distance>> getDistance(DateTime startTime) async {
+    //final sp = await SharedPreferences.getInstance();
+    //String? user = sp.getString('impactPatient');
+    var header = await getBearer();
+    var end = DateFormat('y-M-d').format(startTime);
+    var start =
+        DateFormat('y-M-d').format(startTime.subtract(const Duration(days: 3)));
+    var r = await http.get(
+      //Uri.parse(
+      //    '${Impact.baseUrl}data/v1/heart_rate/patients/$user/daterange/start_date/$start/end_date/$end/'),
+      Uri.parse('https://impact.dei.unipd.it/bwthw/data/v1/distance/patients/$patientUsername/daterange/start_date/$start/end_date/$end/'),
+      headers: header,
+    );
+    if (r.statusCode != 200) return [];
+
+    List<dynamic> data = jsonDecode(r.body)['data'];
+    List<Distance> distance = [];
+    for (var daydata in data) {
+      String day = daydata['date'];
+      int  sum = 0 ;
+      for (var dataday in daydata['data']) {
+        String ans = dataday['value'].toString();
+        sum = sum +int.parse(ans) ;
+       // String hour = dataday['time'];
+       // String datetime = '${day}T$hour';
+       // DateTime timestamp = _truncateSeconds(DateTime.parse(datetime));
+       // Distance distancenew = Distance(timestamp: timestamp, value: dataday['value']);
+       // if (!distance.any((e) => e.timestamp.isAtSameMomentAs(distancenew.timestamp))) {
+       //   distance.add(distancenew);
+        }
+        Distance distancenew = Distance(timestamp: DateTime.parse(day), value: sum);
+        distance.add(distancenew) ;
+      }
+      var distancelist = distance.toList()
+      ..sort((a, b) => a.timestamp.compareTo(b.timestamp));
+     return distancelist;
+    }
 
   DateTime _truncateSeconds(DateTime input) {
     return DateTime(

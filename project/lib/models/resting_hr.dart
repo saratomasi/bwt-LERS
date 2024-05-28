@@ -1,11 +1,9 @@
 class RHR {
   // this class models the single heart rate data point
   final DateTime timestamp;
-  final int value;
+  final double value;
 
   RHR({required this.timestamp, required this.value});
-
-
 
    @override
   String toString() {

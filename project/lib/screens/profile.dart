@@ -90,7 +90,7 @@ _toLogin(BuildContext context) async {
 // heart_rate DONE
 // calories NO
 // sleep NO
-// distance
-// resting_heart_rate
-// steps
+// distance DONE 
+// resting_heart_rate DONE
+// steps DONE 
 // exercise ??

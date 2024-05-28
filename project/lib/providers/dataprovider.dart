@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:project/models/distance.dart';
 import 'package:project/models/heartrate.dart';
-//import 'package:project/models/resting_hr.dart';
-//import 'package:project/models/steps.dart';
+import 'package:project/models/resting_hr.dart';
+import 'package:project/models/steps.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:project/utils/impact.dart';
 import 'package:collection/collection.dart';
 
 class DataProvider extends ChangeNotifier {
   List<HR> heartRates = [];
-  //List<RHR> resting_hr = [] ;
-  //List<Steps> steps = [] ;
+  List<RHR> resting_hr = [] ;
+  List<Steps> steps = [] ;
+  List<Distance> distance = [] ;
   //String nick = 'User';
   DateTime showDate = DateTime.now().subtract(const Duration(days: 1));
 
@@ -24,13 +26,22 @@ class DataProvider extends ChangeNotifier {
     showDate = DateUtils.dateOnly(showDate);
     this.showDate = showDate;
     //_loading(); // method to give a loading ui feedback to the user
-    heartRates = await impact.getHeartRate(showDate);
-    //resting_hr = await impact.getRestingHeartRate(showDate) ;
-    //steps = await impact.getStepData(showDate) ;
+    try {
+          heartRates = await impact.getHeartRate(showDate);
+    resting_hr = await impact.getRestingHeartRate(showDate) ;
+    steps = await impact.getSteps(showDate) ;
+    distance = await impact.getDistance(showDate) ;
+
     //print(heartRates) ;
     //print(resting_hr) ;
+    //print(distance) ;
 
     notifyListeners();
+
+    } catch (e) {
+      print(e) ;
+    }
+
   }
 
   // void _loading() {
@@ -80,44 +91,47 @@ class DataProvider extends ChangeNotifier {
       } else {
         score = score + 10;
       }
+
       // VALUTO I PASSI (soglie scelte per valutazione di 3 giorni)
-      // List<int> steps_values = steps.map((steps)=> steps.value).toList() ;
-      // double steps_average = steps_values.average ;
-      // if (steps_average <= 5000) {
-      //   score = score + 0 ;
-      // }
-      // else if (steps_average >5000 && steps_average < 10000) {
-      //   score = score + 5 ;
-      // }
-      // else {
-      //   score= score + 10 ;
-      // }
+      List<int> steps_values = steps.map((steps)=> (steps.value)).toList() ;
+      double steps_average = steps_values.average ;
+      if (steps_average <= 5000) {
+        score = score + 0 ;
+      }
+      else if (steps_average >5000 && steps_average < 10000) {
+        score = score + 5 ;
+      }
+      else {
+        score= score + 10 ;
+      }
 
       // VALUTO L'HEART RATE MEDIO A RIPOSO (soglie generiche)
-      // List<int> resting_values = resting_hr.map((resting_hr)=> resting_hr.value).toList() ;
-      // double restingHR_average = resting_values.average ;
-      // if (restingHR_average >= 80) {
-      //   score = score + 0 ;
-      // }
-      // else if (restingHR_average < 80 && restingHR_average <= 60) {
-      //   score = score + 5 ;
-      // }
-      // else {
-      //   score= score + 10 ;
-      // }
+      List<double> resting_values = resting_hr.map((resting_hr)=> resting_hr.value).toList() ;
+      double restingHR_average = resting_values.average ;
+      if (restingHR_average >= 80) {
+        score = score + 0 ;
+      }
+      else if (restingHR_average < 80 && restingHR_average <= 60) {
+        score = score + 5 ;
+      }
+      else {
+        score= score + 10 ;
+      }
 
       // VALUTO LA DISTANZA PERCORSA AL GIORNO (soglie generiche)
-      // List<int> distance_values = distance.map((distance)=> distance.value).toList() ;
-      // double distance_average = distance_values.average ;
-      // if (distance_average <= 5) {
-      //   score = score + 0 ;
-      // }
-      // else if (distance_average > 5 && distance_average <= 15) {
-      //   score = score + 5 ;
-      // }
-      // else {
-      //   score= score + 10 ;
-      // }
+      List<int> distance_values = distance.map((distance)=> distance.value).toList() ;
+      List<double> distance_values_km = distance_values.map((distance_values) => distance_values *1e-5).toList();
+      double distance_average = distance_values_km.average ;
+      if (distance_average <= 5) {
+        score = score + 0 ;
+      }
+      else if (distance_average > 5 && distance_average <= 15) {
+        score = score + 5 ;
+      }
+      else {
+        score= score + 10 ;
+      }
+
       print(score) ;
 
       // Calcolo finale del livello -> TODO modificare con delle vere thresholds
