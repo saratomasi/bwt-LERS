@@ -74,6 +74,11 @@ flutter:
    - lib/assets/avatar4.png
    - lib/assets/trophy.png
    - lib/assets/trophy_locked.png
+   - lib/assets/welcome1.png
+   - lib/assets/welcome2.png
+   - lib/assets/welcome3.png
+   - lib/assets/logo.png
+   
    
   #   - images/a_dot_ham.jpeg
 

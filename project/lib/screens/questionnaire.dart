@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:project/screens/bottomnavigationpage.dart';
-import'package:shared_preferences/shared_preferences.dart'; 
+import 'package:shared_preferences/shared_preferences.dart'; 
 
 class Questionnaire extends StatefulWidget {
   @override
@@ -11,13 +11,12 @@ class Questionnaire extends StatefulWidget {
 class _Questionnaire extends State<Questionnaire> {
   String _nome = '';
   String _cognome = '';
-  int eta = 0 ;
+  int eta = 0;
   String _sede = '';
   String _allenaSettimana = '';
   String _avatar = '';
 
   final List<String> sedi = ['Padova'];
-  //final List<String> eta = ['16/30 anni', '30/50 anni', '50/60 anni', '+60 anni'];
   final List<String> frequenzaAllenamento = ['Nessun allenamento', '1-2 volte alla settimana', '3+ volte alla settimana'];
   final List<String> avatars = [
     'lib/assets/avatar1.png', 
@@ -26,10 +25,10 @@ class _Questionnaire extends State<Questionnaire> {
     'lib/assets/avatar4.png'
   ];
   final List<String> nomi_avatar = ['Fuoco','Acqua','Aria','Terra'];
-  
 
-  bool get isWarningVisible => _nome.isNotEmpty && _cognome.isNotEmpty && eta!=0 && _sede.isNotEmpty && _allenaSettimana.isNotEmpty && _avatar.isNotEmpty;
-   Future<void> saveData() async {
+  bool get isWarningVisible => _nome.isNotEmpty && _cognome.isNotEmpty && eta >= 8 && eta <= 100 && _sede.isNotEmpty && _allenaSettimana.isNotEmpty && _avatar.isNotEmpty;
+  
+  Future<void> saveData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString('nome', _nome);
     prefs.setString('cognome', _cognome);
@@ -38,9 +37,6 @@ class _Questionnaire extends State<Questionnaire> {
     prefs.setString('frequenzaAllenamento', _allenaSettimana);
     prefs.setString('avatar', _avatar);
   }
-
-  
-  
 
   @override
   Widget build(BuildContext context) {
@@ -71,24 +67,7 @@ class _Questionnaire extends State<Questionnaire> {
                     });
                   },
                 ),
-                // DropdownButtonFormField<String>(
-                //   value: _eta.isEmpty ? null : _eta,
-                //   onChanged: (value) {
-                //     setState(() {
-                //       _eta = value!;
-                //     });
-                //   },
-                //   items: eta.map((eta) {
-                //     return DropdownMenuItem(
-                //       value: eta,
-                //       child: Text(eta),
-                //     );
-                //   }).toList(),
-                //   decoration: InputDecoration(labelText: 'Età'),
-                // ),
-
-                // MODIFICATO IL CAMPO ETA' METTENDO DEI CONSTRAINTS ALLA TASTIERA
-                   TextField(
+                TextField(
                   decoration: InputDecoration(labelText: 'Età'),
                   keyboardType: TextInputType.numberWithOptions(decimal: false, signed: false),
                   inputFormatters: <TextInputFormatter>[
@@ -96,10 +75,15 @@ class _Questionnaire extends State<Questionnaire> {
                     LengthLimitingTextInputFormatter(2)],
                   onChanged: (value) {
                     setState(() {
-                      eta = int.parse(value) ;
+                      eta = int.tryParse(value) ?? 0;
                     });
                   },
                 ),
+                if (eta != 0 && (eta < 8 || eta > 100))
+                  Text(
+                    'Età non supportata',
+                    style: TextStyle(color: Colors.red),
+                  ),
                 DropdownButtonFormField<String>(
                   value: _sede.isEmpty ? null : _sede,
                   onChanged: (value) {
@@ -170,6 +154,8 @@ class _Questionnaire extends State<Questionnaire> {
                         context,
                         MaterialPageRoute(builder: (_) => BottomNavigationBarPage()),
                       );
+                    } else {
+                      setState(() {});
                     }
                   },
                   child: Text('Invia'),

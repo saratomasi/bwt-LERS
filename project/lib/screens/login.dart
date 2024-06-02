@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart' ;
-import 'package:project/screens/questionnaire.dart';
+import 'package:project/screens/welcome.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:project/utils/impact.dart';
+
 
 
 class LoginPage extends StatefulWidget {
@@ -64,7 +65,7 @@ class _LoginPageState extends State<LoginPage> {
                           await sp.setString('password', passwordController.text);
                           Navigator.of(context).pushReplacement(
                                 MaterialPageRoute(
-                                    builder: (context) => Questionnaire()));
+                                    builder: (context) => WelcomePage()));
                           }
                   }else{
                     ScaffoldMessenger.of(context)

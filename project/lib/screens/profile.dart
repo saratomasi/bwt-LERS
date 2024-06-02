@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:project/screens/login.dart';
 import 'package:provider/provider.dart';
 import 'package:project/providers/dataprovider.dart';
+import 'package:project/screens/questionnaire.dart'; 
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -14,66 +14,160 @@ class ProfilePage extends StatefulWidget {
 
 class _ProfilePageState extends State<ProfilePage> {
   bool _isLoading = false;
+  String _nome = '';
+  String _cognome = '';
+  int _eta = 0;
+  String _sede = '';
+  String _frequenzaAllenamento = '';
+  String _avatar = '';
+
+  @override
+  void initState() {
+    super.initState();
+    _loadProfileData();
+  }
+
+  Future<void> _loadProfileData() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      _nome = prefs.getString('nome') ?? '';
+      _cognome = prefs.getString('cognome') ?? '';
+      _eta = prefs.getInt('eta') ?? 0;
+      _sede = prefs.getString('sede') ?? '';
+      _frequenzaAllenamento = prefs.getString('frequenzaAllenamento') ?? '';
+      _avatar = prefs.getString('avatar') ?? '';
+    });
+  }
+
+  void _editProfile() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => Questionnaire()),
+    ).then((_) {
+      _loadProfileData();
+    });
+  }
+
+  Future<void> _showLogoutDialog() async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, 
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Warning'),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                Text('Are you sure you want to log out? You will lose all your data.'),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: Text('Cancel'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            TextButton(
+              child: Text('Log Out'),
+              onPressed: () {
+                _toLogin(context);
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('Profile'),
+      ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Center(
-              child: ChangeNotifierProvider(
-                create: (context) => DataProvider(),
-                child:
-                    Consumer<DataProvider>(builder: (context, provider, child) {
-                  return ElevatedButton(
-                    onPressed: () async {
-                      setState(() {
-                        _isLoading = true;
-                      });
-                      //provider.fetchData(provider.showDate.subtract(const Duration(days: 7)));
-                      await provider.fetchData(provider.showDate);
-                      provider.getLevel();
-                      final sp = await SharedPreferences.getInstance();
-                      print(sp.getString('level'));
-                      setState(() {
-                        _isLoading = false;
-                      });
-                    },
-                    child: Stack(
-                      alignment: Alignment.center,
-                      children: [
-                        if (!_isLoading) Text('Sync your device'),
-                        if (_isLoading) 
-                        SizedBox(
-                          width: 24,
-                          height: 24,
-                          child: CircularProgressIndicator()
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                if (_avatar.isNotEmpty)
+                  Card(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        ListTile(
+                          leading: Image.asset(_avatar, width: 50, height: 50),
+                          title: Text('$_nome $_cognome'),
+                          subtitle: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text('Age: $_eta'),
+                              Text('Sede: $_sede'),
+                              Text('Frequenza allenamento: $_frequenzaAllenamento'),
+                            ],
                           ),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            TextButton(
+                              onPressed: _editProfile,
+                              child: Text('Edit Profile'),
+                            ),
+                            const SizedBox(width: 8),
+                          ],
+                        ),
                       ],
                     ),
-                  );
-                }),
-              ),
+                  ),
+                SizedBox(height: 10),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    ChangeNotifierProvider(
+                      create: (context) => DataProvider(),
+                      child: Consumer<DataProvider>(builder: (context, provider, child) {
+                        return ElevatedButton(
+                          onPressed: () async {
+                            setState(() {
+                              _isLoading = true;
+                            });
+                            await provider.fetchData(provider.showDate);
+                            provider.getLevel();
+                            final sp = await SharedPreferences.getInstance();
+                            print(sp.getString('level'));
+                            setState(() {
+                              _isLoading = false;
+                            });
+                          },
+                          child: Stack(
+                            alignment: Alignment.center,
+                            children: [
+                              if (!_isLoading) Text('Sync your device'),
+                              if (_isLoading)
+                                SizedBox(
+                                  width: 24,
+                                  height: 24,
+                                  child: CircularProgressIndicator(),
+                                ),
+                            ],
+                          ),
+                        );
+                      }),
+                    ),
+                    ElevatedButton(
+                      onPressed: _showLogoutDialog,
+                      child: Text('Log out'),
+                    ),
+                  ],
+                ),
+              ],
             ),
-            ElevatedButton(
-              onPressed: () async {
-                _toLogin(context);
-              },
-              child: Text('Log out'),
-            ),
-            // AspectRatio(
-            //   aspectRatio: 16/9,
-            //   child: Consumer<DataProvider>(builder: (context, provider, child) {
-            //   if (provider.heartRates.isEmpty) {
-            //           return const CircularProgressIndicator.adaptive();
-            //         }
-            //         return Text('HeartRate obtained') ;
-            //   }
-            // )
-            // ),
-          ],
+          ),
         ),
       ),
     );
@@ -86,11 +180,3 @@ _toLogin(BuildContext context) async {
   Navigator.of(context)
       .pushReplacement(MaterialPageRoute(builder: ((context) => LoginPage())));
 }
-
-// heart_rate DONE
-// calories NO
-// sleep NO
-// distance DONE 
-// resting_heart_rate DONE
-// steps DONE 
-// exercise ??
