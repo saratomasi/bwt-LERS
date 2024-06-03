@@ -4,6 +4,8 @@ import 'package:project/menu/explorelater.dart';
 import 'package:project/menu/favorites.dart';
 import 'package:project/menu/sessions.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:project/widgets/PieChart.dart';
+
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -86,6 +88,27 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
+      body: SingleChildScrollView(
+        child: Column(
+        verticalDirection: VerticalDirection.down,
+          children: [
+            Padding(
+              padding: EdgeInsets.all(20.0),
+              child: Text(
+              'Benvenut*!',
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold), textAlign: TextAlign.center,
+              )
+            ),
+            SizedBox(height: 20.0),
+            Container(
+              height: 200,
+              child: PieChartWidget(),
+              alignment: Alignment.center,
+            ) 
+          ],
+        ),
+      )
+
     );
   }
 }
