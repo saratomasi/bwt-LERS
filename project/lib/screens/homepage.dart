@@ -54,17 +54,17 @@ class _HomePageState extends State<HomePage> {
             ElevatedButton(
               onPressed: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => Achievements()));
+                    MaterialPageRoute(builder: (context) => TrofeiNotifier()));
               },
-              child: ListTile(
+              child: const ListTile(
                   leading: Icon(Icons.star), title: Text('Achievements')),
             ),
             ElevatedButton(
               onPressed: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => Favorites()));
+                    MaterialPageRoute(builder: (context) => const Favorites()));
               },
-              child: ListTile(
+              child: const ListTile(
                   leading: Icon(Icons.favorite), title: Text('Favorites')),
             ),
             ElevatedButton(
