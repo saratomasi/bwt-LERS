@@ -42,39 +42,39 @@ class Achievements extends StatelessWidget {
   });
 }
 
-class Achievements extends StatelessWidget {
+class TrofeiNotifier extends StatelessWidget with ChangeNotifier  {
   final List<Trofeo> trofei = [
     Trofeo(
-      nome: '1st path!',
+      nome: '10000 steps!',
       immagineSbloccata: 'lib/assets/trophy.png',
       immagineNonSbloccata: 'lib/assets/trophy_locked.png',
-      sbloccato: true,
+      sbloccato: false,
     ),
     Trofeo(
-      nome: '5 paths!',
-      immagineSbloccata: 'lib/assets/trophy.png',
-      immagineNonSbloccata: 'lib/assets/trophy_locked.png',
-      //sbloccato: true,
-    ),
-    Trofeo(
-      nome: '10 paths!',
+      nome: '25000 steps!',
       immagineSbloccata: 'lib/assets/trophy.png',
       immagineNonSbloccata: 'lib/assets/trophy_locked.png',
       //sbloccato: true,
     ),
     Trofeo(
-      nome: '15 paths!',
+      nome: '50000 steps!',
       immagineSbloccata: 'lib/assets/trophy.png',
       immagineNonSbloccata: 'lib/assets/trophy_locked.png',
       //sbloccato: true,
     ),
     Trofeo(
-      nome: '20 paths!',
+      nome: '75000 steps!',
       immagineSbloccata: 'lib/assets/trophy.png',
       immagineNonSbloccata: 'lib/assets/trophy_locked.png',
       //sbloccato: true,
     ),
     Trofeo(
+      nome: '100000 steps!',
+      immagineSbloccata: 'lib/assets/trophy.png',
+      immagineNonSbloccata: 'lib/assets/trophy_locked.png',
+      //sbloccato: true,
+    ),
+    /*Trofeo(
       nome: '30 paths!',
       immagineSbloccata: 'lib/assets/trophy.png',
       immagineNonSbloccata: 'lib/assets/trophy_locked.png',
@@ -91,19 +91,19 @@ class Achievements extends StatelessWidget {
       immagineSbloccata: 'lib/assets/trophy.png',
       immagineNonSbloccata: 'lib/assets/trophy_locked.png',
       //sbloccato: true,
-    ),
+    ),*/
   ];
 
-  @override
+  
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Achievements'),
+        title: const Text('Achievements'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: GridView.builder(
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2, // Numero di colonne nella griglia
             childAspectRatio: 1, // Rapporto di aspetto dei figli
             crossAxisSpacing: 10, // Spaziatura tra le colonne
@@ -114,7 +114,7 @@ class Achievements extends StatelessWidget {
             final trofeo = trofei[index];
             return Container(
       decoration: BoxDecoration(
-        color: Color.fromARGB(255, 137, 227, 112), // Colore di sfondo
+        color:const Color.fromARGB(255, 137, 227, 112), // Colore di sfondo
         border: Border.all(
           color: Colors.green, // Colore del bordo
           width: 8.0, // Spessore del bordo
@@ -129,12 +129,12 @@ class Achievements extends StatelessWidget {
             height: 200,
             width: 200, 
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           Text(
             trofeo.nome,
-            style: TextStyle(fontWeight: FontWeight.bold),
+            style: const TextStyle(fontWeight: FontWeight.bold),
             textAlign: TextAlign.center,
-            textScaler: TextScaler.linear(3),
+            textScaler: const TextScaler.linear(3),
           )
         ],
       ),
@@ -144,11 +144,34 @@ class Achievements extends StatelessWidget {
       ),
     );
   }
+
+  List<Trofeo> get trofeii => trofei;
+
+  void sbloccaTrofeo(String nomeTrofeo) {
+    for (var trofeo in trofei) {
+      if (trofeo.nome == nomeTrofeo && !trofeo.sbloccato) {
+        trofeo.sbloccato = true;
+        notifyListeners();
+      }
+    }
+  }
 }
 
-/*
-void main() {
-  runApp(MaterialApp(
-    home: Achievements(),
-  ));
-} */
+void verificaObiettivi(TrofeiNotifier trofeiNotifier, int steps) {
+  if (steps >= 10000) {
+    trofeiNotifier.sbloccaTrofeo('10000 steps!');
+  }
+  if (steps >= 25000) {
+    trofeiNotifier.sbloccaTrofeo('25000 steps!');
+  }
+  if (steps >= 50000) {
+    trofeiNotifier.sbloccaTrofeo('50000 steps!');
+  }
+  if (steps >= 75000) {
+    trofeiNotifier.sbloccaTrofeo('75000 steps!');
+  }
+  if (steps >= 100000) {
+    trofeiNotifier.sbloccaTrofeo('100000 steps!');
+  }
+}
+
