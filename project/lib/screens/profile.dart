@@ -3,10 +3,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:project/screens/login.dart';
 import 'package:provider/provider.dart';
 import 'package:project/providers/dataprovider.dart';
-import 'package:project/screens/questionnaire.dart'; 
+import 'package:project/screens/questionnaire.dart';
 
 class ProfilePage extends StatefulWidget {
-  const ProfilePage({super.key});
+  const ProfilePage({Key? key}) : super(key: key);
 
   @override
   State<ProfilePage> createState() => _ProfilePageState();
@@ -51,14 +51,14 @@ class _ProfilePageState extends State<ProfilePage> {
   Future<void> _showLogoutDialog() async {
     return showDialog<void>(
       context: context,
-      barrierDismissible: false, 
+      barrierDismissible: false,
       builder: (BuildContext context) {
         return AlertDialog(
           title: Text('Warning'),
           content: SingleChildScrollView(
             child: ListBody(
               children: <Widget>[
-                Text('Are you sure you want to log out? You will lose all your data.'),
+                Text('Are you sure you want to log out? You will lose your questionnaire and level data.'),
               ],
             ),
           ),
@@ -72,7 +72,7 @@ class _ProfilePageState extends State<ProfilePage> {
             TextButton(
               child: Text('Log Out'),
               onPressed: () {
-                _toLogin(context);
+                _logout(context);
               },
             ),
           ],
@@ -81,11 +81,24 @@ class _ProfilePageState extends State<ProfilePage> {
     );
   }
 
+  Future<void> _logout(BuildContext context) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.remove('nome');
+    await prefs.remove('cognome');
+    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: ((context) => LoginPage())));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Profile'),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context); // NON TORNA INDIETROOOOOOO
+          },
+        ),
       ),
       body: Center(
         child: SingleChildScrollView(
@@ -106,8 +119,8 @@ class _ProfilePageState extends State<ProfilePage> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text('Age: $_eta'),
-                              Text('Sede: $_sede'),
-                              Text('Frequenza allenamento: $_frequenzaAllenamento'),
+                              Text('Location: $_sede'),
+                              Text('Exercise frequency: $_frequenzaAllenamento'),
                             ],
                           ),
                         ),
@@ -172,11 +185,4 @@ class _ProfilePageState extends State<ProfilePage> {
       ),
     );
   }
-}
-
-_toLogin(BuildContext context) async {
-  final sp = await SharedPreferences.getInstance();
-  await sp.clear();
-  Navigator.of(context)
-      .pushReplacement(MaterialPageRoute(builder: ((context) => LoginPage())));
 }
