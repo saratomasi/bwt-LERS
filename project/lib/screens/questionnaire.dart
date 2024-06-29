@@ -17,14 +17,14 @@ class _Questionnaire extends State<Questionnaire> {
   String _avatar = '';
 
   final List<String> sedi = ['Padova'];
-  final List<String> frequenzaAllenamento = ['Nessun allenamento', '1-2 volte alla settimana', '3+ volte alla settimana'];
+  final List<String> frequenzaAllenamento = ['No exercise', '1-2 times per week', '3 or more times per week'];
   final List<String> avatars = [
     'lib/assets/avatar1.png', 
     'lib/assets/avatar2.png', 
     'lib/assets/avatar3.png',
     'lib/assets/avatar4.png'
   ];
-  final List<String> nomi_avatar = ['Fuoco','Acqua','Aria','Terra'];
+  final List<String> nomi_avatar = ['Fire','Water','Air','Earth'];
 
   bool get isWarningVisible => _nome.isNotEmpty && _cognome.isNotEmpty && eta >= 8 && eta <= 100 && _sede.isNotEmpty && _allenaSettimana.isNotEmpty && _avatar.isNotEmpty;
   
@@ -52,7 +52,7 @@ class _Questionnaire extends State<Questionnaire> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 TextField(
-                  decoration: InputDecoration(labelText: 'Nome'),
+                  decoration: InputDecoration(labelText: 'Name'),
                   onChanged: (value) {
                     setState(() {
                       _nome = value;
@@ -60,7 +60,7 @@ class _Questionnaire extends State<Questionnaire> {
                   },
                 ),
                 TextField(
-                  decoration: InputDecoration(labelText: 'Cognome'),
+                  decoration: InputDecoration(labelText: 'Surname'),
                   onChanged: (value) {
                     setState(() {
                       _cognome = value;
@@ -68,7 +68,7 @@ class _Questionnaire extends State<Questionnaire> {
                   },
                 ),
                 TextField(
-                  decoration: InputDecoration(labelText: 'Età'),
+                  decoration: InputDecoration(labelText: 'Age'),
                   keyboardType: TextInputType.numberWithOptions(decimal: false, signed: false),
                   inputFormatters: <TextInputFormatter>[
                     FilteringTextInputFormatter.digitsOnly,
@@ -81,7 +81,7 @@ class _Questionnaire extends State<Questionnaire> {
                 ),
                 if (eta != 0 && (eta < 8 || eta > 100))
                   Text(
-                    'Età non supportata',
+                    'Unsupported age',
                     style: TextStyle(color: Colors.red),
                   ),
                 DropdownButtonFormField<String>(
@@ -97,7 +97,7 @@ class _Questionnaire extends State<Questionnaire> {
                       child: Text(sede),
                     );
                   }).toList(),
-                  decoration: InputDecoration(labelText: 'Sede'),
+                  decoration: InputDecoration(labelText: 'Location'),
                 ),
                 DropdownButtonFormField<String>(
                   value: _allenaSettimana.isEmpty ? null : _allenaSettimana,
@@ -112,7 +112,7 @@ class _Questionnaire extends State<Questionnaire> {
                       child: Text(frequenza),
                     );
                   }).toList(),
-                  decoration: InputDecoration(labelText: 'Frequenza allenamento'),
+                  decoration: InputDecoration(labelText: 'How often do you exercise per week?'),
                 ),
                 DropdownButtonFormField<String>(
                   value: _avatar.isEmpty ? null : _avatar,
@@ -143,7 +143,7 @@ class _Questionnaire extends State<Questionnaire> {
                 ),
                 if (!isWarningVisible)
                   Text(
-                    'Si prega di compilare tutti i campi',
+                    'Please fill in all fields',
                     style: TextStyle(color: Colors.red),
                   ),
                 ElevatedButton(
@@ -158,7 +158,7 @@ class _Questionnaire extends State<Questionnaire> {
                       setState(() {});
                     }
                   },
-                  child: Text('Invia'),
+                  child: Text('Send'),
                 ),
               ],
             ),
