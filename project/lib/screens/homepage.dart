@@ -54,7 +54,7 @@ class _HomePageState extends State<HomePage> {
             ElevatedButton(
               onPressed: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => Achievements()));
+                    MaterialPageRoute(builder: (context) => TrofeiNotifier()));
               },
               child: ListTile(
                   leading: Icon(Icons.star), title: Text('Achievements')),
