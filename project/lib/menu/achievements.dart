@@ -33,12 +33,14 @@ class Achievements extends StatelessWidget {
   final String immagineSbloccata;
   final String immagineNonSbloccata;
   bool sbloccato;
+  double progresso;
 
   Trofeo({
     required this.nome,
     required this.immagineSbloccata,
     required this.immagineNonSbloccata,
     this.sbloccato = false,
+    this.progresso = 0.0,
   });
 }
 
@@ -48,7 +50,7 @@ class TrofeiNotifier extends StatelessWidget with ChangeNotifier  {
       nome: '10000 steps!',
       immagineSbloccata: 'lib/assets/trophy.png',
       immagineNonSbloccata: 'lib/assets/trophy_locked.png',
-      sbloccato: false,
+      sbloccato: true,
     ),
     Trofeo(
       nome: '25000 steps!',
@@ -94,7 +96,7 @@ class TrofeiNotifier extends StatelessWidget with ChangeNotifier  {
     ),*/
   ];
 
-  
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -113,31 +115,41 @@ class TrofeiNotifier extends StatelessWidget with ChangeNotifier  {
           itemBuilder: (context, index) {
             final trofeo = trofei[index];
             return Container(
-      decoration: BoxDecoration(
-        color:const Color.fromARGB(255, 137, 227, 112), // Colore di sfondo
-        border: Border.all(
-          color: Colors.green, // Colore del bordo
-          width: 8.0, // Spessore del bordo
-        ),
-        borderRadius: BorderRadius.circular(8)
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Image.asset(
-            trofeo.sbloccato ? trofeo.immagineSbloccata : trofeo.immagineNonSbloccata,
-            height: 200,
-            width: 200, 
-          ),
-          const SizedBox(height: 20),
-          Text(
-            trofeo.nome,
-            style: const TextStyle(fontWeight: FontWeight.bold),
-            textAlign: TextAlign.center,
-            textScaler: const TextScaler.linear(3),
-          )
-        ],
-      ),
+              decoration: BoxDecoration(
+                color:Color.fromARGB(255, 255, 255, 255), // Colore di sfondo
+                border: Border.all(
+                  color: Colors.green, // Colore del bordo
+                  width: 8.0, // Spessore del bordo
+                ),
+                borderRadius: BorderRadius.circular(8)
+              ),
+              child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset(
+                  trofeo.sbloccato ? trofeo.immagineSbloccata : trofeo.immagineNonSbloccata,
+                  height: 200,
+                  width: 200, 
+                ),
+              const SizedBox(height: 5),
+              Text(
+                trofeo.nome,
+                style: const TextStyle(fontWeight: FontWeight.bold),
+                textAlign: TextAlign.center,
+                textScaler: const TextScaler.linear(3),
+              ),
+              const SizedBox(height: 5, width: 10),
+              SizedBox(
+                width: 300, //larghezza
+                height: 20, //altezza
+                child: LinearProgressIndicator(
+                  value: trofeo.progresso,
+                  backgroundColor: Colors.grey,
+                  valueColor: const AlwaysStoppedAnimation<Color>(Colors.blue),
+                ),
+              )
+                ],
+              ),
             );
           },
         ),
@@ -151,6 +163,15 @@ class TrofeiNotifier extends StatelessWidget with ChangeNotifier  {
     for (var trofeo in trofei) {
       if (trofeo.nome == nomeTrofeo && !trofeo.sbloccato) {
         trofeo.sbloccato = true;
+        notifyListeners();
+      }
+    }
+  }
+
+  void aggiornaProgresso(String nomeTrofeo, double progresso) {
+    for (var trofeo in trofei) {
+      if (trofeo.nome == nomeTrofeo) {
+        trofeo.progresso = progresso;
         notifyListeners();
       }
     }
