@@ -96,7 +96,7 @@ class _WelcomePageState extends State<WelcomePage> {
           child: Center(
             child: ElevatedButton(
               onPressed: () {
-                Navigator.push(
+                Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(builder: (context) => Questionnaire()),
                 );
