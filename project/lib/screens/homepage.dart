@@ -4,6 +4,7 @@ import 'package:project/menu/explorelater.dart';
 import 'package:project/menu/favorites.dart';
 import 'package:project/menu/sessions.dart';
 import 'package:fl_chart/fl_chart.dart';
+import 'package:project/gpxMap.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
