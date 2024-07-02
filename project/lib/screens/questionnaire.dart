@@ -1,33 +1,41 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:project/screens/bottomnavigationpage.dart';
-import 'package:shared_preferences/shared_preferences.dart'; 
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Questionnaire extends StatefulWidget {
   @override
-  _Questionnaire createState() => _Questionnaire();
+  _QuestionnaireState createState() => _QuestionnaireState();
 }
 
-class _Questionnaire extends State<Questionnaire> {
+class _QuestionnaireState extends State<Questionnaire> {
   String _nome = '';
   String _cognome = '';
   int eta = 0;
   String _sede = '';
   String _allenaSettimana = '';
   String _avatar = '';
+  String _livelloProvvisorio = '';
 
   final List<String> sedi = ['Padova'];
   final List<String> frequenzaAllenamento = ['No exercise', '1-2 times per week', '3 or more times per week'];
   final List<String> avatars = [
-    'lib/assets/avatar1.png', 
-    'lib/assets/avatar2.png', 
+    'lib/assets/avatar1.png',
+    'lib/assets/avatar2.png',
     'lib/assets/avatar3.png',
     'lib/assets/avatar4.png'
   ];
-  final List<String> nomi_avatar = ['Fire','Water','Air','Earth'];
+  final List<String> nomi_avatar = ['Fire', 'Water', 'Air', 'Earth'];
 
-  bool get isWarningVisible => _nome.isNotEmpty && _cognome.isNotEmpty && eta >= 8 && eta <= 100 && _sede.isNotEmpty && _allenaSettimana.isNotEmpty && _avatar.isNotEmpty;
-  
+  bool get isWarningVisible =>
+      _nome.isNotEmpty &&
+      _cognome.isNotEmpty &&
+      eta >= 8 &&
+      eta <= 100 &&
+      _sede.isNotEmpty &&
+      _allenaSettimana.isNotEmpty &&
+      _avatar.isNotEmpty;
+
   Future<void> saveData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString('nome', _nome);
@@ -36,13 +44,42 @@ class _Questionnaire extends State<Questionnaire> {
     prefs.setString('sede', _sede);
     prefs.setString('frequenzaAllenamento', _allenaSettimana);
     prefs.setString('avatar', _avatar);
+    prefs.setString('livelloProvvisorio', _livelloProvvisorio); // Save provisional level
+  }
+
+  void calculateProvisionalLevel() {
+    int score = 0;
+
+    if (_allenaSettimana == 'No exercise') {
+      score += 0;
+    } else if (_allenaSettimana == '1-2 times per week') {
+      score += 5;
+    } else {
+      score += 10;
+    }
+
+    if (eta >= 60) {
+      score += 0;
+    } else if (eta < 60 && eta >= 35) {
+      score += 5;
+    } else {
+      score += 10;
+    }
+
+    if (score < 10) {
+      _livelloProvvisorio = 'Beginner';
+    } else if (score >= 10 && score < 20) {
+      _livelloProvvisorio = 'Intermediate';
+    } else {
+      _livelloProvvisorio = 'Expert';
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Questionario'),
+        title: Text('Questionnaire'),
       ),
       body: Center(
         child: Padding(
@@ -72,7 +109,8 @@ class _Questionnaire extends State<Questionnaire> {
                   keyboardType: TextInputType.numberWithOptions(decimal: false, signed: false),
                   inputFormatters: <TextInputFormatter>[
                     FilteringTextInputFormatter.digitsOnly,
-                    LengthLimitingTextInputFormatter(2)],
+                    LengthLimitingTextInputFormatter(2)
+                  ],
                   onChanged: (value) {
                     setState(() {
                       eta = int.tryParse(value) ?? 0;
@@ -112,7 +150,8 @@ class _Questionnaire extends State<Questionnaire> {
                       child: Text(frequenza),
                     );
                   }).toList(),
-                  decoration: InputDecoration(labelText: 'How often do you exercise per week?'),
+                  decoration:
+                      InputDecoration(labelText: 'How often do you exercise per week?'),
                 ),
                 DropdownButtonFormField<String>(
                   value: _avatar.isEmpty ? null : _avatar,
@@ -134,7 +173,7 @@ class _Questionnaire extends State<Questionnaire> {
                             height: 30,
                           ),
                           SizedBox(width: 10),
-                          Text(nomi_avatar[index]), 
+                          Text(nomi_avatar[index]),
                         ],
                       ),
                     );
@@ -146,10 +185,16 @@ class _Questionnaire extends State<Questionnaire> {
                     'Please fill in all fields',
                     style: TextStyle(color: Colors.red),
                   ),
+                if (_livelloProvvisorio.isNotEmpty)
+                  Text(
+                    'Provisional Level: $_livelloProvvisorio',
+                    style: TextStyle(color: Colors.blue),
+                  ),
                 ElevatedButton(
                   onPressed: () {
                     if (isWarningVisible) {
-                      saveData();
+                      calculateProvisionalLevel(); // Calculate provisional level
+                      saveData(); // Save all data including provisional level
                       Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(builder: (_) => BottomNavigationBarPage()),

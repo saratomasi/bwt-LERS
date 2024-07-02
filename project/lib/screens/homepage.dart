@@ -3,6 +3,8 @@ import 'package:project/menu/achievements.dart';
 import 'package:project/menu/explorelater.dart';
 import 'package:project/menu/favorites.dart';
 import 'package:project/menu/sessions.dart';
+import 'package:fl_chart/fl_chart.dart';
+import 'package:project/gpxMap.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:project/widgets/PieChart.dart';
 

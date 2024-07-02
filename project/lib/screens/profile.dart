@@ -4,6 +4,7 @@ import 'package:project/screens/login.dart';
 import 'package:provider/provider.dart';
 import 'package:project/providers/dataprovider.dart';
 import 'package:project/screens/questionnaire.dart';
+import 'package:project/screens/homepage.dart'; // Ensure this import path is correct
 
 
 class ProfilePage extends StatefulWidget {
@@ -21,6 +22,7 @@ class _ProfilePageState extends State<ProfilePage> {
   String _sede = '';
   String _frequenzaAllenamento = '';
   String _avatar = '';
+  String _livelloProvvisorio = '';
 
   @override
   void initState() {
@@ -37,16 +39,64 @@ class _ProfilePageState extends State<ProfilePage> {
       _sede = prefs.getString('sede') ?? '';
       _frequenzaAllenamento = prefs.getString('frequenzaAllenamento') ?? '';
       _avatar = prefs.getString('avatar') ?? '';
+      _livelloProvvisorio = prefs.getString('livelloProvvisorio') ?? ''; // Load provisional level
     });
   }
 
+  Future<void> _clearProfileData() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.remove('nome');
+    await prefs.remove('cognome');
+    await prefs.remove('eta');
+    await prefs.remove('sede');
+    await prefs.remove('frequenzaAllenamento');
+    await prefs.remove('avatar');
+    await prefs.remove('livelloProvvisorio'); // Remove provisional level
+  }
+
+  Future<void> _showEditProfileWarning() async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Warning'),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                Text('After modifying your profile, remember to resync your data.'),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: Text('Cancel'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            TextButton(
+              child: Text('OK'),
+              onPressed: () {
+                Navigator.of(context).pop();
+                _clearProfileData().then((_) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Questionnaire()),
+                  ).then((_) {
+                    _loadProfileData();
+                  });
+                });
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   void _editProfile() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => Questionnaire()),
-    ).then((_) {
-      _loadProfileData();
-    });
+    _showEditProfileWarning();
   }
 
   Future<void> _showLogoutDialog() async {
@@ -84,9 +134,8 @@ class _ProfilePageState extends State<ProfilePage> {
 
   Future<void> _logout(BuildContext context) async {
     final prefs = await SharedPreferences.getInstance();
-    await prefs.remove('nome');
-    await prefs.remove('cognome');
-    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: ((context) => LoginPage())));
+    await prefs.clear();
+    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => LoginPage()));
   }
 
   @override
@@ -97,7 +146,7 @@ class _ProfilePageState extends State<ProfilePage> {
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () {
-            Navigator.pop(context); // NON TORNA INDIETROOOOOOO
+            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomePage()));
           },
         ),
       ),
@@ -122,6 +171,7 @@ class _ProfilePageState extends State<ProfilePage> {
                               Text('Age: $_eta'),
                               Text('Location: $_sede'),
                               Text('Exercise frequency: $_frequenzaAllenamento'),
+                              Text('Provisional Level: $_livelloProvvisorio'), // Display provisional level
                             ],
                           ),
                         ),
