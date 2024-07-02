@@ -15,7 +15,7 @@ class SplashScreen extends StatelessWidget {
               child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Image.asset('lib/assets/leaf.png'),
+                      Image.asset('lib/assets/logo.png'),
                       //SizedBox(height:100,width:100),  -> serve per lasciare eventualmente spazio tra immagine e text: aggiunge un box bianco
                     ]),
             ),

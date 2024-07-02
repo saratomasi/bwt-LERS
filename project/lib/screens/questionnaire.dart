@@ -1,35 +1,42 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:project/screens/bottomnavigationpage.dart';
-import'package:shared_preferences/shared_preferences.dart'; 
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Questionnaire extends StatefulWidget {
   @override
-  _Questionnaire createState() => _Questionnaire();
+  _QuestionnaireState createState() => _QuestionnaireState();
 }
 
-class _Questionnaire extends State<Questionnaire> {
+class _QuestionnaireState extends State<Questionnaire> {
   String _nome = '';
   String _cognome = '';
-  int eta = 0 ;
+  int eta = 0;
   String _sede = '';
   String _allenaSettimana = '';
   String _avatar = '';
+  String _livelloProvvisorio = '';
 
   final List<String> sedi = ['Padova'];
-  //final List<String> eta = ['16/30 anni', '30/50 anni', '50/60 anni', '+60 anni'];
-  final List<String> frequenzaAllenamento = ['Nessun allenamento', '1-2 volte alla settimana', '3+ volte alla settimana'];
+  final List<String> frequenzaAllenamento = ['No exercise', '1-2 times per week', '3 or more times per week'];
   final List<String> avatars = [
-    'lib/assets/avatar1.png', 
-    'lib/assets/avatar2.png', 
+    'lib/assets/avatar1.png',
+    'lib/assets/avatar2.png',
     'lib/assets/avatar3.png',
     'lib/assets/avatar4.png'
   ];
-  final List<String> nomi_avatar = ['Fuoco','Acqua','Aria','Terra'];
-  
+  final List<String> nomi_avatar = ['Fire', 'Water', 'Air', 'Earth'];
 
-  bool get isWarningVisible => _nome.isNotEmpty && _cognome.isNotEmpty && eta!=0 && _sede.isNotEmpty && _allenaSettimana.isNotEmpty && _avatar.isNotEmpty;
-   Future<void> saveData() async {
+  bool get isWarningVisible =>
+      _nome.isNotEmpty &&
+      _cognome.isNotEmpty &&
+      eta >= 8 &&
+      eta <= 100 &&
+      _sede.isNotEmpty &&
+      _allenaSettimana.isNotEmpty &&
+      _avatar.isNotEmpty;
+
+  Future<void> saveData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString('nome', _nome);
     prefs.setString('cognome', _cognome);
@@ -37,16 +44,42 @@ class _Questionnaire extends State<Questionnaire> {
     prefs.setString('sede', _sede);
     prefs.setString('frequenzaAllenamento', _allenaSettimana);
     prefs.setString('avatar', _avatar);
+    prefs.setString('livelloProvvisorio', _livelloProvvisorio); // Save provisional level
   }
 
-  
-  
+  void calculateProvisionalLevel() {
+    int score = 0;
+
+    if (_allenaSettimana == 'No exercise') {
+      score += 0;
+    } else if (_allenaSettimana == '1-2 times per week') {
+      score += 5;
+    } else {
+      score += 10;
+    }
+
+    if (eta >= 60) {
+      score += 0;
+    } else if (eta < 60 && eta >= 35) {
+      score += 5;
+    } else {
+      score += 10;
+    }
+
+    if (score < 10) {
+      _livelloProvvisorio = 'Beginner';
+    } else if (score >= 10 && score < 20) {
+      _livelloProvvisorio = 'Intermediate';
+    } else {
+      _livelloProvvisorio = 'Expert';
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Questionario'),
+        title: Text('Questionnaire'),
       ),
       body: Center(
         child: Padding(
@@ -56,7 +89,7 @@ class _Questionnaire extends State<Questionnaire> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 TextField(
-                  decoration: InputDecoration(labelText: 'Nome'),
+                  decoration: InputDecoration(labelText: 'Name'),
                   onChanged: (value) {
                     setState(() {
                       _nome = value;
@@ -64,42 +97,31 @@ class _Questionnaire extends State<Questionnaire> {
                   },
                 ),
                 TextField(
-                  decoration: InputDecoration(labelText: 'Cognome'),
+                  decoration: InputDecoration(labelText: 'Surname'),
                   onChanged: (value) {
                     setState(() {
                       _cognome = value;
                     });
                   },
                 ),
-                // DropdownButtonFormField<String>(
-                //   value: _eta.isEmpty ? null : _eta,
-                //   onChanged: (value) {
-                //     setState(() {
-                //       _eta = value!;
-                //     });
-                //   },
-                //   items: eta.map((eta) {
-                //     return DropdownMenuItem(
-                //       value: eta,
-                //       child: Text(eta),
-                //     );
-                //   }).toList(),
-                //   decoration: InputDecoration(labelText: 'Età'),
-                // ),
-
-                // MODIFICATO IL CAMPO ETA' METTENDO DEI CONSTRAINTS ALLA TASTIERA
-                   TextField(
-                  decoration: InputDecoration(labelText: 'Età'),
+                TextField(
+                  decoration: InputDecoration(labelText: 'Age'),
                   keyboardType: TextInputType.numberWithOptions(decimal: false, signed: false),
                   inputFormatters: <TextInputFormatter>[
                     FilteringTextInputFormatter.digitsOnly,
-                    LengthLimitingTextInputFormatter(2)],
+                    LengthLimitingTextInputFormatter(2)
+                  ],
                   onChanged: (value) {
                     setState(() {
-                      eta = int.parse(value) ;
+                      eta = int.tryParse(value) ?? 0;
                     });
                   },
                 ),
+                if (eta != 0 && (eta < 8 || eta > 100))
+                  Text(
+                    'Unsupported age',
+                    style: TextStyle(color: Colors.red),
+                  ),
                 DropdownButtonFormField<String>(
                   value: _sede.isEmpty ? null : _sede,
                   onChanged: (value) {
@@ -113,7 +135,7 @@ class _Questionnaire extends State<Questionnaire> {
                       child: Text(sede),
                     );
                   }).toList(),
-                  decoration: InputDecoration(labelText: 'Sede'),
+                  decoration: InputDecoration(labelText: 'Location'),
                 ),
                 DropdownButtonFormField<String>(
                   value: _allenaSettimana.isEmpty ? null : _allenaSettimana,
@@ -128,7 +150,8 @@ class _Questionnaire extends State<Questionnaire> {
                       child: Text(frequenza),
                     );
                   }).toList(),
-                  decoration: InputDecoration(labelText: 'Frequenza allenamento'),
+                  decoration:
+                      InputDecoration(labelText: 'How often do you exercise per week?'),
                 ),
                 DropdownButtonFormField<String>(
                   value: _avatar.isEmpty ? null : _avatar,
@@ -150,7 +173,7 @@ class _Questionnaire extends State<Questionnaire> {
                             height: 30,
                           ),
                           SizedBox(width: 10),
-                          Text(nomi_avatar[index]), 
+                          Text(nomi_avatar[index]),
                         ],
                       ),
                     );
@@ -159,20 +182,28 @@ class _Questionnaire extends State<Questionnaire> {
                 ),
                 if (!isWarningVisible)
                   Text(
-                    'Si prega di compilare tutti i campi',
+                    'Please fill in all fields',
                     style: TextStyle(color: Colors.red),
+                  ),
+                if (_livelloProvvisorio.isNotEmpty)
+                  Text(
+                    'Provisional Level: $_livelloProvvisorio',
+                    style: TextStyle(color: Colors.blue),
                   ),
                 ElevatedButton(
                   onPressed: () {
                     if (isWarningVisible) {
-                      saveData();
+                      calculateProvisionalLevel(); // Calculate provisional level
+                      saveData(); // Save all data including provisional level
                       Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(builder: (_) => BottomNavigationBarPage()),
                       );
+                    } else {
+                      setState(() {});
                     }
                   },
-                  child: Text('Invia'),
+                  child: Text('Send'),
                 ),
               ],
             ),
