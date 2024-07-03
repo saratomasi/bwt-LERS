@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:project/gpxMap.dart';
+import 'package:project/widgets/trailCard.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:gpx/gpx.dart';
-import 'package:project/database/trails.dart';
+import 'package:project/database/trailsDatabase.dart';
 import 'package:project/objects/trail.dart';
+
+List<Trail> myTrails =[trailsDatabase[1]!, trailsDatabase[2]!];
+
 
 class Sessions extends StatelessWidget {
   const Sessions({super.key});
@@ -18,7 +23,12 @@ class Sessions extends StatelessWidget {
       body: Column(
         children:[
           searchBar(), // Barra di ricerca dei percorsi
-          Expanded(flex: 3, child: mapView()), // Mappa di riepilogo
+          Expanded(flex: 3, 
+            child: LayoutBuilder(
+              builder: (context, constraints) {
+                return GpxMap(trails: myTrails, mapSize: constraints.biggest);
+              },
+            ),), // Mappa di riepilogo
           Expanded(flex: 3, child: sessionList(),), // Elenco delle sessioni
         ],
       )
@@ -78,10 +88,12 @@ class Sessions extends StatelessWidget {
         return Card(
           margin: const EdgeInsets.symmetric(vertical: 8.0),
           child: ListTile(
-            title: Text('Percorso ${tmp.name}'),
-            subtitle: Text('Livello ${tmp.level}'),
+            title: Text('${tmp.name}'),
+            subtitle: Text('Data'),
+            trailing: Icon(Icons.arrow_forward_ios),
             onTap: () {
-            // Implementa la navigazione ai dettagli del percorso
+               Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => TrailCard(trail: tmp)));
             },
           ),
         );
