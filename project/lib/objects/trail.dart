@@ -6,32 +6,28 @@ import 'package:project/objects/pointOfInterest.dart';
 import 'package:project/utils/gpxMethods.dart';
 import 'package:maps_toolkit/maps_toolkit.dart' as maps_toolkit;
 
+// This class defines the object Trail
+
 class Trail{
   // instance variables
-  String? name;
-  String gpxPath = '';
-  //Gpx gpxFile ;
-  List<PointOfInterest?> pois;
-  int level = 0;
-  num lengthKm = 0;
-  double walkingTime = 0;
-  bool completed = false;
+  String? name;                                 //name 
+  String gpxPath;                               //gpx file path
+  int id;                                       //id in trails Database
+  int level = 0;                                //difficulty level
+  num lengthKm = 0;                             //length in km
+  double walkingTime = 0;                       //time in min
+  bool completed = false;                       //if done
+  int routeColor;                               //color of the route
+  List<PointOfInterest?> pois;                  //points of interest along the route
+  List<int> percentage = [20, 20, 20, 20, 20];  //characteristics of the route
 
-
-  List<maps_toolkit.LatLng> convertToMapsToolkitLatLng(List<latlong2.LatLng> points) {
-    return points.map((point) => maps_toolkit.LatLng(point.latitude, point.longitude)).toList();
-  }
-
-
-  // constructors
-  Trail({required this.name, required this.pois, required this.level, required this.lengthKm, required this.walkingTime}){
-    gpxPath = 'lib/assets/$name.gpx';
-    //gpxFile = loadGpxFile(gpxPath) as Gpx;
-    //List<latlong2.LatLng> coordinates = getCoordinatesFromGpx(gpxFile);
-    //lengthKm = maps_toolkit.SphericalUtil.computeLength(convertToMapsToolkitLatLng(coordinates));
+  // constructor
+  Trail({required this.name, required this.gpxPath, required this.id, required this.pois, required this.level, required this.lengthKm, required this.walkingTime, required this.routeColor,}){
+    _percChar();
   }
   
-  // methods
+  // METHODS:
+
   //it set the trail as completed
   void done(){
     completed = true;
@@ -39,12 +35,37 @@ class Trail{
     //aggiungere data per sapere quando uno lo fa?
   }
 
-  //you get the gpx file of the trail.
-  Future<Gpx> getGpxFile() async {
-    final gpx = await loadGpxFile(gpxPath);
-    return gpx;
-  }
+  //Calculates the char percentage of the trail
+  void _percChar() {
+    int totalNature  = 0;
+    int totalHistory = 0;
+    int totalArt     = 0;
+    int totalFood    = 0;
+    int totalLocal   = 0;
+    int poiCount     = 0;
+    
+    for (var poi in pois) {
+      if (poi != null) {
+        totalNature  += poi.nature ?? 0;
+        totalHistory += poi.history ?? 0;
+        totalArt     += poi.art ?? 0;
+        totalFood    += poi.food ?? 0;
+        totalLocal   +=  poi.local ?? 0;
+        poiCount++;
+      }
+    }
 
+    if (poiCount>0){
+      percentage[0] = (totalNature/poiCount).round();
+      percentage[1] = (totalHistory/poiCount).round();
+      percentage[2] = (totalArt/poiCount).round();
+      percentage[3] = (totalFood/poiCount).round();
+      percentage[4] = (totalLocal/poiCount).round();
+    }
+
+    int sum = percentage.reduce((a, b) => a + b);
+    if(sum>100){ percentage[4] -= sum-100; }
+  }
 
 
 

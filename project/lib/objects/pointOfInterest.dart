@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:latlong2/latlong.dart';
 
+//This class defines the object PointOfInterest
+
 class PointOfInterest{
   String? name;
   LatLng? coordinates;
