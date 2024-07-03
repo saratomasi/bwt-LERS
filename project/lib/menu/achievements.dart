@@ -47,53 +47,35 @@ class Achievements extends StatelessWidget {
 class TrofeiNotifier extends StatelessWidget with ChangeNotifier  {
   final List<Trofeo> trofei = [
     Trofeo(
-      nome: '10000 steps!',
+      nome: '50 000 steps!',
       immagineSbloccata: 'lib/assets/trophy.png',
       immagineNonSbloccata: 'lib/assets/trophy_locked.png',
-      sbloccato: true,
+      sbloccato: false,
     ),
     Trofeo(
-      nome: '25000 steps!',
+      nome: '100 000 steps!',
       immagineSbloccata: 'lib/assets/trophy.png',
       immagineNonSbloccata: 'lib/assets/trophy_locked.png',
-      //sbloccato: true,
+      sbloccato: false,
     ),
     Trofeo(
-      nome: '50000 steps!',
+      nome: '10 paths!',
       immagineSbloccata: 'lib/assets/trophy.png',
       immagineNonSbloccata: 'lib/assets/trophy_locked.png',
-      //sbloccato: true,
+      sbloccato: false,
     ),
     Trofeo(
-      nome: '75000 steps!',
-      immagineSbloccata: 'lib/assets/trophy.png',
-      immagineNonSbloccata: 'lib/assets/trophy_locked.png',
-      //sbloccato: true,
-    ),
-    Trofeo(
-      nome: '100000 steps!',
-      immagineSbloccata: 'lib/assets/trophy.png',
-      immagineNonSbloccata: 'lib/assets/trophy_locked.png',
-      //sbloccato: true,
-    ),
-    /*Trofeo(
       nome: '30 paths!',
       immagineSbloccata: 'lib/assets/trophy.png',
       immagineNonSbloccata: 'lib/assets/trophy_locked.png',
-      //sbloccato: true,
+      sbloccato: false,
     ),
     Trofeo(
-      nome: '50 paths!',
+      nome: 'Congratualtions! You moved to the next level',
       immagineSbloccata: 'lib/assets/trophy.png',
       immagineNonSbloccata: 'lib/assets/trophy_locked.png',
-      //sbloccato: true,
+      sbloccato: false,
     ),
-    Trofeo(
-      nome: '100 paths!',
-      immagineSbloccata: 'lib/assets/trophy.png',
-      immagineNonSbloccata: 'lib/assets/trophy_locked.png',
-      //sbloccato: true,
-    ),*/
   ];
 
   @override
@@ -136,7 +118,7 @@ class TrofeiNotifier extends StatelessWidget with ChangeNotifier  {
                 trofeo.nome,
                 style: const TextStyle(fontWeight: FontWeight.bold),
                 textAlign: TextAlign.center,
-                textScaler: const TextScaler.linear(3),
+                textScaler: const TextScaler.linear(2),
               ),
               const SizedBox(height: 5, width: 10),
               SizedBox(
@@ -179,20 +161,12 @@ class TrofeiNotifier extends StatelessWidget with ChangeNotifier  {
 }
 
 void verificaObiettivi(TrofeiNotifier trofeiNotifier, int steps) {
-  if (steps >= 10000) {
-    trofeiNotifier.sbloccaTrofeo('10000 steps!');
-  }
-  if (steps >= 25000) {
-    trofeiNotifier.sbloccaTrofeo('25000 steps!');
-  }
   if (steps >= 50000) {
-    trofeiNotifier.sbloccaTrofeo('50000 steps!');
-  }
-  if (steps >= 75000) {
-    trofeiNotifier.sbloccaTrofeo('75000 steps!');
+    trofeiNotifier.sbloccaTrofeo('50 000 steps!');
   }
   if (steps >= 100000) {
-    trofeiNotifier.sbloccaTrofeo('100000 steps!');
+    trofeiNotifier.sbloccaTrofeo('100 000 steps!');
   }
+
 }
 
