@@ -3,11 +3,16 @@ import 'package:project/menu/achievements.dart';
 import 'package:project/menu/explorelater.dart';
 import 'package:project/menu/favorites.dart';
 import 'package:project/menu/sessions.dart';
+import 'package:fl_chart/fl_chart.dart';
+import 'package:project/gpxMap.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:project/widgets/PieChart.dart';
 
 
+
 class HomePage extends StatefulWidget {
+
+
   const HomePage({super.key});
 
   @override
@@ -17,6 +22,8 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   String _nome = '';
   String _avatar = '';
+  String _frequenzaAllenamento = '';
+  
 
   @override
   void initState() {
@@ -29,6 +36,7 @@ class _HomePageState extends State<HomePage> {
     setState(() {
       _nome = prefs.getString('nome') ?? '';
       _avatar = prefs.getString('avatar') ?? '';
+      _frequenzaAllenamento = prefs.getString('frequenzaAllenamento') ?? '';
     });
   }
 
@@ -36,7 +44,8 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        //backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        backgroundColor: Colors.green.shade100,
         title: Row(
           children: [
             if (_avatar.isNotEmpty)
@@ -92,14 +101,29 @@ class _HomePageState extends State<HomePage> {
         child: Column(
         verticalDirection: VerticalDirection.down,
           children: [
-            Padding(
+            const Padding(
               padding: EdgeInsets.all(20.0),
               child: Text(
               'Benvenut*!',
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold), textAlign: TextAlign.center,
               )
             ),
-            SizedBox(height: 20.0),
+            Center(
+              child: SizedBox(
+                width: 500,
+                height: 70,
+                child: Card(
+                  color: Colors.green.shade100,
+                  child: Center(
+                    child: Text(
+                      '$_nome, il tuo livello è: $_frequenzaAllenamento',
+                      style: const TextStyle(fontSize: 15),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(height: 20.0),
             Container(
               height: 200,
               child: PieChartWidget(),
