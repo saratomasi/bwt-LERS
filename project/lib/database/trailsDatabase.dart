@@ -2,10 +2,18 @@ import 'package:project/objects/trail.dart';
 import 'package:project/database/pois.dart';
 import 'dart:ui';
 
+<<<<<<< HEAD
 Trail trail1 = Trail(
   name: 'Cammino di Sant\'Antonio', 
   gpxPath: 'lib/assets/CamminoSantAntonio.gpx',
   id: 1,
+=======
+int id1 = 1;
+Trail trail1 = Trail(
+  name: 'Cammino di Sant\'Antonio', 
+  gpxPath: 'lib/assets/CamminoSantAntonio.gpx',
+  id: id1,
+>>>>>>> 195db1e (fix of GpxMap, trailCard, Sessions, added Characteristics widget)
   level: 2, 
   lengthKm: 24, 
   walkingTime: 7*60,
@@ -13,10 +21,19 @@ Trail trail1 = Trail(
   pois: [poisDatabase[1]], 
 );
 
+<<<<<<< HEAD
 Trail trail2 = Trail(
   name: 'Anello da Santa Rita', 
   gpxPath: 'lib/assets/PiazzadellaFrutta_PiazzadeiSignori_anellodaSantaRita.gpx',
   id: 2,
+=======
+int id2 = 2;
+List<int> idPois = [2,3];
+Trail trail2 = Trail(
+  name: 'Anello da Santa Rita', 
+  gpxPath: 'lib/assets/PiazzadellaFrutta_PiazzadeiSignori_anellodaSantaRita.gpx',
+  id: id2,
+>>>>>>> 195db1e (fix of GpxMap, trailCard, Sessions, added Characteristics widget)
   level: 1, 
   lengthKm: 5.91, 
   walkingTime: 91,
@@ -24,6 +41,7 @@ Trail trail2 = Trail(
   pois: [poisDatabase[2], poisDatabase[3]], 
 );
 
+<<<<<<< HEAD
 Trail trail3 = Trail(
   name: 'Da Brasseo all\'Abbazia di Praglia', 
   gpxPath: 'lib/assets/Bresseo_AbbaziaPraglia_giro_anello.gpx', 
@@ -88,5 +106,10 @@ Map<int,Trail> trailsDatabase = {
   trail5.id : trail5,
   trail6.id : trail6,
   trail7.id : trail7,
+=======
+Map<int,Trail> trailsDatabase = {
+  id1 : trail1,
+  id2 : trail2,
+>>>>>>> 195db1e (fix of GpxMap, trailCard, Sessions, added Characteristics widget)
 };
 
