@@ -4,8 +4,7 @@ import 'package:project/screens/login.dart';
 import 'package:provider/provider.dart';
 import 'package:project/providers/dataprovider.dart';
 import 'package:project/screens/questionnaire.dart';
-import 'package:project/screens/homepage.dart'; // Ensure this import path is correct
-
+import 'package:project/screens/bottomnavigationpage.dart'; 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({Key? key}) : super(key: key);
 
@@ -145,7 +144,7 @@ class _ProfilePageState extends State<ProfilePage> {
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () {
-            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomePage()));
+            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => BottomNavigationBarPage()));
           },
         ),
       ),
