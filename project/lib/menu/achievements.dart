@@ -168,5 +168,10 @@ void verificaObiettivi(TrofeiNotifier trofeiNotifier, int steps) {
     trofeiNotifier.sbloccaTrofeo('100 000 steps!');
   }
 
+  double progresso50milaPassi = steps / 50000;
+  double progresso100milaPassi = steps / 100000;
+
+  trofeiNotifier.aggiornaProgresso('50 000 steps!', progresso50milaPassi);
+  trofeiNotifier.aggiornaProgresso('100 000 steps!', progresso100milaPassi);
 }
 
