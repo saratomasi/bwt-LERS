@@ -6,14 +6,12 @@ import 'package:latlong2/latlong.dart';
 import 'package:gpx/gpx.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:project/screens/poiPage.dart';
+import 'package:project/screens/poiPage.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:project/objects/trail.dart';
-<<<<<<< HEAD
 import 'package:project/objects/pointOfInterest.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
-=======
->>>>>>> 195db1e (fix of GpxMap, trailCard, Sessions, added Characteristics widget)
 
 //Load gpx file from path
 Future<Gpx> loadGpxFile(String filePath) async {
@@ -130,21 +128,13 @@ class _GpxMapState extends State<GpxMap> {
   @override
   Widget build(BuildContext context) {
     if (gpxPoints.isEmpty) {
-<<<<<<< HEAD
       //Loading indicator
-=======
-      // Mostra un indicatore di caricamento o un messaggio di attesa
->>>>>>> 195db1e (fix of GpxMap, trailCard, Sessions, added Characteristics widget)
       return Center(child: CircularProgressIndicator());
     }
     return Card(
       margin: EdgeInsets.symmetric(vertical: 8.0),
       child: LayoutBuilder(
         builder: (context, constraints) {
-<<<<<<< HEAD
-=======
-          // Calcola lo zoom basato sulle dimensioni effettive
->>>>>>> 195db1e (fix of GpxMap, trailCard, Sessions, added Characteristics widget)
           return FlutterMap(
             options: MapOptions(
               initialCenter: mapCenter ?? LatLng(45.407733, 11.873339),
@@ -173,7 +163,6 @@ class _GpxMapState extends State<GpxMap> {
                     ),
                   ],
                 ),
-<<<<<<< HEAD
               for (int i = 0; i<widget.trails.length; i++)
               if(widget.trails[i].pois.isNotEmpty)
                 MarkerLayer(
@@ -209,8 +198,6 @@ class _GpxMapState extends State<GpxMap> {
                       ),);
                   }).toList(),
                 ),
-=======
->>>>>>> 195db1e (fix of GpxMap, trailCard, Sessions, added Characteristics widget)
             
             ],
           );

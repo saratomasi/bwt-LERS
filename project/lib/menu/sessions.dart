@@ -2,21 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:project/gpxMap.dart';
-<<<<<<< HEAD
 import 'package:project/screens/trailPage.dart';
-=======
-import 'package:project/widgets/trailCard.dart';
->>>>>>> 195db1e (fix of GpxMap, trailCard, Sessions, added Characteristics widget)
 import 'package:url_launcher/url_launcher.dart';
 import 'package:gpx/gpx.dart';
 import 'package:project/database/trailsDatabase.dart';
 import 'package:project/objects/trail.dart';
 
-<<<<<<< HEAD
 List<Trail> myTrails = trailsDatabase.values.toList();
-=======
-List<Trail> myTrails =[trailsDatabase[1]!, trailsDatabase[2]!];
->>>>>>> 195db1e (fix of GpxMap, trailCard, Sessions, added Characteristics widget)
 
 
 class Sessions extends StatelessWidget {
@@ -101,11 +93,7 @@ class Sessions extends StatelessWidget {
             trailing: Icon(Icons.arrow_forward_ios),
             onTap: () {
                Navigator.push(context,
-<<<<<<< HEAD
                   MaterialPageRoute(builder: (context) => TrailPage(trail: tmp)));
-=======
-                  MaterialPageRoute(builder: (context) => TrailCard(trail: tmp)));
->>>>>>> 195db1e (fix of GpxMap, trailCard, Sessions, added Characteristics widget)
             },
           ),
         );

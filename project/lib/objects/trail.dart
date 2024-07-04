@@ -54,7 +54,7 @@ class Trail{
         poiCount++;
       }
     }
-<<<<<<< HEAD
+
 
     if (poiCount>0){
       percentage[0] = (totalNature/poiCount).round();
@@ -77,19 +77,6 @@ class Trail{
       final remmin = walkingTime%60;
       return '${hours}hr ${remmin.round()}min';
     }
-=======
-
-    if (poiCount>0){
-      percentage[0] = (totalNature/poiCount).round();
-      percentage[1] = (totalHistory/poiCount).round();
-      percentage[2] = (totalArt/poiCount).round();
-      percentage[3] = (totalFood/poiCount).round();
-      percentage[4] = (totalLocal/poiCount).round();
-    }
-
-    int sum = percentage.reduce((a, b) => a + b);
-    if(sum>100){ percentage[4] -= sum-100; }
->>>>>>> 195db1e (fix of GpxMap, trailCard, Sessions, added Characteristics widget)
   }
 
   String getTrailLevelText() {
