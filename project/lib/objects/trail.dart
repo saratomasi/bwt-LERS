@@ -67,7 +67,31 @@ class Trail{
     if(sum>100){ percentage[4] -= sum-100; }
   }
 
+  String getWalkingTimeText() {
+    if(walkingTime < 60){
+      return '${walkingTime} min';
+    }
+    else{
+      final hours = walkingTime~/60;
+      final remmin = walkingTime%60;
+      return '${hours}hr ${remmin.round()}min';
+    }
+  }
 
+  String getTrailLevelText() {
+    switch (level) {
+      case 1:
+        return 'Easy';
+      case 2:
+        return 'Intermediate';
+      case 3:
+        return 'Difficult';
+      case 4:
+        return 'Extremely Difficult';
+      default:
+        return 'Livello sconosciuto';
+    }
+  }
 
   
 

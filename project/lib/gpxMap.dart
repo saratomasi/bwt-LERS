@@ -5,8 +5,12 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:gpx/gpx.dart';
 import 'package:flutter/services.dart' show rootBundle;
+import 'package:project/screens/poiPage.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:project/objects/trail.dart';
+import 'package:project/objects/pointOfInterest.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_map/flutter_map.dart';
 
 //Load gpx file from path
 Future<Gpx> loadGpxFile(String filePath) async {
@@ -123,14 +127,13 @@ class _GpxMapState extends State<GpxMap> {
   @override
   Widget build(BuildContext context) {
     if (gpxPoints.isEmpty) {
-      // Mostra un indicatore di caricamento o un messaggio di attesa
+      //Loading indicator
       return Center(child: CircularProgressIndicator());
     }
     return Card(
       margin: EdgeInsets.symmetric(vertical: 8.0),
       child: LayoutBuilder(
         builder: (context, constraints) {
-          // Calcola lo zoom basato sulle dimensioni effettive
           return FlutterMap(
             options: MapOptions(
               initialCenter: mapCenter ?? LatLng(45.407733, 11.873339),
@@ -158,6 +161,41 @@ class _GpxMapState extends State<GpxMap> {
                       color: Color(widget.colors[i]),
                     ),
                   ],
+                ),
+              for (int i = 0; i<widget.trails.length; i++)
+              if(widget.trails[i].pois.isNotEmpty)
+                MarkerLayer(
+                  markers: widget.trails[i].pois.map((point) {
+                    return Marker(
+                      width: 80.0,
+                      height: 80.0,
+                      point: point!.coordinates, 
+                      child: IconButton(
+                        icon: Icon(Icons.location_on),
+                        color: Colors.black,
+                        iconSize: 25.0,
+                        onPressed: () {
+                          showDialog(
+                            context: context, 
+                            builder: (ctx) => AlertDialog(
+                              title: TextButton(
+                                child: Text(point.name), 
+                                onPressed: (){
+                                  Navigator.push(context,
+                                    MaterialPageRoute(builder: (context) => PoiPage(point: point)));
+                                },),
+                              actions: <Widget>[
+                                TextButton(
+                                  child: Text('OK'),
+                                  onPressed: () {
+                                    Navigator.of(ctx).pop();
+                                  },)
+                              ],
+
+                            ));
+                        }
+                      ),);
+                  }).toList(),
                 ),
             
             ],
