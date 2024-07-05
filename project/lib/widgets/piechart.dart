@@ -1,7 +1,9 @@
-import 'package:fl_chart/fl_chart.dart';
+import 'package:fl_chart/fl_chart.dart' as charts;
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:project/providers/dataprovider.dart';
 
-class PieChartWidget extends StatelessWidget {
+/*class PieChartWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AspectRatio(
@@ -64,5 +66,60 @@ class PieChartWidget extends StatelessWidget {
         ),
       ),
     ];
+  }
+}*/
+
+
+
+class AchievementList extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    var achievementsProvider = Provider.of<AchievementsProvider>(context);
+
+    return Expanded(
+      child: ListView.builder(
+        itemCount: achievementsProvider.achievements.length,
+        itemBuilder: (context, index) {
+          var achievement = achievementsProvider.achievements[index];
+          return ListTile(
+            title: Text(achievement.title),
+            subtitle: LinearProgressIndicator(value: achievement.progress),
+            trailing: IconButton(
+              icon: Icon(Icons.edit),
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (context) {
+                    double progress = achievement.progress;
+                    return AlertDialog(
+                      title: Text('Update Achievement'),
+                      content: Slider(
+                        value: progress,
+                        onChanged: (value) {
+                          progress = value;
+                        },
+                        min: 0,
+                        max: 1,
+                        divisions: 100,
+                        label: '${(progress * 100).round()}%',
+                      ),
+                      actions: [
+                        TextButton(
+                          onPressed: () {
+                            achievementsProvider.updateAchievement(index, progress);
+                            Navigator.of(context).pop();
+                          },
+                          child: Text('Save'),
+                        ),
+                      ],
+                    );
+                  },
+                );
+              },
+            ),
+          );
+        },
+      ),
+    );
   }
 }

@@ -22,7 +22,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   String _nome = '';
   String _avatar = '';
-  String _frequenzaAllenamento = '';
+  String _level = '';
   
 
   @override
@@ -36,7 +36,7 @@ class _HomePageState extends State<HomePage> {
     setState(() {
       _nome = prefs.getString('nome') ?? '';
       _avatar = prefs.getString('avatar') ?? '';
-      _frequenzaAllenamento = prefs.getString('frequenzaAllenamento') ?? '';
+      _level = prefs.getString('level') ?? '';
     });
   }
 
@@ -116,7 +116,7 @@ class _HomePageState extends State<HomePage> {
                   color: Colors.green.shade100,
                   child: Center(
                     child: Text(
-                      '$_nome, il tuo livello è: $_frequenzaAllenamento',
+                      '$_nome, your level is: $_level',
                       style: const TextStyle(fontSize: 15),
                     ),
                   ),
