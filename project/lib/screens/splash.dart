@@ -3,13 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:project/screens/bottomnavigationpage.dart';
 import 'package:project/screens/login.dart';
 import 'package:project/utils/impact.dart';
+import 'package:project/screens/welcome.dart'; // DA TOGLIERE QUANDO SERVER OK
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
 
   @override
   Widget build(BuildContext context) { 
-    return AnimatedSplashScreen.withScreenFunction(
+    //return AnimatedSplashScreen.withScreenFunction(
+    return AnimatedSplashScreen( // DA TOGLIERE QUANDO SERVER OK
             splash: SizedBox(
               height: 100, width: 100,
               child: Column(
@@ -24,16 +26,17 @@ class SplashScreen extends StatelessWidget {
             splashTransition:
                 SplashTransition.fadeTransition, // per cambiare la transizione
             backgroundColor: Colors.white, // per cambiare il colore sfondo
-            screenFunction:  () async {return checkLogin(context) ; } );
-          
+            // screenFunction:  () async {return checkLogin(context) ; } );
+            nextScreen: WelcomePage()) ; // DA TOGLIERE QUANDO SERVER OK
+  }    
   }
 
-  Future<Widget> checkLogin(BuildContext context) async {
-    final result = await Impact().refreshTokens();
-    if (result == 200) {
-      return BottomNavigationBarPage() ;
-    } else {
-      return LoginPage() ;
-    }
-  } 
-}
+//   Future<Widget> checkLogin(BuildContext context) async {
+//     final result = await Impact().refreshTokens();
+//     if (result == 200) {
+//       return BottomNavigationBarPage() ;
+//     } else {
+//       return LoginPage() ;
+//     }
+//   } 
+// }
