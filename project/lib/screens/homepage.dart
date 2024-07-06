@@ -4,7 +4,7 @@ import 'package:project/menu/explorelater.dart';
 import 'package:project/menu/favorites.dart';
 import 'package:project/menu/sessions.dart';
 import 'package:fl_chart/fl_chart.dart';
-import 'package:project/gpxMap.dart';
+import 'package:project/widgets/gpxMap.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:project/widgets/PieChart.dart';
 
@@ -126,7 +126,7 @@ class _HomePageState extends State<HomePage> {
             const SizedBox(height: 20.0),
             Container(
               height: 200,
-              child: PieChartWidget(),
+              child: Placeholder(),
               alignment: Alignment.center,
             ) 
           ],

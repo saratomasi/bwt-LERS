@@ -1,21 +1,36 @@
 import 'package:flutter/material.dart';
-import 'package:project/gpxMap.dart';
+import 'package:provider/provider.dart';
 import 'package:project/objects/trail.dart';
-import 'package:project/widgets/characteristics.dart';
+import 'package:project/providers/trailstate.dart';
+import 'package:project/widgets/gpxMap.dart';
+
 
 
 //TrailCard can be used for previews
-class TrailCard extends StatelessWidget{
+class TrailCard extends StatefulWidget {
   final Trail trail;
-  List<Trail> trailList = [];
+  TrailCard({required this.trail});
 
-  // Costruttore che accetta un parametro trail
-  TrailCard({required this.trail}){
-    trailList.add(trail);
+  @override
+  _TrailCardState createState() => _TrailCardState();
+}
+
+class _TrailCardState extends State<TrailCard> {
+
+  late Trail trail;
+  late List<Trail> trailList;
+
+  @override
+  void initState() {
+    super.initState();
+    trail = widget.trail;
+    trailList = [trail];
   }
 
   @override
   Widget build(BuildContext context) {
+    var trailState = context.watch<TrailState>();
+
     return Card(
       margin: EdgeInsets.symmetric(vertical: 8.0),
       child: Column(
@@ -26,20 +41,50 @@ class TrailCard extends StatelessWidget{
                 return GpxMap(trails: trailList, mapSize: constraints.biggest);
               },
             ),),
-          //Name of the trail and buttons for "done", "favorite", "saved for later"
+          //Trail name and buttons for "done", "favorite", "saved for later"
           Expanded(flex: 3, child: Row(children: [
             Expanded(flex:3, child: Text('${trail.name}')),
-            Expanded(flex:1, child: Icon(Icons.done)),
-            Expanded(flex:1, child: Icon(Icons.favorite)),
-            Expanded(flex:1, child: Icon(Icons.bookmark)),
+            Expanded(
+              flex:1, 
+              child: IconButton(
+                icon:Icon(trail.isDone ? Icons.done_rounded : Icons.done_outline_rounded),
+                color: Theme.of(context).primaryColor,
+                onPressed: (){
+                  setState(() {
+                    trail.isDone = !trail.isDone;
+                  });
+                  trailState.updateTrail(trail);
+                },)),
+            Expanded(
+              flex:1, 
+              child: IconButton(
+                icon:Icon(trail.isFavorite ? Icons.favorite_rounded : Icons.favorite_outline_rounded ),
+                color: Theme.of(context).primaryColor,
+                onPressed: () {
+                  setState(() {
+                    trail.isFavorite = !trail.isFavorite;
+                  });
+                  trailState.updateTrail(trail);
+                },)),
+            Expanded(
+              flex:1, 
+              child: IconButton(
+                icon: Icon(trail.isSaved ? Icons.bookmark_rounded : Icons.bookmark_border_rounded),
+                color: Theme.of(context).primaryColor,
+                onPressed: () {
+                  setState(() {
+                    trail.isSaved = !trail.isSaved;
+                  });
+                  trailState.updateTrail(trail);
+                },)),
           ],),),
-          //characteristic of the trail
+          //Level, length and time
           Expanded(flex:1, child: Row(children: [
             SizedBox(width: 8),
             Expanded(flex:1, child: Text(trail.getTrailLevelText())),
             Expanded(flex:1, child: Text('${trail.lengthKm} km')),
             Expanded(flex:1, child: Text(trail.getWalkingTimeText())),
-          ],)),
+          ],)),          
         ],
       ),
     );

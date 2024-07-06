@@ -1,6 +1,5 @@
-import 'package:project/objects/trail.dart';
 import 'package:project/database/pois.dart';
-import 'dart:ui';
+import 'package:project/objects/trail.dart';
 
 Trail trail1 = Trail(
   name: 'Cammino di Sant\'Antonio', 
@@ -11,6 +10,7 @@ Trail trail1 = Trail(
   walkingTime: 7*60,
   routeColor: 0xFF004000,
   pois: [poisDatabase[1]], 
+  isDone: true,
 );
 
 Trail trail2 = Trail(
@@ -22,6 +22,7 @@ Trail trail2 = Trail(
   walkingTime: 91,
   routeColor: 0xFFff3380,
   pois: [poisDatabase[2], poisDatabase[3]], 
+  isDone: true,
 );
 
 Trail trail3 = Trail(
@@ -54,7 +55,8 @@ Trail trail5 = Trail(
   level: 1, 
   lengthKm: 8.45, 
   walkingTime: 120, 
-  routeColor: 0xFFB75427
+  routeColor: 0xFFB75427,
+  isDone: true,
 );
 
 Trail trail6 = Trail(
@@ -89,4 +91,3 @@ Map<int,Trail> trailsDatabase = {
   trail6.id : trail6,
   trail7.id : trail7,
 };
-

@@ -47,7 +47,7 @@ class PoiPage extends StatelessWidget{
             )),
           //Trail name
           Expanded(flex: 3, child: Text('${point.name}')),
-          Expanded(flex: 10, child: Image.asset('lib/assets/logo.png')),
+          Expanded(flex: 10, child: Image.asset(point.imagePath)),
           //Characteristics percentages
           Expanded(flex: 3, child: Characteristics(percentage: point.percentage),),
         ],
