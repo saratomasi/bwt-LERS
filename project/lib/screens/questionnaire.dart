@@ -66,9 +66,9 @@ class _QuestionnaireState extends State<Questionnaire> {
       score += 10;
     }
 
-    if (score < 10) {
+    if (score < 5) {
       _livelloProvvisorio = 'Beginner';
-    } else if (score >= 10 && score < 20) {
+    } else if (score >= 5 && score < 15) {
       _livelloProvvisorio = 'Intermediate';
     } else {
       _livelloProvvisorio = 'Expert';

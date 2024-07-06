@@ -9,62 +9,77 @@ class AutoSearch extends StatefulWidget {
 }
 
 class _AutoSearchState extends State<AutoSearch> {
+  String _message = 'Loading...';
 
-String _message = 'Loading...' ;
-
-@override
+  @override
   void initState() {
     super.initState();
     _loadValue();
   }
 
-  Future<void> _loadValue() async {
+  Future<String?> _loadValue() async {
     final prefs = await SharedPreferences.getInstance();
-    String? value = prefs.getString('level') ;
-    if (value!=null) {
+    String? value = prefs.getString('level');
+    if (value != null) {
       setState(() {
-        if (value == 'level') {
-          _message = 'Auto-search sta usando il livello vero da SharedPreferences.';
-        } else {
-          _message = 'Nessun livello vero rilevato.';
-        }
+       // if (value == 'level') {
+          _message =
+              'Our advice is currently based on biometrical data coming from your device. If you are looking for something different, you could try to check the "Manual search" page.';
+        // }  else {
+        //   _message = 'Nessun livello vero rilevato.';
+        // }
       });
-      _showMessage(_message);
+      // _showMessage(_message);
     } else {
       // Nessun valore in SharedPreferences, usa il valore di default
       setState(() {
-        _message = 'Auto-search sta usando il valore di default.';
+        value = prefs.getString('livelloProvvisorio') ;
+        _message = 'Our advice is currently based only on your answers to the questionnaire. If you are looking for more accurate suggestions, go to the "Profile" page and tap on "Sync your device".';
+        
       });
-      _showMessage(_message);
+      // _showMessage(_message);
     }
+    return value ;
   }
 
-  void _showMessage(String message) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(message),
-        duration: Duration(seconds: 2),
-      ),
-    );
-  }
-
-
+  // void _showMessage(String message) {
+  //   ScaffoldMessenger.of(context).showSnackBar(
+  //     SnackBar(
+  //       content: Text(message),
+  //       duration: Duration(seconds: 2),
+  //     ),
+  //   );
+  // }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Column(          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            ElevatedButton(
-              onPressed: () {
-                _loadValue();
-              },
-              child: Text('Verifica livello'),
-            ),
-          ],) 
+      appBar: AppBar(
+        title: Text('Get Advice!'),
+        backgroundColor: Colors.green.shade100,
       ),
-      
+      body: Center(
+          child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: <Widget>[
+          SizedBox(
+            width: 500,
+            height: 100,
+            child: Card(
+              color: Colors.amber.shade100,
+              child: Padding(
+                padding: EdgeInsets.all(16.0),
+                child: Text(_message)),)
+            ), 
+          
+          // ElevatedButton(
+          //   onPressed: () {
+          //     _loadValue();
+          //   },
+          //   child: Text('Verifica livello'),
+          // ),
+        ],
+      )),
     );
   }
 }
