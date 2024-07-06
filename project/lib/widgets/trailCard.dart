@@ -13,7 +13,7 @@ import 'package:project/widgets/gpxMap.dart';
 class TrailCard extends StatefulWidget {
   final Trail trail;
   final VoidCallback onToggle;
-  TrailCard({required this.trail, required this.onToggle});
+  TrailCard({required this.trail, required this.onToggle, Key? key}) : super(key: key);
 
   @override
   _TrailCardState createState() => _TrailCardState();

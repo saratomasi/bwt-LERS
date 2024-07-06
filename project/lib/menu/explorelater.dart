@@ -64,6 +64,7 @@ class _ExploreState extends State<ExploreLater> {
         return Consumer<TrailState>(
           builder: (context, trailState, child){
             return TrailCard(
+              key: ValueKey(savedTrails[index].id),
               trail: savedTrails[index],
               onToggle: () async {
                 setState(() {});
