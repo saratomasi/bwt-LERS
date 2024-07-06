@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:provider/provider.dart';
+import 'package:project/objects/trail.dart';
+import 'package:project/providers/trailstate.dart';
+import 'package:project/screens/trailPage.dart';
 
 class AutoSearch extends StatefulWidget {
   const AutoSearch({super.key});
@@ -53,6 +57,8 @@ class _AutoSearchState extends State<AutoSearch> {
 
   @override
   Widget build(BuildContext context) {
+    var trailState = context.watch<TrailState>();
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Get Advice!'),
@@ -78,16 +84,43 @@ class _AutoSearchState extends State<AutoSearch> {
           //   },
           //   child: Text('Verifica livello'),
           // ),
+          Expanded(flex: 3, child: sessionList(trailState),), 
         ],
       )),
+    );
+  }
+
+  Widget sessionList(TrailState trailState) {
+    var undoneTrails = trailState.doneTrails;
+    return ListView.builder(
+      padding: const EdgeInsets.all(8.0),
+      itemCount: undoneTrails.length,
+      itemBuilder: (context, index) {
+        Trail tmp = undoneTrails[index];
+        return Card(
+          margin: const EdgeInsets.symmetric(vertical: 8.0),
+          child: ListTile(
+            title: Text('${tmp.name}'),
+            subtitle: Text('${tmp.date.toLocal()}'.split(' ')[0]),
+            trailing: Icon(Icons.arrow_forward_ios),
+            onTap: () async {
+              var updatedTrail = await Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => TrailPage(trail: tmp)),
+              );
+              // Aggiorna undoneTrails se il trail è stato modificato
+              if (updatedTrail != null) {
+                setState(() {
+                  trailState.updateTrail(updatedTrail);
+                });
+              }
+            }
+          ),
+        );
+      },
     );
   }
 }
 
 
-// Pagina di prova per vedere se il widget riesce a prendere il livello vero/provvisorio che poi verra' usato per la
-// ricerca automatica dei percorsi
-// TODO al momento per debug c'e' un bottone da premere per far comparire un messaggio in basso con lo ScaffoldMessenger, pero' in 
-// teoria ScaffoldMessenger funziona solo con i pulsanti e noi vogliamo che compaia un warning da qualche parte che dica 
-// se si sta usando il valore provvisorio o meno senza usare pulsanti e se sta usando il provvisorio consiglia di usare 
-// il pulsante Sync your Device del profilo.
+//TODO fare in modo che i percorsi suggeriti siano solo quelli del livello corretto
