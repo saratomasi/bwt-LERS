@@ -33,7 +33,8 @@ Trail trail3 = Trail(
   level: 2, 
   lengthKm: 9.14, 
   walkingTime: 171, 
-  routeColor: 0xFF4931AF
+  routeColor: 0xFF4931AF,
+  isSaved: true,
 );
 
 Trail trail4 = Trail(
@@ -44,7 +45,8 @@ Trail trail4 = Trail(
   level: 3, 
   lengthKm: 18.9, 
   walkingTime: 377, 
-  routeColor: 0xFF66AB0D
+  routeColor: 0xFF66AB0D,
+  isSaved: true,
 );
 
 Trail trail5 = Trail(

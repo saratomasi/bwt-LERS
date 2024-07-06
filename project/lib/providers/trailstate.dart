@@ -28,6 +28,8 @@ class TrailState extends ChangeNotifier {
     }
   }
 
+  //SEARCH METHODS:
+
   void searchDoneTrails(String query) {
     if (query.isEmpty) {
       _filteredTrails = [];
@@ -72,11 +74,24 @@ class TrailState extends ChangeNotifier {
     notifyListeners();
   }
 
+  void searchNotDoneTrails(String query) {
+    if (query.isEmpty) {
+      _filteredTrails = [];
+    } else {
+      _filteredTrails = notDoneTrails
+          .where((trail) => trail.name!.toLowerCase().contains(query.toLowerCase()))
+          .toList();
+    }
+    notifyListeners();
+  }
+
   void clearSearch() {
     _filteredTrails = [];
     notifyListeners();
   }
 
+
+  //LISTS of filtered trails:
 
   List<Trail> get doneTrails {
     var trails = _filteredTrails.isEmpty 
@@ -104,6 +119,12 @@ class TrailState extends ChangeNotifier {
   List<Trail> get allTrails {
     return _filteredTrails.isEmpty 
         ? trailsDatabase.values.toList()
+        : _filteredTrails;
+  }
+
+  List<Trail> get notDoneTrails {
+    return _filteredTrails.isEmpty 
+        ? trailsDatabase.values.where((trail) => !trail.isDone).toList()
         : _filteredTrails;
   }
 }

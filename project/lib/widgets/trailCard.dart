@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:project/objects/trail.dart';
 import 'package:project/providers/trailstate.dart';
+import 'package:project/screens/trailPage.dart';
 import 'package:project/widgets/gpxMap.dart';
 
 
@@ -43,7 +44,13 @@ class _TrailCardState extends State<TrailCard> {
             ),),
           //Trail name and buttons for "done", "favorite", "saved for later"
           Expanded(flex: 3, child: Row(children: [
-            Expanded(flex:3, child: Text('${trail.name}')),
+            Expanded(flex:3, child: TextButton(
+              child: Text('${trail.name}'), 
+                onPressed: (){
+                  Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => TrailPage(trail: trail)));
+                },
+              ),),
             Expanded(
               flex:1, 
               child: IconButton(
