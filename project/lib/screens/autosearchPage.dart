@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:provider/provider.dart';
+import 'package:project/objects/trail.dart';
+import 'package:project/providers/trailstate.dart';
+import 'package:project/screens/trailPage.dart';
 
 class AutoSearch extends StatefulWidget {
   const AutoSearch({super.key});
@@ -9,70 +13,97 @@ class AutoSearch extends StatefulWidget {
 }
 
 class _AutoSearchState extends State<AutoSearch> {
+  String _message = 'Loading...';
 
-String _message = 'Loading...' ;
-
-@override
+  @override
   void initState() {
     super.initState();
     _loadValue();
   }
 
-  Future<void> _loadValue() async {
+  Future<String?> _loadValue() async {
     final prefs = await SharedPreferences.getInstance();
-    String? value = prefs.getString('level') ;
-    if (value!=null) {
+    String? value = prefs.getString('level');
+    if (value != null) {
       setState(() {
-        if (value == 'level') {
-          _message = 'Auto-search sta usando il livello vero da SharedPreferences.';
-        } else {
-          _message = 'Nessun livello vero rilevato.';
-        }
+        _message =
+            'Our advice is currently based on biometrical data coming from your device. If you are looking for something different, you could try to check the "Manual search" page.';
       });
-      _showMessage(_message);
     } else {
       // Nessun valore in SharedPreferences, usa il valore di default
       setState(() {
-        _message = 'Auto-search sta usando il valore di default.';
+        value = prefs.getString('livelloProvvisorio');
+        _message =
+            'Our advice is currently based only on your answers to the questionnaire. If you are looking for more accurate suggestions, go to the "Profile" page and tap on "Sync your device".';
       });
-      _showMessage(_message);
     }
+    return value;
   }
 
-  void _showMessage(String message) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(message),
-        duration: Duration(seconds: 2),
+  @override
+  Widget build(BuildContext context) {
+    var trailState = context.watch<TrailState>();
+
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Get Advice!'),
+        backgroundColor: Colors.green.shade100,
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+            SizedBox(
+              width: 500,
+              height: 100,
+              child: Card(
+                color: Colors.amber.shade100,
+                child: Padding(
+                  padding: EdgeInsets.all(16.0),
+                  child: Text(_message),
+                ),
+              ),
+            ),
+            Expanded(
+              flex: 3,
+              child: sessionList(trailState),
+            ),
+          ],
+        ),
       ),
     );
   }
 
-
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Column(          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            ElevatedButton(
-              onPressed: () {
-                _loadValue();
-              },
-              child: Text('Verifica livello'),
-            ),
-          ],) 
-      ),
-      
+  Widget sessionList(TrailState trailState) {
+    var undoneTrails = trailState.doneTrails;
+    return ListView.builder(
+      padding: const EdgeInsets.all(8.0),
+      itemCount: undoneTrails.length,
+      itemBuilder: (context, index) {
+        Trail tmp = undoneTrails[index];
+        return Card(
+          margin: const EdgeInsets.symmetric(vertical: 8.0),
+          child: ListTile(
+            title: Text('${tmp.name}'),
+            subtitle: Text('${tmp.date.toLocal()}'.split(' ')[0]),
+            trailing: Icon(Icons.arrow_forward_ios),
+            onTap: () async {
+              var updatedTrail = await Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => TrailPage(trail: tmp)),
+              );
+              // Aggiorna undoneTrails se il trail è stato modificato
+              if (updatedTrail != null) {
+                setState(() {
+                  trailState.updateTrail(updatedTrail);
+                });
+              }
+            },
+          ),
+        );
+      },
     );
   }
 }
 
-
-// Pagina di prova per vedere se il widget riesce a prendere il livello vero/provvisorio che poi verra' usato per la
-// ricerca automatica dei percorsi
-// TODO al momento per debug c'e' un bottone da premere per far comparire un messaggio in basso con lo ScaffoldMessenger, pero' in 
-// teoria ScaffoldMessenger funziona solo con i pulsanti e noi vogliamo che compaia un warning da qualche parte che dica 
-// se si sta usando il valore provvisorio o meno senza usare pulsanti e se sta usando il provvisorio consiglia di usare 
-// il pulsante Sync your Device del profilo.
+//TODO fare in modo che i percorsi suggeriti siano solo quelli del livello corretto
