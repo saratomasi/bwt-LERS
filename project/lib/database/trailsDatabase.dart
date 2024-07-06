@@ -23,6 +23,7 @@ Trail trail2 = Trail(
   routeColor: 0xFFff3380,
   pois: [poisDatabase[2], poisDatabase[3]], 
   isDone: true,
+  isSaved: true,
 );
 
 Trail trail3 = Trail(
@@ -34,6 +35,7 @@ Trail trail3 = Trail(
   lengthKm: 9.14, 
   walkingTime: 171, 
   routeColor: 0xFF4931AF,
+  isDone: true,
   isSaved: true,
 );
 
@@ -46,6 +48,7 @@ Trail trail4 = Trail(
   lengthKm: 18.9, 
   walkingTime: 377, 
   routeColor: 0xFF66AB0D,
+  isDone: true,
   isSaved: true,
 );
 
@@ -69,7 +72,9 @@ Trail trail6 = Trail(
   level: 2, 
   lengthKm: 9.49, 
   walkingTime: 150, 
-  routeColor: 0xFF356E26
+  routeColor: 0xFF356E26,
+  isDone: true,
+  isSaved: true,
 );
 
 Trail trail7 = Trail(
@@ -80,7 +85,9 @@ Trail trail7 = Trail(
   level: 1, 
   lengthKm: 5.23, 
   walkingTime: 79, 
-  routeColor: 0xFF918993
+  routeColor: 0xFF918993,
+  isDone: true,
+  isSaved: true,
 );
 
 

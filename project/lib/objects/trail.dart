@@ -86,15 +86,15 @@ class Trail{
   String getTrailLevelText() {
     switch (level) {
       case 1:
-        return 'Facile';
+        return 'Easy';
       case 2:
-        return 'Intermedio';
+        return 'Intermediate';
       case 3:
-        return 'Difficile';
+        return 'Difficult';
       case 4:
-        return 'Per Esperti';
+        return 'For Expert only';
       default:
-        return 'Livello sconosciuto';
+        return 'Unknown';
     }
   }
 

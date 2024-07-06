@@ -6,17 +6,17 @@ class TrailState extends ChangeNotifier {
 
   List<Trail> _filteredTrails = [];
 
-  void toggleDone(int id) {
+  Future<void> toggleDone(int id) async {
     trailsDatabase[id]?.isDone = !(trailsDatabase[id]?.isDone ?? false);
     notifyListeners();
   }
 
-  void toggleFavorite(int id) {
+  Future<void> toggleFavorite(int id) async {
     trailsDatabase[id]?.isFavorite = !(trailsDatabase[id]?.isFavorite ?? false);
     notifyListeners();
   }
 
-  void toggleSaved(int id) {
+  Future<void> toggleSaved(int id) async {
     trailsDatabase[id]?.isSaved = !(trailsDatabase[id]?.isSaved ?? false);
     notifyListeners();
   }

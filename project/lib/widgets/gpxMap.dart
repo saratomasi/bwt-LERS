@@ -139,7 +139,7 @@ class _GpxMapState extends State<GpxMap> {
 
     bool showPOIs = widget.trails.length == 1;
 
-    return Card(
+    return Container(
       margin: EdgeInsets.symmetric(vertical: 8.0),
       child: LayoutBuilder(
         builder: (context, constraints) {
