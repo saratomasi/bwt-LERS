@@ -26,34 +26,19 @@ class _AutoSearchState extends State<AutoSearch> {
     String? value = prefs.getString('level');
     if (value != null) {
       setState(() {
-       // if (value == 'level') {
-          _message =
-              'Our advice is currently based on biometrical data coming from your device. If you are looking for something different, you could try to check the "Manual search" page.';
-        // }  else {
-        //   _message = 'Nessun livello vero rilevato.';
-        // }
+        _message =
+            'Our advice is currently based on biometrical data coming from your device. If you are looking for something different, you could try to check the "Manual search" page.';
       });
-      // _showMessage(_message);
     } else {
       // Nessun valore in SharedPreferences, usa il valore di default
       setState(() {
-        value = prefs.getString('livelloProvvisorio') ;
-        _message = 'Our advice is currently based only on your answers to the questionnaire. If you are looking for more accurate suggestions, go to the "Profile" page and tap on "Sync your device".';
-        
+        value = prefs.getString('livelloProvvisorio');
+        _message =
+            'Our advice is currently based only on your answers to the questionnaire. If you are looking for more accurate suggestions, go to the "Profile" page and tap on "Sync your device".';
       });
-      // _showMessage(_message);
     }
-    return value ;
+    return value;
   }
-
-  // void _showMessage(String message) {
-  //   ScaffoldMessenger.of(context).showSnackBar(
-  //     SnackBar(
-  //       content: Text(message),
-  //       duration: Duration(seconds: 2),
-  //     ),
-  //   );
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -65,28 +50,27 @@ class _AutoSearchState extends State<AutoSearch> {
         backgroundColor: Colors.green.shade100,
       ),
       body: Center(
-          child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: <Widget>[
-          SizedBox(
-            width: 500,
-            height: 100,
-            child: Card(
-              color: Colors.amber.shade100,
-              child: Padding(
-                padding: EdgeInsets.all(16.0),
-                child: Text(_message)),)
-            ), 
-          
-          // ElevatedButton(
-          //   onPressed: () {
-          //     _loadValue();
-          //   },
-          //   child: Text('Verifica livello'),
-          // ),
-          Expanded(flex: 3, child: sessionList(trailState),), 
-        ],
-      )),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+            SizedBox(
+              width: 500,
+              height: 100,
+              child: Card(
+                color: Colors.amber.shade100,
+                child: Padding(
+                  padding: EdgeInsets.all(16.0),
+                  child: Text(_message),
+                ),
+              ),
+            ),
+            Expanded(
+              flex: 3,
+              child: sessionList(trailState),
+            ),
+          ],
+        ),
+      ),
     );
   }
 
@@ -114,13 +98,12 @@ class _AutoSearchState extends State<AutoSearch> {
                   trailState.updateTrail(updatedTrail);
                 });
               }
-            }
+            },
           ),
         );
       },
     );
   }
 }
-
 
 //TODO fare in modo che i percorsi suggeriti siano solo quelli del livello corretto
