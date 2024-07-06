@@ -104,7 +104,7 @@ class _HomePageState extends State<HomePage> {
             const Padding(
               padding: EdgeInsets.all(20.0),
               child: Text(
-              'Benvenut*!',
+              'Welcome!',
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold), textAlign: TextAlign.center,
               )
             ),

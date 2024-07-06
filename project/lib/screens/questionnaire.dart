@@ -84,117 +84,119 @@ class _QuestionnaireState extends State<Questionnaire> {
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                TextField(
-                  decoration: InputDecoration(labelText: 'Name'),
-                  onChanged: (value) {
-                    setState(() {
-                      _nome = value;
-                    });
-                  },
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(height: 20), // Spazio sopra il Column
+              TextField(
+                decoration: InputDecoration(labelText: 'Name'),
+                onChanged: (value) {
+                  setState(() {
+                    _nome = value;
+                  });
+                },
+              ),
+              TextField(
+                decoration: InputDecoration(labelText: 'Surname'),
+                onChanged: (value) {
+                  setState(() {
+                    _cognome = value;
+                  });
+                },
+              ),
+              TextField(
+                decoration: InputDecoration(labelText: 'Age'),
+                keyboardType: TextInputType.numberWithOptions(decimal: false, signed: false),
+                inputFormatters: <TextInputFormatter>[
+                  FilteringTextInputFormatter.digitsOnly,
+                  LengthLimitingTextInputFormatter(2)
+                ],
+                onChanged: (value) {
+                  setState(() {
+                    eta = int.tryParse(value) ?? 0;
+                  });
+                },
+              ),
+              if (eta != 0 && (eta < 8 || eta > 100))
+                Text(
+                  'Unsupported age',
+                  style: TextStyle(color: Colors.red),
                 ),
-                TextField(
-                  decoration: InputDecoration(labelText: 'Surname'),
-                  onChanged: (value) {
-                    setState(() {
-                      _cognome = value;
-                    });
-                  },
+              DropdownButtonFormField<String>(
+                value: _sede.isEmpty ? null : _sede,
+                onChanged: (value) {
+                  setState(() {
+                    _sede = value!;
+                  });
+                },
+                items: sedi.map((sede) {
+                  return DropdownMenuItem(
+                    value: sede,
+                    child: Text(sede),
+                  );
+                }).toList(),
+                decoration: InputDecoration(labelText: 'Location'),
+              ),
+              DropdownButtonFormField<String>(
+                value: _allenaSettimana.isEmpty ? null : _allenaSettimana,
+                onChanged: (value) {
+                  setState(() {
+                    _allenaSettimana = value!;
+                  });
+                },
+                items: frequenzaAllenamento.map((frequenza) {
+                  return DropdownMenuItem(
+                    value: frequenza,
+                    child: Text(frequenza),
+                  );
+                }).toList(),
+                decoration: InputDecoration(labelText: 'How often do you exercise per week?'),
+              ),
+              DropdownButtonFormField<String>(
+                value: _avatar.isEmpty ? null : _avatar,
+                onChanged: (value) {
+                  setState(() {
+                    _avatar = value!;
+                  });
+                },
+                items: avatars.asMap().entries.map((entry) {
+                  int index = entry.key;
+                  String avatar = entry.value;
+                  return DropdownMenuItem(
+                    value: avatar,
+                    child: Row(
+                      children: [
+                        Image.asset(
+                          avatar,
+                          width: 30,
+                          height: 30,
+                        ),
+                        SizedBox(width: 10),
+                        Text(nomi_avatar[index]),
+                      ],
+                    ),
+                  );
+                }).toList(),
+                decoration: InputDecoration(labelText: 'Avatar'),
+              ),
+              if (!isWarningVisible)
+                Text(
+                  'Please fill in all fields',
+                  style: TextStyle(color: Colors.red),
                 ),
-                TextField(
-                  decoration: InputDecoration(labelText: 'Age'),
-                  keyboardType: TextInputType.numberWithOptions(decimal: false, signed: false),
-                  inputFormatters: <TextInputFormatter>[
-                    FilteringTextInputFormatter.digitsOnly,
-                    LengthLimitingTextInputFormatter(2)
-                  ],
-                  onChanged: (value) {
-                    setState(() {
-                      eta = int.tryParse(value) ?? 0;
-                    });
-                  },
+              if (_livelloProvvisorio.isNotEmpty)
+                Text(
+                  'Provisional Level: $_livelloProvvisorio',
+                  style: TextStyle(color: Colors.blue),
                 ),
-                if (eta != 0 && (eta < 8 || eta > 100))
-                  Text(
-                    'Unsupported age',
-                    style: TextStyle(color: Colors.red),
-                  ),
-                DropdownButtonFormField<String>(
-                  value: _sede.isEmpty ? null : _sede,
-                  onChanged: (value) {
-                    setState(() {
-                      _sede = value!;
-                    });
-                  },
-                  items: sedi.map((sede) {
-                    return DropdownMenuItem(
-                      value: sede,
-                      child: Text(sede),
-                    );
-                  }).toList(),
-                  decoration: InputDecoration(labelText: 'Location'),
-                ),
-                DropdownButtonFormField<String>(
-                  value: _allenaSettimana.isEmpty ? null : _allenaSettimana,
-                  onChanged: (value) {
-                    setState(() {
-                      _allenaSettimana = value!;
-                    });
-                  },
-                  items: frequenzaAllenamento.map((frequenza) {
-                    return DropdownMenuItem(
-                      value: frequenza,
-                      child: Text(frequenza),
-                    );
-                  }).toList(),
-                  decoration:
-                      InputDecoration(labelText: 'How often do you exercise per week?'),
-                ),
-                DropdownButtonFormField<String>(
-                  value: _avatar.isEmpty ? null : _avatar,
-                  onChanged: (value) {
-                    setState(() {
-                      _avatar = value!;
-                    });
-                  },
-                  items: avatars.asMap().entries.map((entry) {
-                    int index = entry.key;
-                    String avatar = entry.value;
-                    return DropdownMenuItem(
-                      value: avatar,
-                      child: Row(
-                        children: [
-                          Image.asset(
-                            avatar,
-                            width: 30,
-                            height: 30,
-                          ),
-                          SizedBox(width: 10),
-                          Text(nomi_avatar[index]),
-                        ],
-                      ),
-                    );
-                  }).toList(),
-                  decoration: InputDecoration(labelText: 'Avatar'),
-                ),
-                if (!isWarningVisible)
-                  Text(
-                    'Please fill in all fields',
-                    style: TextStyle(color: Colors.red),
-                  ),
-                if (_livelloProvvisorio.isNotEmpty)
-                  Text(
-                    'Provisional Level: $_livelloProvvisorio',
-                    style: TextStyle(color: Colors.blue),
-                  ),
-                ElevatedButton(
+              Spacer(), // Spazio flessibile che spinge il pulsante in basso
+              Align(
+                alignment: Alignment.center,
+                child: ElevatedButton(
                   onPressed: () {
                     if (isWarningVisible) {
-                      calculateProvisionalLevel(); // Calculate provisional level
-                      saveData(); // Save all data including provisional level
+                      calculateProvisionalLevel(); // Calcola il livello provvisorio
+                      saveData(); // Salva tutti i dati, incluso il livello provvisorio
                       Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(builder: (_) => BottomNavigationBarPage()),
@@ -205,8 +207,9 @@ class _QuestionnaireState extends State<Questionnaire> {
                   },
                   child: Text('Send'),
                 ),
-              ],
-            ),
+              ),
+              SizedBox(height: 20), // Spazio sotto il pulsante
+            ],
           ),
         ),
       ),

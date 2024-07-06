@@ -90,7 +90,7 @@ class _WelcomePageState extends State<WelcomePage> {
           child: Image.asset(imagePath, fit: BoxFit.contain),
         ),
         Positioned(
-          bottom: 20,
+          bottom: 10,
           left: 0,
           right: 0,
           child: Center(
