@@ -70,7 +70,7 @@ class _ManualSearchState extends State<ManualSearch> {
   }
 
   Widget sessionList(TrailState trailState) {
-    var undoneTrails = trailState.doneTrails;
+    var undoneTrails = trailState.notDoneTrails;
     return ListView.builder(
       controller: _scrollController,
       padding: const EdgeInsets.all(8.0),

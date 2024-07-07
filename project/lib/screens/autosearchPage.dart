@@ -14,6 +14,7 @@ class AutoSearch extends StatefulWidget {
 
 class _AutoSearchState extends State<AutoSearch> {
   String _message = 'Loading...';
+  String? _value;
 
   @override
   void initState() {
@@ -21,28 +22,51 @@ class _AutoSearchState extends State<AutoSearch> {
     _loadValue();
   }
 
-  Future<String?> _loadValue() async {
+  Future<void> _loadValue() async {
     final prefs = await SharedPreferences.getInstance();
     String? value = prefs.getString('level');
-    if (value != null) {
+    if (value != null && value.isNotEmpty) {
       setState(() {
+        _value = value ;
         _message =
             'Our advice is currently based on biometrical data coming from your device. If you are looking for something different, you could try to check the "Manual search" page.';
       });
     } else {
       // Nessun valore in SharedPreferences, usa il valore di default
       setState(() {
-        value = prefs.getString('livelloProvvisorio');
+        _value = prefs.getString('livelloProvvisorio');
         _message =
             'Our advice is currently based only on your answers to the questionnaire. If you are looking for more accurate suggestions, go to the "Profile" page and tap on "Sync your device".';
       });
     }
-    return value;
+    print('Loaded value: $_value'); // Debug
   }
+
+   List<Trail> _filterTrails(List<Trail> trails) {
+    if (_value == null) return [];
+
+    return trails.where((trail) {
+      String levelText = trail.getTrailLevelText(); // Ottiene il testo del livello
+      print('Trail level text: $levelText');
+      var trailLevel;
+      if (_value=='Beginner') {
+        trailLevel = 'Easy' ;
+      } else if (_value=='Intermediate') {
+        trailLevel = 'Intermediate' ;
+      } else {
+        trailLevel = 'Difficult' ;
+      }
+      return levelText == trailLevel;
+    }).toList();
+  }
+
+
 
   @override
   Widget build(BuildContext context) {
     var trailState = context.watch<TrailState>();
+
+    var filteredTrails = _filterTrails(trailState.notDoneTrails);
 
     return Scaffold(
       appBar: AppBar(
@@ -66,7 +90,8 @@ class _AutoSearchState extends State<AutoSearch> {
             ),
             Expanded(
               flex: 3,
-              child: sessionList(trailState),
+              //child: sessionList(trailState),
+              child: sessionList(filteredTrails),
             ),
           ],
         ),
@@ -74,13 +99,23 @@ class _AutoSearchState extends State<AutoSearch> {
     );
   }
 
-  Widget sessionList(TrailState trailState) {
-    var undoneTrails = trailState.doneTrails;
+  //Widget sessionList(TrailState trailState) {
+  Widget sessionList(List<Trail> filteredTrails) {
+   //var filteredTrails = _filterTrails(trailState.notDoneTrails);
+if (filteredTrails.isEmpty) {
+      return Center(
+        child: Text(
+          'No trails available.',
+          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+        ),
+      );
+    }
+
     return ListView.builder(
       padding: const EdgeInsets.all(8.0),
-      itemCount: undoneTrails.length,
+      itemCount: filteredTrails.length,
       itemBuilder: (context, index) {
-        Trail tmp = undoneTrails[index];
+        Trail tmp = filteredTrails[index];
         return Card(
           margin: const EdgeInsets.symmetric(vertical: 8.0),
           child: ListTile(
@@ -95,7 +130,8 @@ class _AutoSearchState extends State<AutoSearch> {
               // Aggiorna undoneTrails se il trail è stato modificato
               if (updatedTrail != null) {
                 setState(() {
-                  trailState.updateTrail(updatedTrail);
+                  //trailState.updateTrail(updatedTrail);
+                  context.read<TrailState>().updateTrail(updatedTrail);
                 });
               }
             },
@@ -105,5 +141,3 @@ class _AutoSearchState extends State<AutoSearch> {
     );
   }
 }
-
-//TODO fare in modo che i percorsi suggeriti siano solo quelli del livello corretto
