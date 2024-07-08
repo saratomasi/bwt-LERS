@@ -1,8 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:project/screens/splash.dart';
+import 'package:project/menu/TrofeiNotifier.dart';
+import 'package:provider/provider.dart';
+
+
+/*void main() {
+  runApp(const MyApp());
+}*/
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => TrofeiNotifier(),
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {

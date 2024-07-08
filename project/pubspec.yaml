@@ -41,7 +41,7 @@ dependencies:
   url_launcher: ^6.2.6
   gpx: ^2.2.2
   maps_toolkit: ^3.0.0
-
+  percent_indicator: ^4.2.3
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
