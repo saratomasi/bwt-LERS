@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:project/providers/dataprovider.dart';
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:project/models/steps.dart';
+
 
 /*
 class Achievements extends StatelessWidget {
@@ -48,7 +53,7 @@ class Achievements extends StatelessWidget {
   });
 }
 
-enum TipoTrofeo {steps, paths, /*punti di interesse, */ level}
+enum TipoTrofeo {steps, paths, poi, level}
 
 class TrofeiNotifier with ChangeNotifier  {
   final List<Trofeo> _trofei = [
@@ -66,13 +71,13 @@ class TrofeiNotifier with ChangeNotifier  {
       immagineSbloccata: 'lib/assets/trophy.png',
       immagineNonSbloccata: 'lib/assets/trophy_locked.png',
     ),
-    /*Trofeo(
-      nome: '10 places of interest visited!',
-      tipo: TipoTrofeo.puntiDiInteresse,
+    Trofeo(
+      nome: '20 points of interest visited!',
+      tipo: TipoTrofeo.poi,
       target: 10,
       immagineSbloccata: 'lib/assets/trophy.png',
       immagineNonSbloccata: 'lib/assets/trophy_locked.png',
-    ),*/
+    ),
     Trofeo(
       nome: 'Congratualtions! You moved to the next level',
       tipo: TipoTrofeo.level,
@@ -106,7 +111,7 @@ class TrofeiNotifier with ChangeNotifier  {
           content: Text('You have a new trophy unloacked: $nomeTrofeo'),
           actions: <Widget>[
             TextButton(
-              child: Text('OK'),
+              child: const Text('OK'),
               onPressed: () {
                 Navigator.of(context).pop();
               },
@@ -125,13 +130,42 @@ class TrofeiNotifier with ChangeNotifier  {
       }
     }
   }
+/*
+  // Funzione per verificare e sbloccare i trofei in base ai progressi dell'utente
+  void verificaObiettivi(BuildContext context) {
+    final datiUtente = Provider.of<DataProvider>(context, listen: false);
+    int steps = datiUtente.steps.length;
+    
+    
+
+    if (steps >= 100000) {
+      sbloccaTrofeo('100 000 steps!', context);
+    }
+    if (datiUtente.paths >= 10) {
+      sbloccaTrofeo('10 paths done!', context);
+    }
+    if (datiUtente.poi >= 20) {
+      sbloccaTrofeo('20 points of interest visited!', context);
+    }
+    // Esempio di come verificare e sbloccare il trofeo del livello
+    // In realtà questo dipende da come è implementato il sistema di livelli
+    // e come si gestisce il progresso tra i livelli.
+    if (datiUtente.level == 'Intermediate') {
+      sbloccaTrofeo('Congratulations! You moved to the next level', context);
+    }*/
 }
 
+
+  
+
+
+
+/*
 void verificaObiettivi(
   TrofeiNotifier trofeiNotifier, 
   int steps, 
   int paths,
-  int puntiDiInteresse,
+  int poi,
   String level,
   BuildContext context) {
   
@@ -142,22 +176,21 @@ void verificaObiettivi(
   if (paths >= 10) {
     trofeiNotifier.sbloccaTrofeo('10 paths done!', context);
   }
-  if (puntiDiInteresse >= 10) {
-    trofeiNotifier.sbloccaTrofeo('10 places of interest visited!', context);
+  if (poi >= 20) {
+    trofeiNotifier.sbloccaTrofeo('10 points of interest visited!', context);
   }
+  /*
   if (paths >= 10) {
     trofeiNotifier.sbloccaTrofeo('10 paths done!', context);
-  }
+  }*/ // ci dovrebbe essere quello che sblocca il livello
   
 
-  double progresso50milaPassi = steps / 50000;
   double progresso100milaPassi = steps / 100000;
 
-  trofeiNotifier.aggiornaProgresso('50 000 steps!', progresso50milaPassi);
   trofeiNotifier.aggiornaProgresso('100 000 steps!', progresso100milaPassi);
 
 
   
 
-}
+}*/
 

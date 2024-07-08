@@ -173,7 +173,7 @@ class _HomePageState extends State<HomePage> {
             SizedBox(height: 20.0),
             AchievementProgressWidget(
               title: 'Steps', 
-              goal: 50000, 
+              goal: 100000, 
               currentProgress: 35000,
             ),
             AchievementProgressWidget(
