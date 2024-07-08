@@ -27,11 +27,18 @@ class _ManualSearchState extends State<ManualSearch> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Text(
-                'Here, you can choose any trail you prefer, regardless of your skill level. However, make sure to carefully check the difficulty level of each trail!',
-                style: TextStyle(fontSize: 16.0),
+            SizedBox(
+              width:500,
+              height:110,
+              child: Card(
+                color: Colors.amber.shade100,
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Text(
+                    'Here, you can choose any trail you prefer, regardless of your skill level. However, make sure to carefully check the difficulty level of each trail!',
+                    style: TextStyle(fontSize: 16.0),
+                  ),
+                ),
               ),
             ),
             Expanded(

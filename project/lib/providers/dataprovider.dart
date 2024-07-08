@@ -58,10 +58,10 @@ class DataProvider extends ChangeNotifier {
     String? training = sp.getString('frequenzaAllenamento') ;
 
     // Do un punteggio per il livello di allenamento selezionato
-    if (training == 'Nessun allenamento') {
+    if (training == 'No exercise') {
       score = score + 0 ;
     }
-    else if (training=='1-2 volte alla settimana') {
+    else if (training=='1-2 times per week') {
       score = score + 5 ;
     } else {
       score = score + 10 ;
@@ -71,15 +71,13 @@ class DataProvider extends ChangeNotifier {
     if (age! >= 60) {
       score = score + 0 ;
     }
-    else if (age < 60 && age >= 35) {
+    else if (age < 60 && age >= 45) {
       score = score + 5 ;
     } else {
       score = score + 10 ;
     }
 
     // Uso age per calcolare la frequenza cardiaca massima (formula aprossimata di Tanaka) e la confronta con l'average heart rate
-    // TODO valutare se è il caso di inserire la formula di Gellish che tiene conto del genere dell'individuo
-    // Formula di Gellish: FCM = 214-(0.8*età) per gli uomini e FCM = 209-(0.9*età) per le donne
       int FCmax = 200 - age; // Frequenza cardiaca massima teorica
       List<int> heartRate_values =
           heartRates.map((heartRates) => heartRates.value).toList();
@@ -95,37 +93,37 @@ class DataProvider extends ChangeNotifier {
       // VALUTO I PASSI (soglie scelte per valutazione di 3 giorni)
       List<int> steps_values = steps.map((steps)=> (steps.value)).toList() ;
       double steps_average = steps_values.average ;
-      if (steps_average <= 5000) {
+      if (steps_average <= 15000) {
         score = score + 0 ;
       }
-      else if (steps_average >5000 && steps_average < 10000) {
+      else if (steps_average >15000 && steps_average < 25000) {
         score = score + 5 ;
       }
       else {
         score= score + 10 ;
       }
 
-      // VALUTO L'HEART RATE MEDIO A RIPOSO (soglie generiche)
+      // VALUTO L'HEART RATE MEDIO A RIPOSO
       List<double> resting_values = resting_hr.map((resting_hr)=> resting_hr.value).toList() ;
       double restingHR_average = resting_values.average ;
       if (restingHR_average >= 80) {
         score = score + 0 ;
       }
-      else if (restingHR_average < 80 && restingHR_average <= 60) {
+      else if (restingHR_average < 80 && restingHR_average >= 55) {
         score = score + 5 ;
       }
       else {
         score= score + 10 ;
       }
 
-      // VALUTO LA DISTANZA PERCORSA AL GIORNO (soglie generiche)
+      // VALUTO LA DISTANZA PERCORSA AL GIORNO
       List<int> distance_values = distance.map((distance)=> distance.value).toList() ;
       List<double> distance_values_km = distance_values.map((distance_values) => distance_values *1e-5).toList();
       double distance_average = distance_values_km.average ;
       if (distance_average <= 5) {
         score = score + 0 ;
       }
-      else if (distance_average > 5 && distance_average <= 15) {
+      else if (distance_average > 5 && distance_average <= 10) {
         score = score + 5 ;
       }
       else {
@@ -134,10 +132,10 @@ class DataProvider extends ChangeNotifier {
 
       print(score) ;
 
-      // Calcolo finale del livello -> TODO modificare con delle vere thresholds
-      if (score < 10) {
+      // Calcolo finale del livello
+      if (score < 20) {
         level = 'Beginner';
-      } else if (score >=10 && score < 20) {
+      } else if (score >=20 && score < 40) {
         level = 'Intermediate';
       } else {
         level = 'Expert';
