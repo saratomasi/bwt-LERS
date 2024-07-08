@@ -155,36 +155,3 @@ class DataProvider extends ChangeNotifier {
 
 
 
-
-
-
-// data for achievements
-
-class AchievementsProvider with ChangeNotifier {
-  List<Achievement> _achievements = [];
-
-  List<Achievement> get achievements => _achievements;
-
-  void addAchievement(Achievement achievement) {
-    _achievements.add(achievement);
-    notifyListeners();
-  }
-
-  void updateAchievement(int index, double progress) {
-    _achievements[index].progress = progress;
-    notifyListeners();
-  }
-
-  double get totalProgress {
-    if (_achievements.isEmpty) return 0;
-    double total = _achievements.fold(0, (sum, item) => sum + item.progress);
-    return total / _achievements.length;
-  }
-}
-
-class Achievement {
-  String title;
-  double progress;
-
-  Achievement({required this.title, this.progress = 0});
-}
