@@ -23,6 +23,7 @@ class _ProfilePageState extends State<ProfilePage> {
   String _frequenzaAllenamento = '';
   String _avatar = '';
   String _livelloProvvisorio = '';
+  String _level = '';
 
   @override
   void initState() {
@@ -39,8 +40,8 @@ class _ProfilePageState extends State<ProfilePage> {
       _sede = prefs.getString('sede') ?? '';
       _frequenzaAllenamento = prefs.getString('frequenzaAllenamento') ?? '';
       _avatar = prefs.getString('avatar') ?? '';
-      _livelloProvvisorio =
-          prefs.getString('livelloProvvisorio') ?? ''; // Load provisional level
+      _level = prefs.getString('level') ?? '';
+      _livelloProvvisorio = prefs.getString('livelloProvvisorio') ?? '';
     });
   }
 
@@ -52,7 +53,8 @@ class _ProfilePageState extends State<ProfilePage> {
     await prefs.remove('sede');
     await prefs.remove('frequenzaAllenamento');
     await prefs.remove('avatar');
-    await prefs.remove('livelloProvvisorio'); // Remove provisional level
+    await prefs.remove('livelloProvvisorio'); 
+    await prefs.remove('level'); 
   }
 
   Future<void> _showEditProfileWarning() async {
@@ -167,36 +169,41 @@ class _ProfilePageState extends State<ProfilePage> {
                 children: [
                   if (_avatar.isNotEmpty)
                     Card(
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: <Widget>[
-                          ListTile(
-                            leading:
-                                Image.asset(_avatar, width: 50, height: 50),
-                            title: Text('$_nome $_cognome'),
-                            subtitle: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                      margin: EdgeInsets.only(top: 20), 
+                      child: Padding(
+                        padding: const EdgeInsets.all(16.0), 
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: <Widget>[
+                            ListTile(
+                              leading:
+                                  Image.asset(_avatar, width: 50, height: 50),
+                              title: Text('$_nome $_cognome'),
+                              subtitle: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text('Age: $_eta'),
+                                  Text('Location: $_sede'),
+                                  Text(
+                                      'Exercise frequency: $_frequenzaAllenamento'),
+                                  Text(
+                                    'Level: ${_level.isNotEmpty ? _level : _livelloProvvisorio}',
+                                  ), // Display level or provisional level
+                                ],
+                              ),
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
                               children: [
-                                Text('Age: $_eta'),
-                                Text('Location: $_sede'),
-                                Text(
-                                    'Exercise frequency: $_frequenzaAllenamento'),
-                                Text(
-                                    'Provisional Level: $_livelloProvvisorio'), // Display provisional level
+                                TextButton(
+                                  onPressed: _editProfile,
+                                  child: Text('Edit Profile'),
+                                ),
+                                const SizedBox(width: 8),
                               ],
                             ),
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              TextButton(
-                                onPressed: _editProfile,
-                                child: Text('Edit Profile'),
-                              ),
-                              const SizedBox(width: 8),
-                            ],
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   SizedBox(height: 10),
@@ -220,7 +227,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                 _isLoading = false;
                                 _showSuccessMessage = true;
                               });
-                              // Nascondi il messaggio dopo qualche secondo
+                              
                               Future.delayed(Duration(seconds: 3), () {
                                 setState(() {
                                   _showSuccessMessage = false;
@@ -255,7 +262,7 @@ class _ProfilePageState extends State<ProfilePage> {
         ),
         if (_showSuccessMessage)
           Positioned(
-            bottom: 56, // Altezza tipica di una BottomNavigationBar
+            bottom: 56, 
             left: 0,
             right: 0,
             child: AnimatedOpacity(

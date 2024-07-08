@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
         ),
 
         // Animated splash screen
-        home: SplashScreen() //Modificare appena il DEI ritorna a funzionare, ho fatto questa modifica solo perchè mi serviva visualizzare le schermate di welcome e questionario
+        home: SplashScreen()
     ) ;
   }
 }
