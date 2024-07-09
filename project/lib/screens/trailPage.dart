@@ -25,6 +25,23 @@ class _TrailPageState extends State<TrailPage> {
     trailList = [trail];
   }
 
+  Future<void> _selectDate(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2000),
+      lastDate: DateTime.now(),
+    );
+    if (picked != null) {
+      setState(() {
+        trail.date = picked;
+        trail.isDone = true;
+      });
+      context.read<TrailState>().updateTrail(trail);
+    }
+  }
+
+
   @override
   Widget build(BuildContext context) {
     var trailState = context.watch<TrailState>();
@@ -47,11 +64,16 @@ class _TrailPageState extends State<TrailPage> {
               child: IconButton(
                 icon:Icon(trail.isDone ? Icons.task_alt_rounded : Icons.add_task_rounded),
                 color: Theme.of(context).primaryColor,
-                onPressed: (){
-                  setState(() {
-                    trail.isDone = !trail.isDone;
-                  });
-                  trailState.updateTrail(trail);
+                onPressed: () async {
+                  if (trail.isDone) {
+                    setState(() {
+                      trail.isDone = false;
+                      trail.date = DateTime.utc(1912, 06, 23);
+                    });
+                    trailState.updateTrail(trail);
+                  } else {
+                    await _selectDate(context);
+                  }
                 },)),
             Expanded(
               flex:1, 
