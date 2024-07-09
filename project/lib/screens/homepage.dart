@@ -3,8 +3,8 @@ import 'package:project/menu/achievements.dart';
 import 'package:project/menu/explorelater.dart';
 import 'package:project/menu/favorites.dart';
 import 'package:project/menu/sessions.dart';
-import 'package:fl_chart/fl_chart.dart';
-import 'package:project/widgets/gpxMap.dart';
+import 'package:project/widgets/characterList.dart';
+import 'package:project/objects/characters.dart' ;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:project/widgets/PieChart.dart';
 import 'package:project/menu/achievements.dart';
@@ -25,13 +25,14 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   String _nome = '';
   String _avatar = '';
-  String _level = '';
+  String _value = '';
   
 
   @override
   void initState() {
     super.initState();
     _loadUserData();
+    _loadValue() ;
   }
 
 
@@ -40,8 +41,24 @@ class _HomePageState extends State<HomePage> {
     setState(() {
       _nome = prefs.getString('nome') ?? '';
       _avatar = prefs.getString('avatar') ?? '';
-      _level = prefs.getString('level') ?? '';
+      //_level = prefs.getString('level') ?? '';
     });
+  }
+
+  Future<void> _loadValue() async {
+    final prefs = await SharedPreferences.getInstance();
+    String? value = prefs.getString('level');
+    if (value != null && value.isNotEmpty) {
+      setState(() {
+        _value = value ;
+      });
+    } else {
+      // Nessun valore in SharedPreferences, usa il valore di default
+      setState(() {
+        _value = prefs.getString('livelloProvvisorio')!;
+      });
+    }
+    print('Loaded value: $_value'); // Debug
   }
 
   @override
@@ -111,60 +128,70 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(8.0),
-        child: Center(
-          child: Column(
-          verticalDirection: VerticalDirection.down,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            const SizedBox(height: 40),
-            const Text(
-              'Welcome!',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold), textAlign: TextAlign.center,
-            ),
-            SizedBox(height: 10),
-            Card(
-            child: Padding(
-              padding: const EdgeInsets.all(20.0), // Aumenta il padding per rendere la card più grande
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Text(
-                      '$_nome, your level is: $_level',
-                      style: TextStyle(fontSize: 18),
-                    ),
+      body: Column(
+      verticalDirection: VerticalDirection.down,
+        children: [
+          const Padding(
+            padding: EdgeInsets.all(15.0),
+            child: Text(
+            'Welcome!',
+            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold), textAlign: TextAlign.center,
+            )
+          ),
+          Center(
+            child: SizedBox(
+              width: 500,
+              height: 70,
+              child: Card(
+                color: Colors.green.shade100,
+                child: Center(
+                  child: Text(
+                    '$_nome, your level is: $_value',
+                    style: const TextStyle(fontSize: 20), 
                   ),
-                  /*Spacer(), // Aggiunge spazio tra il testo e l'immagine
-                  Image.asset(
-                    _getLevelIcon(_level),
-                    width: 24,  // Mantieni l'immagine piccola rispetto alla card
-                    height: 24,
-                  ),*/
-                ],
+                ),
               ),
             ),
           ),
-            SizedBox(height: 20.0),
-            AchievementProgressWidget(
-              title: 'Steps', 
-              goal: 50000, 
-              currentProgress: 35000,
-            ),
-            AchievementProgressWidget(
-              title: 'Paths', 
-              goal: 10, 
-              currentProgress: 5,
-            ),
-            AchievementProgressWidget(
-              title: 'Points of Interest', 
-              goal: 10, 
-              currentProgress: 3,
-            ),
-          ],
-        ),
-          )
+          const SizedBox(height: 15.0),
+          Expanded(child: CharactersListBuilder()) 
+        ],
       )
+
     );
+  }
+}
+
+class CharactersListBuilder extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final List<CharactersObject> items = [
+      CharactersObject(
+        imageUrl: 'lib/assets/naturalist.png',
+        text: 'Wilderness Explorer',
+      ),
+      CharactersObject(
+        imageUrl: 'lib/assets/historian.png',
+        text: 'Time Voyager',
+      ),
+      CharactersObject(
+        imageUrl: 'lib/assets/artist.png',
+        text: 'Artistic Alchemist',
+      ),
+      CharactersObject(
+        imageUrl: 'lib/assets/food.png',
+        text: 'Gastronomic Guru',
+      ),
+      CharactersObject(
+        imageUrl: 'lib/assets/local.png',
+        text: 'Padovano DOC',
+      ),
+      CharactersObject(
+        imageUrl: 'lib/assets/walker.png',
+        text: 'Joyful Wanderer',
+      ),
+    ];
+
+    return CharactersCardList(items: items);
   }
 }
