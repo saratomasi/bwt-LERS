@@ -14,18 +14,13 @@ class CharactersCardList extends StatelessWidget {
     return Consumer<TrailState>(
       builder: (context, trailState, child) {
         List<int> percentages = updateCharacteristics(trailState.doneTrails, trailState.allTrails);
-        print(percentages);
         List<int> indices = List<int>.generate(percentages.length, (index) => index);
-        print(indices);
         indices.sort((a, b) => percentages[b].compareTo(percentages[a]));
-        print(indices);
-        print(items.length);
         return ListView.builder(
           shrinkWrap: true,
           physics: NeverScrollableScrollPhysics(),
           itemCount: items.length,
           itemBuilder: (context, index) {
-            print(items[indices[index]].imageUrl);
             return Padding(
               padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 12.0),
               child: Card(
