@@ -10,21 +10,23 @@ class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) { 
     return AnimatedSplashScreen.withScreenFunction(
-    //return AnimatedSplashScreen( // DA TOGLIERE QUANDO SERVER OK
             splash: SizedBox(
-              height: 100, width: 100,
+              height: 200, width: 200,
               child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Image.asset('lib/assets/logo.png'),
-                      //SizedBox(height:100,width:100),  -> serve per lasciare eventualmente spazio tra immagine e text: aggiunge un box bianco
-                    ]),
+                      Flexible(
+                        child: Image.asset(
+                          'lib/assets/logo.png',
+                          fit: BoxFit.contain,
+                        ),
+                      ),
+                    ],),
             ),
-
             duration: 3000,
             splashTransition:
                 SplashTransition.fadeTransition, // per cambiare la transizione
-            backgroundColor: Colors.white, // per cambiare il colore sfondo
+            backgroundColor: Colors.green.shade100, // per cambiare il colore sfondo
             screenFunction:  () async {return checkLogin(context) ; } );
             //nextScreen: WelcomePage()) ; // DA TOGLIERE QUANDO SERVER OK
   }    

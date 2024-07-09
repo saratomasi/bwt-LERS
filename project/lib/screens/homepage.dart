@@ -6,6 +6,10 @@ import 'package:project/menu/sessions.dart';
 import 'package:project/widgets/characterList.dart';
 import 'package:project/objects/characters.dart' ;
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:project/widgets/PieChart.dart';
+import 'package:project/menu/achi.dart';
+import 'package:project/widgets/achi_progresswidget.dart';
+import 'package:project/menu/TrofeiNotifier.dart';
 
 
 
@@ -30,6 +34,7 @@ class _HomePageState extends State<HomePage> {
     _loadUserData();
     _loadValue() ;
   }
+
 
   Future<void> _loadUserData() async {
     final prefs = await SharedPreferences.getInstance();
@@ -58,6 +63,16 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+
+    //final int steps = Provider.of<DataProvider>(context);
+
+    // notifier per gestire i trofei
+    //final trofeiNotifier = Provider.of<TrofeiNotifier>(context);
+    // Verifica e aggiorna i trofei in base al numero di passi
+    //verificaObiettivi(trofeiNotifier, steps,  context);
+    // Ottieni i valori di progresso per il grafico
+    //final valoriProgresso = trofeiNotifier.trofei.map((trofeo) => trofeo.progresso).toList();
+
     return Scaffold(
       appBar: AppBar(
         //backgroundColor: Theme.of(context).colorScheme.inversePrimary,
@@ -79,7 +94,7 @@ class _HomePageState extends State<HomePage> {
             ElevatedButton(
               onPressed: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => TrofeiNotifier()));
+                    MaterialPageRoute(builder: (context) => AchievementsPage()));
               },
               child: const ListTile(
                   leading: Icon(Icons.star), title: Text('Achievements')),
