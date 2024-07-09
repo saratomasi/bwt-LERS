@@ -148,28 +148,26 @@ class _HomePageState extends State<HomePage> {
             ),
             SizedBox(height: 10),
             Card(
+            child: Padding(
+              padding: const EdgeInsets.all(20.0), // Aumenta il padding per rendere la card più grande
               child: Row(
-                    children: [
-                      Image.asset(
-                        _getLevelIcon(_level),
-                        width: 50,
-                        height: 50,
-                      ),
-                      SizedBox(width: 10),
-                      Text(
-                        '$_nome, your level is: $_level',
-                        style: TextStyle(fontSize: 18),
-                      ),
-                    ],
-                  ), 
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Text(
-                  '$_nome, your level is: $_level',
-                      style: const TextStyle(fontSize: 15),
-                ),
-              )
+                children: [
+                  Expanded(
+                    child: Text(
+                      '$_nome, your level is: $_level',
+                      style: TextStyle(fontSize: 18),
+                    ),
+                  ),
+                  /*Spacer(), // Aggiunge spazio tra il testo e l'immagine
+                  Image.asset(
+                    _getLevelIcon(_level),
+                    width: 24,  // Mantieni l'immagine piccola rispetto alla card
+                    height: 24,
+                  ),*/
+                ],
+              ),
             ),
+          ),
             SizedBox(height: 20.0),
             AchievementProgressWidget(
               title: 'Steps', 
@@ -194,7 +192,7 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-
+/*
 // Funzione per ottenere il percorso dell'icona in base al livello
   String _getLevelIcon(String? level) {
     switch (level) {
@@ -207,4 +205,4 @@ class _HomePageState extends State<HomePage> {
       default:
         return 'assets/images/beginner.png';  
     }
-  }
+  }*/
