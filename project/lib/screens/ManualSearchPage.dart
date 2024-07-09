@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project/widgets/trailCard.dart';
 import 'package:provider/provider.dart';
 import 'package:project/objects/trail.dart';
 import 'package:project/providers/trailstate.dart';
@@ -43,7 +44,7 @@ class _ManualSearchState extends State<ManualSearch> {
             ),
             Expanded(
               flex: 3,
-              child: sessionList(trailState),
+              child: manualsearchList(trailState),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -76,35 +77,33 @@ class _ManualSearchState extends State<ManualSearch> {
     );
   }
 
-  Widget sessionList(TrailState trailState) {
-    var undoneTrails = trailState.notDoneTrails;
+  Widget manualsearchList(TrailState trailState) {
+var undoneTrails = trailState.notDoneTrails;
+if (undoneTrails.isEmpty) {
+      return Center(
+        child: Text(
+          'No trails available.',
+          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+        ),
+      );
+    }
     return ListView.builder(
-      controller: _scrollController,
       padding: const EdgeInsets.all(8.0),
       itemCount: undoneTrails.length,
       itemBuilder: (context, index) {
+        print('1 , ${undoneTrails[index].name}, ${index}');
         Trail tmp = undoneTrails[index];
-        return Card(
-          margin: const EdgeInsets.symmetric(vertical: 8.0),
-          child: ListTile(
-            title: Text('${tmp.name}'),
-            subtitle: Text('${tmp.date.toLocal()}'.split(' ')[0]),
-            trailing: Icon(Icons.arrow_forward_ios),
-            onTap: () async {
-              var updatedTrail = await Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => TrailPage(trail: tmp)),
-              );
-              // Aggiorna undoneTrails se il trail è stato modificato
-              if (updatedTrail != null) {
-                setState(() {
-                  trailState.updateTrail(updatedTrail);
-                });
-              }
-            },
-          ),
-        );
-      },
+        print('2 ${tmp.name}');
+        return Consumer<TrailState>(
+          builder: (context, trailState, child){
+            return TrailCard(
+              key: ValueKey(undoneTrails[index].id),
+              trail: undoneTrails[index],
+              onToggle: () async {
+                setState(() {});
+              },
+            );});
+      }
     );
   }
-}
+  }
