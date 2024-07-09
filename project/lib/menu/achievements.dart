@@ -1,177 +1,98 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:project/menu/trophiesnotifier.dart';
 
-/*
-class Achievements extends StatelessWidget {
-   Achievements({super.key});
+class AchievementsPage extends StatelessWidget {
 
-
-  final List<String> entries = <String>['1st path!', '5 paths', '10 paths', '15 paths', '20 paths', 
-  '25 paths', '30 paths', '35 paths', '40 paths', '45 paths', '50 paths', '70 paths', '100 paths', 
-  '200 paths', '500 paths'];
-  final List<int> colorCodes = <int>[100, 500, 100, 500, 100, 500, 100, 500, 100, 500, 100, 500, 100, 500, 100];
 
   @override
   Widget build(BuildContext context) {
-    return ListView.separated(
-      padding: const EdgeInsets.all(16),
-      itemCount: entries.length,
-      itemBuilder: (BuildContext context, int index) {
-        return Container(
-          height: 50,
-          color: Colors.green[colorCodes[index]],
-          child: Center(child: Text(' ${entries[index]}')),
-        );
-      },
-      separatorBuilder: (BuildContext context, int index) => const Divider(),
-    );
-  }
-  }
 
-  */
-  class Trofeo {
-  final String nome;
-  final String immagineSbloccata;
-  final String immagineNonSbloccata;
-  bool sbloccato;
-  double progresso;
+    final trophiesNotifier = Provider.of<TrophiesNotifier>(context);
+    final progressValues = trophiesNotifier.trophies.map((trophy) => trophy.progress).toList();
 
-  Trofeo({
-    required this.nome,
-    required this.immagineSbloccata,
-    required this.immagineNonSbloccata,
-    this.sbloccato = false,
-    this.progresso = 0.0,
-  });
-}
-
-class TrofeiNotifier extends StatelessWidget with ChangeNotifier  {
-  final List<Trofeo> trofei = [
-    Trofeo(
-      nome: '50 000 steps!',
-      immagineSbloccata: 'lib/assets/trophy.png',
-      immagineNonSbloccata: 'lib/assets/trophy_locked.png',
-      sbloccato: false,
-    ),
-    Trofeo(
-      nome: '100 000 steps!',
-      immagineSbloccata: 'lib/assets/trophy.png',
-      immagineNonSbloccata: 'lib/assets/trophy_locked.png',
-      sbloccato: false,
-    ),
-    Trofeo(
-      nome: '10 paths!',
-      immagineSbloccata: 'lib/assets/trophy.png',
-      immagineNonSbloccata: 'lib/assets/trophy_locked.png',
-      sbloccato: false,
-    ),
-    Trofeo(
-      nome: '30 paths!',
-      immagineSbloccata: 'lib/assets/trophy.png',
-      immagineNonSbloccata: 'lib/assets/trophy_locked.png',
-      sbloccato: false,
-    ),
-    Trofeo(
-      nome: 'Congratualtions! You moved to the next level',
-      immagineSbloccata: 'lib/assets/trophy.png',
-      immagineNonSbloccata: 'lib/assets/trophy_locked.png',
-      sbloccato: false,
-    ),
-  ];
-
-  
-  Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.green.shade100,
       appBar: AppBar(
-        title: const Text('Achievements'),
+        title: Text('Achievements'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: GridView.builder(
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2, // Numero di colonne nella griglia
-            childAspectRatio: 1, // Rapporto di aspetto dei figli
-            crossAxisSpacing: 10, // Spaziatura tra le colonne
-            mainAxisSpacing: 10, // Spaziatura tra le righe
-          ),
-          itemCount: trofei.length,
-          itemBuilder: (context, index) {
-            final trofeo = trofei[index];
-            return Container(
-              decoration: BoxDecoration(
-                color:Color.fromARGB(255, 255, 255, 255), // Colore di sfondo
-                border: Border.all(
-                  color: Colors.green, // Colore del bordo
-                  width: 8.0, // Spessore del bordo
-                ),
-                borderRadius: BorderRadius.circular(8)
+        child: Column(
+          children: [
+            Text(
+              'Welcome to the Achievements page!',
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+                color: Color.fromARGB(255, 19, 150, 45),
               ),
-              child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image.asset(
-                  trofeo.sbloccato ? trofeo.immagineSbloccata : trofeo.immagineNonSbloccata,
-                  height: 200,
-                  width: 200, 
+              textAlign: TextAlign.center,
+            ),
+            SizedBox(height: 16),
+            Expanded(
+              child: GridView.builder(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 10,
+                  mainAxisSpacing: 10,
                 ),
-              const SizedBox(height: 5),
-              Text(
-                trofeo.nome,
-                style: const TextStyle(fontWeight: FontWeight.bold),
-                textAlign: TextAlign.center,
-                textScaler: const TextScaler.linear(2),
+                itemCount: trophiesNotifier.trophies.length,
+                itemBuilder: (context, index) {
+                  final trophy = trophiesNotifier.trophies[index];
+                  return TrophyWidget(trophy: trophy);
+                },
               ),
-              const SizedBox(height: 5, width: 10),
-              SizedBox(
-                width: 300, //larghezza
-                height: 20, //altezza
-                child: LinearProgressIndicator(
-                  value: trofeo.progresso,
-                  backgroundColor: Colors.grey,
-                  valueColor: const AlwaysStoppedAnimation<Color>(Colors.blue),
-                ),
-              )
-                ],
-              ),
-            );
-          },
+            ),
+          ],
         ),
       ),
     );
   }
-
-  List<Trofeo> get trofeii => trofei;
-
-  void sbloccaTrofeo(String nomeTrofeo) {
-    for (var trofeo in trofei) {
-      if (trofeo.nome == nomeTrofeo && !trofeo.sbloccato) {
-        trofeo.sbloccato = true;
-        notifyListeners();
-      }
-    }
-  }
-
-  void aggiornaProgresso(String nomeTrofeo, double progresso) {
-    for (var trofeo in trofei) {
-      if (trofeo.nome == nomeTrofeo) {
-        trofeo.progresso = progresso;
-        notifyListeners();
-      }
-    }
-  }
 }
 
-void verificaObiettivi(TrofeiNotifier trofeiNotifier, int steps) {
-  if (steps >= 50000) {
-    trofeiNotifier.sbloccaTrofeo('50 000 steps!');
+
+
+
+class TrophyWidget extends StatelessWidget {
+  final Trophy trophy;
+
+  TrophyWidget({required this.trophy});
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Image.asset(
+            trophy.unlocked
+                ? trophy.unlockedImage
+                : trophy.lockedImage,
+            width: 100,
+            height: 100,
+          ),
+          SizedBox(height: 8),
+          Text(
+            trophy.name,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          SizedBox(height: 8),
+          LinearProgressIndicator(
+            value: trophy.progress,
+            backgroundColor: Colors.grey[300],
+            valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
+          ),
+          SizedBox(height: 4),
+          Text(
+            '${(trophy.progress * 100).toStringAsFixed(0)}%',
+            textAlign: TextAlign.center,
+          ),
+        ],
+      ),
+    );
   }
-  if (steps >= 100000) {
-    trofeiNotifier.sbloccaTrofeo('100 000 steps!');
   }
-
-  double progresso50milaPassi = steps / 50000;
-  double progresso100milaPassi = steps / 100000;
-
-  trofeiNotifier.aggiornaProgresso('50 000 steps!', progresso50milaPassi);
-  trofeiNotifier.aggiornaProgresso('100 000 steps!', progresso100milaPassi);
-}
-

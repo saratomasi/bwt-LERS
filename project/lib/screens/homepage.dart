@@ -7,9 +7,9 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:project/widgets/gpxMap.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:project/widgets/PieChart.dart';
-import 'package:project/menu/achi.dart';
+import 'package:project/menu/achievements.dart';
 import 'package:project/widgets/achi_progresswidget.dart';
-import 'package:project/menu/TrofeiNotifier.dart';
+import 'package:project/menu/trophiesnotifier.dart';
 
 
 

@@ -6,7 +6,7 @@ import 'package:project/objects/trail.dart';
 Trail trail1 = Trail(
   name: 'Cammino di Sant\'Antonio', 
   id: 1,
-  gpxPath: 'lib/assets/CamminoSantAntonio.gpx',
+  gpxPath: 'lib/assets/gpx_files/CamminoSantAntonio.gpx',
   level: 2, 
   lengthKm: 24, 
   walkingTime: 420,
@@ -15,9 +15,9 @@ Trail trail1 = Trail(
 );
 
 Trail trail2 = Trail(
-  name: 'Anello da Santa Rita', 
+  name: '', 
   id: 2,
-  gpxPath: 'lib/assets/PiazzadellaFrutta_PiazzadeiSignori_anellodaSantaRita.gpx',
+  gpxPath: 'lib/assets/gpx_files/PiazzadellaFrutta_PiazzadeiSignori_anellodaSantaRita.gpx',
   level: 1, 
   lengthKm: 5.91, 
   walkingTime: 91,
@@ -28,7 +28,7 @@ Trail trail2 = Trail(
 Trail trail3 = Trail(
   name: 'Da Brasseo all\'Abbazia di Praglia', 
   id: 3, 
-  gpxPath: 'lib/assets/Bresseo_AbbaziaPraglia_giro_anello.gpx', 
+  gpxPath: 'lib/assets/gpx_files/Bresseo_AbbaziaPraglia_giro_anello.gpx', 
   level: 2, 
   lengthKm: 9.14, 
   walkingTime: 171, 
@@ -39,7 +39,7 @@ Trail trail3 = Trail(
 Trail trail4 = Trail(
   name: 'Sentiero Atestino', 
   id: 4,
-  gpxPath: 'lib/assets/SentieroAtestino_giro_anello_ParcoRegionaleColliEuganei.gpx',  
+  gpxPath: 'lib/assets/gpx_files/SentieroAtestino_giro_anello_ParcoRegionaleColliEuganei.gpx',  
   level: 3, 
   lengthKm: 18.9, 
   walkingTime: 377, 
@@ -50,7 +50,7 @@ Trail trail4 = Trail(
 Trail trail5 = Trail(
   name: 'Piazzola S.B.: Villa e villaggio operaio Camerini', 
   id: 5, 
-  gpxPath: 'lib/assets/VillaContarini_VillaggioOperaio.gpx', 
+  gpxPath: 'lib/assets/gpx/files/VillaContarini_VillaggioOperaio.gpx', 
   level: 1, 
   lengthKm: 8.45, 
   walkingTime: 120, 
@@ -61,7 +61,7 @@ Trail trail5 = Trail(
 Trail trail6 = Trail(
   name: 'Villa Camerini e Ostiglia ciclabile', 
   id: 6,
-  gpxPath: 'lib/assets/VillaContarini_Ostiglia.gpx',
+  gpxPath: 'lib/assets/gpx_files/VillaContarini_Ostiglia.gpx',
   level: 2, 
   lengthKm: 9.49, 
   walkingTime: 150, 
@@ -72,13 +72,15 @@ Trail trail6 = Trail(
 Trail trail7 = Trail(
   name: 'Cittadella e le sue mura', 
   id: 7, 
-  gpxPath: 'lib/assets/Salita_mura_Cittadella.gpx',
+  gpxPath: 'lib/assets/gpx/files/Salita_mura_Cittadella.gpx',
   level: 1, 
   lengthKm: 5.23, 
   walkingTime: 79, 
   routeColor: 0xFF918993,
   pois: [],
 );
+
+
 Map<int,Trail> trailsDatabase = {
   trail1.id : trail1,
   trail2.id : trail2,
