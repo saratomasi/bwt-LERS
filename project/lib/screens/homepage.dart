@@ -3,7 +3,7 @@ import 'package:project/menu/TrofeiNotifier.dart';
 import 'package:project/menu/explorelater.dart';
 import 'package:project/menu/favorites.dart';
 import 'package:project/menu/sessions.dart';
-import 'package:project/gpxMap.dart';
+import 'package:project/widgets/gpxMap.dart';
 import 'package:project/models/steps.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 //import 'package:project/widgets/PieChart.dart';
@@ -72,11 +72,11 @@ class _HomePageState extends State<HomePage> {
     //final int steps = Provider.of<DataProvider>(context);
 
     // notifier per gestire i trofei
-    final trofeiNotifier = Provider.of<TrofeiNotifier>(context);
+    //final trofeiNotifier = Provider.of<TrofeiNotifier>(context);
     // Verifica e aggiorna i trofei in base al numero di passi
     //verificaObiettivi(trofeiNotifier, steps,  context);
     // Ottieni i valori di progresso per il grafico
-    final valoriProgresso = trofeiNotifier.trofei.map((trofeo) => trofeo.progresso).toList();
+    //final valoriProgresso = trofeiNotifier.trofei.map((trofeo) => trofeo.progresso).toList();
 
 
     return Scaffold(
@@ -148,10 +148,10 @@ class _HomePageState extends State<HomePage> {
             ),
             SizedBox(height: 10),
             Card(
-              /*child: Row(
+              child: Row(
                     children: [
                       Image.asset(
-                        _getLevelIcon(userLevel),
+                        _getLevelIcon(_level),
                         width: 50,
                         height: 50,
                       ),
@@ -161,7 +161,7 @@ class _HomePageState extends State<HomePage> {
                         style: TextStyle(fontSize: 18),
                       ),
                     ],
-                  ), */
+                  ), 
               child: Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Text(
@@ -173,7 +173,7 @@ class _HomePageState extends State<HomePage> {
             SizedBox(height: 20.0),
             AchievementProgressWidget(
               title: 'Steps', 
-              goal: 100000, 
+              goal: 50000, 
               currentProgress: 35000,
             ),
             AchievementProgressWidget(
@@ -194,10 +194,10 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-/*
+
 // Funzione per ottenere il percorso dell'icona in base al livello
   String _getLevelIcon(String level) {
-    switch (level.toLowerCase()) {
+    switch (level) {
       case 'beginner':
         return 'assets/images/beginner.png';
       case 'intermediate':
@@ -207,4 +207,4 @@ class _HomePageState extends State<HomePage> {
       default:
         return 'assets/images/beginner.png';  
     }
-  }*/
+  }

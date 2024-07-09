@@ -1,41 +1,44 @@
-import 'package:flutter/material.dart';
-import 'package:latlong2/latlong.dart' as latlong2;
-import 'package:gpx/gpx.dart';
-import 'package:flutter/services.dart' show rootBundle;
 import 'package:project/objects/pointOfInterest.dart';
-import 'package:project/utils/gpxMethods.dart';
-import 'package:maps_toolkit/maps_toolkit.dart' as maps_toolkit;
 
 // This class defines the object Trail
 
 class Trail{
   // instance variables
   String? name;                                 //name 
-  String gpxPath;                               //gpx file path
   int id;                                       //id in trails Database
-  int level = 0;                                //difficulty level
-  num lengthKm = 0;                             //length in km
-  double walkingTime = 0;                       //time in min
-  bool completed = false;                       //if done
+  String gpxPath;                               //gpx file path
+  int level;                                    //difficulty level
+  num lengthKm;                                 //length in km
+  double walkingTime;                           //time in min
+  bool isDone;                                  //if done
+  bool isFavorite;                              //if favorite
+  bool isSaved;                                 //if saved for later
+  DateTime date;                                //if done, correct date, if not, Alan Turing birthday.
   int routeColor;                               //color of the route
   List<PointOfInterest?> pois;                  //points of interest along the route
-  List<int> percentage = [20, 20, 20, 20, 20];  //characteristics of the route
+  List<int> percentage = [20, 20, 20, 20, 20];  //characteristics of the route => default: equally distributed
 
-  // constructor
-  Trail({required this.name, required this.gpxPath, required this.id, required this.pois, required this.level, required this.lengthKm, required this.walkingTime, required this.routeColor,}){
-    _percChar();
+  // Constructor
+  Trail({
+    required this.name,
+    required this.id,
+    required this.gpxPath,
+    required this.level,
+    required this.lengthKm,
+    required this.walkingTime,
+    required this.routeColor,
+    required this.pois,
+    this.isDone = false,
+    this.isFavorite = false,
+    this.isSaved = false,
+    DateTime? date,
+  })  : this.date = date ?? DateTime.utc(1912, 06, 23) {
+    _percChar(); //Calculates percentage based on pois
   }
   
-  // METHODS:
+  // METHODS:  
 
-  //it set the trail as completed
-  void done(){
-    completed = true;
-    //aggiungere tipo un count per segnare quante volte uno lo fa?
-    //aggiungere data per sapere quando uno lo fa?
-  }
-
-  //Calculates the char percentage of the trail
+  //Calculates the char percentage of the trail based on pois
   void _percChar() {
     int totalNature  = 0;
     int totalHistory = 0;
@@ -68,6 +71,7 @@ class Trail{
     if(sum>100){ percentage[4] -= sum-100; }
   }
 
+  // walking time as String
   String getWalkingTimeText() {
     if(walkingTime < 60){
       return '${walkingTime} min';
@@ -79,6 +83,7 @@ class Trail{
     }
   }
 
+  // level as String
   String getTrailLevelText() {
     switch (level) {
       case 1:
@@ -88,9 +93,9 @@ class Trail{
       case 3:
         return 'Difficult';
       case 4:
-        return 'Extremely Difficult';
+        return 'For Expert only';
       default:
-        return 'Livello sconosciuto';
+        return 'Unknown';
     }
   }
 

@@ -1,6 +1,5 @@
-import 'package:project/objects/trail.dart';
 import 'package:project/database/pois.dart';
-import 'dart:ui';
+import 'package:project/objects/trail.dart';
 
 int id1 = 1;
 Trail trail1 = Trail(
@@ -12,6 +11,7 @@ Trail trail1 = Trail(
   walkingTime: 7*60,
   routeColor: 0xFF004000,
   pois: [poisDatabase[1]], 
+  isDone: true,
 );
 
 int id2 = 2;
@@ -25,6 +25,8 @@ Trail trail2 = Trail(
   walkingTime: 91,
   routeColor: 0xFFff3380,
   pois: [poisDatabase[2], poisDatabase[3]], 
+  isDone: true,
+  isSaved: true,
 );
 
 Trail trail3 = Trail(
@@ -35,7 +37,9 @@ Trail trail3 = Trail(
   level: 2, 
   lengthKm: 9.14, 
   walkingTime: 171, 
-  routeColor: 0xFF4931AF
+  routeColor: 0xFF4931AF,
+  isDone: true,
+  isSaved: true,
 );
 
 Trail trail4 = Trail(
@@ -46,7 +50,9 @@ Trail trail4 = Trail(
   level: 3, 
   lengthKm: 18.9, 
   walkingTime: 377, 
-  routeColor: 0xFF66AB0D
+  routeColor: 0xFF66AB0D,
+  isDone: true,
+  isSaved: true,
 );
 
 Trail trail5 = Trail(
@@ -57,7 +63,8 @@ Trail trail5 = Trail(
   level: 1, 
   lengthKm: 8.45, 
   walkingTime: 120, 
-  routeColor: 0xFFB75427
+  routeColor: 0xFFB75427,
+  isDone: true,
 );
 
 Trail trail6 = Trail(
@@ -68,7 +75,9 @@ Trail trail6 = Trail(
   level: 2, 
   lengthKm: 9.49, 
   walkingTime: 150, 
-  routeColor: 0xFF356E26
+  routeColor: 0xFF356E26,
+  isDone: true,
+  isSaved: true,
 );
 
 Trail trail7 = Trail(
@@ -79,7 +88,9 @@ Trail trail7 = Trail(
   level: 1, 
   lengthKm: 5.23, 
   walkingTime: 79, 
-  routeColor: 0xFF918993
+  routeColor: 0xFF918993,
+  isDone: true,
+  isSaved: true,
 );
 
 
@@ -91,7 +102,4 @@ Map<int,Trail> trailsDatabase = {
   trail5.id : trail5,
   trail6.id : trail6,
   trail7.id : trail7,
-  id1 : trail1,
-  id2 : trail2,
 };
-

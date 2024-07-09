@@ -4,7 +4,8 @@ import 'package:project/screens/login.dart';
 import 'package:provider/provider.dart';
 import 'package:project/providers/dataprovider.dart';
 import 'package:project/screens/questionnaire.dart';
-import 'package:project/screens/bottomnavigationpage.dart'; 
+import 'package:project/screens/bottomnavigationpage.dart';
+
 class ProfilePage extends StatefulWidget {
   const ProfilePage({Key? key}) : super(key: key);
 
@@ -14,6 +15,7 @@ class ProfilePage extends StatefulWidget {
 
 class _ProfilePageState extends State<ProfilePage> {
   bool _isLoading = false;
+  bool _showSuccessMessage = false;
   String _nome = '';
   String _cognome = '';
   int _eta = 0;
@@ -37,7 +39,8 @@ class _ProfilePageState extends State<ProfilePage> {
       _sede = prefs.getString('sede') ?? '';
       _frequenzaAllenamento = prefs.getString('frequenzaAllenamento') ?? '';
       _avatar = prefs.getString('avatar') ?? '';
-      _livelloProvvisorio = prefs.getString('livelloProvvisorio') ?? ''; // Load provisional level
+      _livelloProvvisorio =
+          prefs.getString('livelloProvvisorio') ?? ''; // Load provisional level
     });
   }
 
@@ -62,7 +65,8 @@ class _ProfilePageState extends State<ProfilePage> {
           content: SingleChildScrollView(
             child: ListBody(
               children: <Widget>[
-                Text('After modifying your profile, remember to resync your data.'),
+                Text(
+                    'After modifying your profile, remember to resync your data.'),
               ],
             ),
           ),
@@ -107,7 +111,8 @@ class _ProfilePageState extends State<ProfilePage> {
           content: SingleChildScrollView(
             child: ListBody(
               children: <Widget>[
-                Text('Are you sure you want to log out? You will lose your questionnaire and level data.'),
+                Text(
+                    'Are you sure you want to log out? You will lose your questionnaire and level data.'),
               ],
             ),
           ),
@@ -133,7 +138,8 @@ class _ProfilePageState extends State<ProfilePage> {
   Future<void> _logout(BuildContext context) async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.clear();
-    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => LoginPage()));
+    Navigator.of(context)
+        .pushReplacement(MaterialPageRoute(builder: (context) => LoginPage()));
   }
 
   @override
@@ -144,94 +150,138 @@ class _ProfilePageState extends State<ProfilePage> {
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () {
-            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => BottomNavigationBarPage()));
+            Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => BottomNavigationBarPage()));
           },
         ),
       ),
-      body: Center(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                if (_avatar.isNotEmpty)
-                  Card(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: <Widget>[
-                        ListTile(
-                          leading: Image.asset(_avatar, width: 50, height: 50),
-                          title: Text('$_nome $_cognome'),
-                          subtitle: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text('Age: $_eta'),
-                              Text('Location: $_sede'),
-                              Text('Exercise frequency: $_frequenzaAllenamento'),
-                              Text('Provisional Level: $_livelloProvvisorio'), // Display provisional level
-                            ],
-                          ),
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            TextButton(
-                              onPressed: _editProfile,
-                              child: Text('Edit Profile'),
+      body: Stack(children: [
+        Center(
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  if (_avatar.isNotEmpty)
+                    Card(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: <Widget>[
+                          ListTile(
+                            leading:
+                                Image.asset(_avatar, width: 50, height: 50),
+                            title: Text('$_nome $_cognome'),
+                            subtitle: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text('Age: $_eta'),
+                                Text('Location: $_sede'),
+                                Text(
+                                    'Exercise frequency: $_frequenzaAllenamento'),
+                                Text(
+                                    'Provisional Level: $_livelloProvvisorio'), // Display provisional level
+                              ],
                             ),
-                            const SizedBox(width: 8),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                SizedBox(height: 10),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    ChangeNotifierProvider(
-                      create: (context) => DataProvider(),
-                      child: Consumer<DataProvider>(builder: (context, provider, child) {
-                        return ElevatedButton(
-                          onPressed: () async {
-                            setState(() {
-                              _isLoading = true;
-                            });
-                            await provider.fetchData(provider.showDate);
-                            provider.getLevel();
-                            final sp = await SharedPreferences.getInstance();
-                            print(sp.getString('level'));
-                            setState(() {
-                              _isLoading = false;
-                            });
-                          },
-                          child: Stack(
-                            alignment: Alignment.center,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
                             children: [
-                              if (!_isLoading) Text('Sync your device'),
-                              if (_isLoading)
-                                SizedBox(
-                                  width: 24,
-                                  height: 24,
-                                  child: CircularProgressIndicator(),
-                                ),
+                              TextButton(
+                                onPressed: _editProfile,
+                                child: Text('Edit Profile'),
+                              ),
+                              const SizedBox(width: 8),
                             ],
                           ),
-                        );
-                      }),
+                        ],
+                      ),
                     ),
-                    ElevatedButton(
-                      onPressed: _showLogoutDialog,
-                      child: Text('Log out'),
-                    ),
-                  ],
-                ),
-              ],
+                  SizedBox(height: 10),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      ChangeNotifierProvider(
+                        create: (context) => DataProvider(),
+                        child: Consumer<DataProvider>(
+                            builder: (context, provider, child) {
+                          return ElevatedButton(
+                            onPressed: () async {
+                              setState(() {
+                                _isLoading = true;
+                              });
+                              await provider.fetchData(provider.showDate);
+                              provider.getLevel();
+                              final sp = await SharedPreferences.getInstance();
+                              print(sp.getString('level'));
+                              setState(() {
+                                _isLoading = false;
+                                _showSuccessMessage = true;
+                              });
+                              // Nascondi il messaggio dopo qualche secondo
+                              Future.delayed(Duration(seconds: 3), () {
+                                setState(() {
+                                  _showSuccessMessage = false;
+                                });
+                              });
+                            },
+                            child: Stack(
+                              alignment: Alignment.center,
+                              children: [
+                                if (!_isLoading) Text('Sync your device'),
+                                if (_isLoading)
+                                  SizedBox(
+                                    width: 24,
+                                    height: 24,
+                                    child: CircularProgressIndicator(),
+                                  ),
+                              ],
+                            ),
+                          );
+                        }),
+                      ),
+                      ElevatedButton(
+                        onPressed: _showLogoutDialog,
+                        child: Text('Log out'),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
         ),
-      ),
+        if (_showSuccessMessage)
+          Positioned(
+            bottom: 56, // Altezza tipica di una BottomNavigationBar
+            left: 0,
+            right: 0,
+            child: AnimatedOpacity(
+              opacity: _showSuccessMessage ? 1.0 : 0.0,
+              duration: Duration(seconds: 1),
+              child: SizedBox(
+                width: MediaQuery.of(context).size.width * 0.8,
+                child: Card(
+                  color: Colors.green,
+                  elevation: 4.0,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Text(
+                      'Data retrieved successfully!',
+                      style: TextStyle(color: Colors.white),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+      ]),
     );
   }
 }

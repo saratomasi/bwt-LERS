@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:latlong2/latlong.dart';
 
 //This class defines the object PointOfInterest
@@ -6,6 +5,7 @@ import 'package:latlong2/latlong.dart';
 class PointOfInterest{
   String name;
   LatLng coordinates;
+  String imagePath;
   int? nature;
   int? history;
   int? art;
@@ -13,7 +13,7 @@ class PointOfInterest{
   int? local;
   List<int> percentage;
 
-  PointOfInterest({required this.name, required this.coordinates, required this.percentage}){
+  PointOfInterest({required this.name, required this.coordinates, required this.percentage, this.imagePath = 'lib/assets/logo.png'}){
     nature = percentage[0];
     history = percentage[1];
     art = percentage[2];
