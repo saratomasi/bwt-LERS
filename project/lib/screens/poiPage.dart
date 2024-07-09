@@ -46,8 +46,21 @@ class PoiPage extends StatelessWidget{
               ]
             )),
           //Trail name
-          Expanded(flex: 3, child: Text('${point.name}')),
-          Expanded(flex: 10, child: Image.asset(point.imagePath)),
+          Expanded(flex: 3, child: Text('${point.name}', style: TextStyle(fontSize: 16))),
+          Expanded(flex: 10, 
+          child: Card(
+            shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16.0),
+            ),
+            clipBehavior: Clip.antiAlias,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(16.0),
+              child: Image.asset(point.imagePath,
+               fit: BoxFit.cover, // Ensures the image covers the entire card
+               width: double.infinity,
+               height: double.infinity,
+              )
+              ))),
           //Characteristics percentages
           Expanded(flex: 3, child: Characteristics(percentage: point.percentage),),
         ],

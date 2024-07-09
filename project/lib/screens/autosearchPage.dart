@@ -80,7 +80,7 @@ class _AutoSearchState extends State<AutoSearch> {
           children: <Widget>[
             SizedBox(
               width: 500,
-              height: 110,
+              height: 170,
               child: Card(
                 color: Colors.amber.shade100,
                 child: Padding(

@@ -13,7 +13,6 @@ class ManualSearch extends StatefulWidget {
 }
 
 class _ManualSearchState extends State<ManualSearch> {
-  final ScrollController _scrollController = ScrollController();
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +29,7 @@ class _ManualSearchState extends State<ManualSearch> {
           children: <Widget>[
             SizedBox(
               width:500,
-              height:110,
+              height:150,
               child: Card(
                 color: Colors.amber.shade100,
                 child: Padding(
@@ -45,31 +44,6 @@ class _ManualSearchState extends State<ManualSearch> {
             Expanded(
               flex: 3,
               child: manualsearchList(trailState),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                IconButton(
-                  icon: Icon(Icons.arrow_upward),
-                  onPressed: () {
-                    _scrollController.animateTo(
-                      _scrollController.position.minScrollExtent,
-                      duration: Duration(milliseconds: 500),
-                      curve: Curves.easeOut,
-                    );
-                  },
-                ),
-                IconButton(
-                  icon: Icon(Icons.arrow_downward),
-                  onPressed: () {
-                    _scrollController.animateTo(
-                      _scrollController.position.maxScrollExtent,
-                      duration: Duration(milliseconds: 500),
-                      curve: Curves.easeOut,
-                    );
-                  },
-                ),
-              ],
             ),
           ],
         ),
