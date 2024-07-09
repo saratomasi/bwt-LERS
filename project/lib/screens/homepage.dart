@@ -7,6 +7,9 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:project/widgets/gpxMap.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:project/widgets/PieChart.dart';
+import 'package:project/menu/achi.dart';
+import 'package:project/widgets/achi_progresswidget.dart';
+import 'package:project/menu/TrofeiNotifier.dart';
 
 
 
@@ -31,6 +34,7 @@ class _HomePageState extends State<HomePage> {
     _loadUserData();
   }
 
+
   Future<void> _loadUserData() async {
     final prefs = await SharedPreferences.getInstance();
     setState(() {
@@ -42,6 +46,16 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+
+    //final int steps = Provider.of<DataProvider>(context);
+
+    // notifier per gestire i trofei
+    //final trofeiNotifier = Provider.of<TrofeiNotifier>(context);
+    // Verifica e aggiorna i trofei in base al numero di passi
+    //verificaObiettivi(trofeiNotifier, steps,  context);
+    // Ottieni i valori di progresso per il grafico
+    //final valoriProgresso = trofeiNotifier.trofei.map((trofeo) => trofeo.progresso).toList();
+
     return Scaffold(
       appBar: AppBar(
         //backgroundColor: Theme.of(context).colorScheme.inversePrimary,
@@ -63,7 +77,7 @@ class _HomePageState extends State<HomePage> {
             ElevatedButton(
               onPressed: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => TrofeiNotifier()));
+                    MaterialPageRoute(builder: (context) => AchievementsPage()));
               },
               child: const ListTile(
                   leading: Icon(Icons.star), title: Text('Achievements')),
@@ -98,41 +112,59 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       body: SingleChildScrollView(
-        child: Column(
-        verticalDirection: VerticalDirection.down,
-          children: [
-            const Padding(
-              padding: EdgeInsets.all(20.0),
-              child: Text(
+        padding: const EdgeInsets.all(8.0),
+        child: Center(
+          child: Column(
+          verticalDirection: VerticalDirection.down,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            const SizedBox(height: 40),
+            const Text(
               'Welcome!',
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold), textAlign: TextAlign.center,
-              )
             ),
-            Center(
-              child: SizedBox(
-                width: 500,
-                height: 70,
-                child: Card(
-                  color: Colors.green.shade100,
-                  child: Center(
+            SizedBox(height: 10),
+            Card(
+            child: Padding(
+              padding: const EdgeInsets.all(20.0), // Aumenta il padding per rendere la card più grande
+              child: Row(
+                children: [
+                  Expanded(
                     child: Text(
                       '$_nome, your level is: $_level',
-                      style: const TextStyle(fontSize: 15),
+                      style: TextStyle(fontSize: 18),
                     ),
                   ),
-                ),
+                  /*Spacer(), // Aggiunge spazio tra il testo e l'immagine
+                  Image.asset(
+                    _getLevelIcon(_level),
+                    width: 24,  // Mantieni l'immagine piccola rispetto alla card
+                    height: 24,
+                  ),*/
+                ],
               ),
             ),
-            const SizedBox(height: 20.0),
-            Container(
-              height: 200,
-              child: Placeholder(),
-              alignment: Alignment.center,
-            ) 
+          ),
+            SizedBox(height: 20.0),
+            AchievementProgressWidget(
+              title: 'Steps', 
+              goal: 50000, 
+              currentProgress: 35000,
+            ),
+            AchievementProgressWidget(
+              title: 'Paths', 
+              goal: 10, 
+              currentProgress: 5,
+            ),
+            AchievementProgressWidget(
+              title: 'Points of Interest', 
+              goal: 10, 
+              currentProgress: 3,
+            ),
           ],
         ),
+          )
       )
-
     );
   }
 }
