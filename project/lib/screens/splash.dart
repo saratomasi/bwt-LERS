@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:project/screens/bottomnavigationpage.dart';
 import 'package:project/screens/login.dart';
 import 'package:project/utils/impact.dart';
-//import 'package:project/screens/welcome.dart'; // DA TOGLIERE QUANDO SERVER OK
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
@@ -39,4 +38,4 @@ class SplashScreen extends StatelessWidget {
       return LoginPage() ;
     }
   } 
-}
+} 
