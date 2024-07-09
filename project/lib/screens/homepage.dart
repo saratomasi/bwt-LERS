@@ -196,7 +196,7 @@ class _HomePageState extends State<HomePage> {
 
 
 // Funzione per ottenere il percorso dell'icona in base al livello
-  String _getLevelIcon(String level) {
+  String _getLevelIcon(String? level) {
     switch (level) {
       case 'beginner':
         return 'assets/images/beginner.png';
