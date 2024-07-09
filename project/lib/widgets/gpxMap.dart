@@ -179,8 +179,8 @@ class _GpxMapState extends State<GpxMap> {
                   MarkerLayer(
                     markers: widget.trails[i].pois.map((point) {
                       return Marker(
-                        width: 80.0,
-                        height: 80.0,
+                        width: 30.0,
+                        height: 30.0,
                         point: point!.coordinates, 
                         child: IconButton(
                           icon: Icon(Icons.location_on),

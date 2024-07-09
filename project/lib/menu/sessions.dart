@@ -28,7 +28,7 @@ class _SessionsState extends State<Sessions> {
       ),
       body: trailState.doneTrails.isEmpty
           ? Center(
-              child: Text('Non ci sono attività per il momento'),
+              child: Text('No activities at the moment'),
             )
           : Column(
             children:[

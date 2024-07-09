@@ -23,6 +23,7 @@ PointOfInterest poi3 = PointOfInterest(
   name: 'Piazza delle Erbe', 
   id: 3,
   coordinates: LatLng(45.40683755395249, 11.87563621288851), 
+  imagePath: 'lib/assets/piazze-delle-erbe-padova.jpg',
   percentage: [0,25,25,25,25]
 );
 
@@ -34,6 +35,21 @@ PointOfInterest poi4 = PointOfInterest(
   percentage: [0,50,35,0,15]
 );
 
+PointOfInterest poi5 = PointOfInterest(
+  name: 'Sentiero di Sant\'Antonio', 
+  id: 5,
+  coordinates: LatLng(45.57427900611289, 11.931146455823152), 
+  imagePath: 'lib/assets/Sentiero_statue_camposampiero.png',
+  percentage: [20,20,50,0,10]
+);
+
+PointOfInterest poi6 = PointOfInterest(
+  name: 'Palazzo Bo', 
+  id: 6,
+  coordinates: LatLng(45.40677884320638, 11.877142853121425), 
+  imagePath: 'lib/assets/Sentiero_statue_camposampiero.png',
+  percentage: [00,35,25,0,40]
+);
 
 
 Map<int,PointOfInterest> poisDatabase = {
@@ -41,4 +57,6 @@ Map<int,PointOfInterest> poisDatabase = {
   poi2.id : poi2,
   poi3.id : poi3,
   poi4.id : poi4,
+  poi5.id : poi5,
+  poi6.id : poi6,
 };

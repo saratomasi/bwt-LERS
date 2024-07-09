@@ -11,7 +11,7 @@ Trail trail1 = Trail(
   lengthKm: 24, 
   walkingTime: 420,
   routeColor: 0xFF004000,
-  pois: [poisDatabase[1]],
+  pois: [poisDatabase[1], poisDatabase[4], poisDatabase[5]],
 );
 
 Trail trail2 = Trail(
@@ -22,7 +22,7 @@ Trail trail2 = Trail(
   lengthKm: 5.91, 
   walkingTime: 91,
   routeColor: 0xFFff3380,
-  pois: [poisDatabase[2], poisDatabase[3]],
+  pois: [poisDatabase[2], poisDatabase[3], poisDatabase[6]],
 );
 
 Trail trail3 = Trail(
@@ -33,7 +33,7 @@ Trail trail3 = Trail(
   lengthKm: 9.14, 
   walkingTime: 171, 
   routeColor: 0xFF4931AF,
-  pois: [poisDatabase[2], poisDatabase[3]],
+  pois: [],
 );
 
 Trail trail4 = Trail(
@@ -44,7 +44,7 @@ Trail trail4 = Trail(
   lengthKm: 18.9, 
   walkingTime: 377, 
   routeColor: 0xFF66AB0D,
-  pois: [poisDatabase[2], poisDatabase[3]],
+  pois: [],
 );
 
 Trail trail5 = Trail(
@@ -55,7 +55,7 @@ Trail trail5 = Trail(
   lengthKm: 8.45, 
   walkingTime: 120, 
   routeColor: 0xFFB75427,
-  pois: [poisDatabase[2], poisDatabase[3]],
+  pois: [],
 );
 
 Trail trail6 = Trail(
@@ -77,7 +77,7 @@ Trail trail7 = Trail(
   lengthKm: 5.23, 
   walkingTime: 79, 
   routeColor: 0xFF918993,
-  pois: [poisDatabase[2], poisDatabase[3]],
+  pois: [],
 );
 Map<int,Trail> trailsDatabase = {
   trail1.id : trail1,
