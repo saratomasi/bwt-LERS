@@ -225,6 +225,7 @@ class _ProfilePageState extends State<ProfilePage> {
                               print(sp.getString('level'));
                               setState(() {
                                 _isLoading = false;
+                                 _level = sp.getString('level') ?? '';
                                 _showSuccessMessage = true;
                               });
                               
