@@ -3,8 +3,10 @@ import 'package:project/screens/autosearchPage.dart';
 import 'package:project/screens/ManualSearchPage.dart'; 
 import 'package:project/screens/profile.dart';
 import 'package:project/screens/homepage.dart';
+import 'package:project/utils/fabNotifier.dart';
 import 'package:project/widgets/expandableFab.dart';
 import 'package:project/widgets/actionButton.dart';
+
 
 class BottomNavigationBarPage extends StatefulWidget {
   const BottomNavigationBarPage({super.key});
@@ -32,10 +34,13 @@ class _HomePageState extends State<BottomNavigationBarPage> {
   }) {
     switch (index) {
       case 0:
+        fabStateNotifier.close(); // Chiudi il FAB quando cambia pagina
         return HomePage();
       case 1:
+        fabStateNotifier.close(); // Chiudi il FAB quando cambia pagina
         return ProfilePage();
       default:
+        fabStateNotifier.close(); // Chiudi il FAB quando cambia pagina
         return HomePage();
     }
   }

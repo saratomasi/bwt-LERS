@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart' ;
+import 'package:project/utils/fabNotifier.dart';
 import 'package:project/widgets/expandingActionButton.dart';
 
 // Defines an ExpandableFab widget representing an expandable action button.
@@ -46,25 +47,35 @@ class _ExpandableFabState extends State<ExpandableFab> with SingleTickerProvider
       reverseCurve: Curves.easeOutQuad,
       parent: _controller,
     );
+
+    fabStateNotifier.addListener(_handleFabStateChange);
   }
+
 
   @override
   // Free up resources when the widget state is disposed.
   void dispose() {
+    fabStateNotifier.removeListener(_handleFabStateChange);
     _controller.dispose();
     super.dispose();
   }
 
+  void _handleFabStateChange() {
+    if (fabStateNotifier.value != _open) {
+      setState(() {
+        _open = fabStateNotifier.value;
+        if (_open) {
+          _controller.forward();
+        } else {
+          _controller.reverse();
+        }
+      });
+    }
+  }
+
   // Toggles the button state and starts or cancels the expansion animation.
   void _toggle() {
-    setState(() {
-      _open = !_open;
-      if (_open) {
-        _controller.forward();
-      } else {
-        _controller.reverse();
-      }
-    });
+    fabStateNotifier.toggle();
   }
 
   @override

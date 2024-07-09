@@ -38,6 +38,41 @@ class Trail{
   
   // METHODS:  
 
+  // Metodo di serializzazione JSON
+  Map<String, dynamic> toJson() => {
+    'name': name,
+    'id': id,
+    'gpxPath': gpxPath,
+    'level': level,
+    'lengthKm': lengthKm,
+    'walkingTime': walkingTime,
+    'isDone': isDone,
+    'isFavorite': isFavorite,
+    'isSaved': isSaved,
+    'date': date.toIso8601String(),
+    'routeColor': routeColor,
+    'pois': pois.map((poi) => poi?.toJson()).toList(),
+    'percentage': percentage,
+  };
+
+  // Metodo di deserializzazione JSON
+  factory Trail.fromJson(Map<String, dynamic> json) {
+    return Trail(
+      name: json['name'],
+      id: json['id'],
+      gpxPath: json['gpxPath'],
+      level: json['level'],
+      lengthKm: json['lengthKm'],
+      walkingTime: json['walkingTime'],
+      routeColor: json['routeColor'],
+      pois: (json['pois'] as List).map((item) => item == null ? null : PointOfInterest.fromJson(item)).toList(),
+      isDone: json['isDone'],
+      isFavorite: json['isFavorite'],
+      isSaved: json['isSaved'],
+      date: DateTime.parse(json['date']),
+    );
+  }
+
   //Calculates the char percentage of the trail based on pois
   void _percChar() {
     int totalNature  = 0;

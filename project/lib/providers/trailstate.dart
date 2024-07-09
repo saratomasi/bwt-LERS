@@ -1,29 +1,59 @@
 import 'package:flutter/material.dart';
 import 'package:project/objects/trail.dart';
 import 'package:project/database/trailsDatabase.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'dart:convert';
 
 class TrailState extends ChangeNotifier {
 
   List<Trail> _filteredTrails = [];
 
+  TrailState() {
+    _loadTrails();
+  }
+
+  Future<void> _loadTrails() async {
+    final prefs = await SharedPreferences.getInstance();
+    final savedTrails = prefs.getString('trailsDatabase');
+    if (savedTrails != null) {
+      Map<int, Trail> loadedTrails = Map.from(json.decode(savedTrails).map((key, value) => MapEntry(int.parse(key), Trail.fromJson(value))));
+      trailsDatabase.clear();
+      trailsDatabase.addAll(loadedTrails);
+      notifyListeners();
+    }
+  }
+
+  Future<void> _saveTrails() async {
+  final prefs = await SharedPreferences.getInstance();
+  Map<String, dynamic> serializedTrails = {};
+  trailsDatabase.forEach((key, trail) {
+    serializedTrails[key.toString()] = trail.toJson();
+  });
+  prefs.setString('trailsDatabase', json.encode(serializedTrails));
+}
+
   Future<void> toggleDone(int id) async {
     trailsDatabase[id]?.isDone = !(trailsDatabase[id]?.isDone ?? false);
+    await _saveTrails();
     notifyListeners();
   }
 
   Future<void> toggleFavorite(int id) async {
     trailsDatabase[id]?.isFavorite = !(trailsDatabase[id]?.isFavorite ?? false);
+    await _saveTrails();
     notifyListeners();
   }
 
   Future<void> toggleSaved(int id) async {
     trailsDatabase[id]?.isSaved = !(trailsDatabase[id]?.isSaved ?? false);
+    await _saveTrails();
     notifyListeners();
   }
 
   void updateTrail(Trail updatedTrail) {
     if (trailsDatabase.containsKey(updatedTrail.id)) {
       trailsDatabase[updatedTrail.id] = updatedTrail;
+      _saveTrails();
       notifyListeners();
     }
   }

@@ -45,7 +45,7 @@ class _TrailPageState extends State<TrailPage> {
             Expanded(
               flex:1, 
               child: IconButton(
-                icon:Icon(trail.isDone ? Icons.done_rounded : Icons.done_outline_rounded),
+                icon:Icon(trail.isDone ? Icons.task_alt_rounded : Icons.add_task_rounded),
                 color: Theme.of(context).primaryColor,
                 onPressed: (){
                   setState(() {
@@ -67,7 +67,8 @@ class _TrailPageState extends State<TrailPage> {
             Expanded(
               flex:1, 
               child: IconButton(
-                icon: Icon(trail.isSaved ? Icons.bookmark_rounded : Icons.bookmark_border_rounded),
+                icon: Icon(trail.isSaved ? Icons.alarm_on_rounded : Icons.more_time_rounded),
+                //alternativa icone: event_available e calendar_month
                 color: Theme.of(context).primaryColor,
                 onPressed: () {
                   setState(() {
