@@ -16,7 +16,8 @@ class Trail{
   DateTime date;                                //if done, correct date, if not, Alan Turing birthday.
   int routeColor;                               //color of the route
   List<PointOfInterest?> pois;                  //points of interest along the route
-  List<int> percentage = [20, 20, 20, 20, 20];  //characteristics of the route => default: equally distributed
+  List<int> percentage = [20, 20, 20, 20, 20];
+  int type = 0;  //characteristics of the route => default: equally distributed
 
   // Constructor
   Trail({
@@ -34,6 +35,7 @@ class Trail{
     DateTime? date,
   })  : this.date = date ?? DateTime.utc(1912, 06, 23) {
     _percChar(); //Calculates percentage based on pois
+    _typeChar();
   }
   
   // METHODS:  
@@ -103,7 +105,23 @@ class Trail{
 
     int sum = percentage.reduce((a, b) => a + b);
     if(sum>100){ percentage[4] -= sum-100; }
+    if(sum<100){ percentage[4] += 100-sum; }
   }
+
+
+  void _typeChar() {
+  int maxIndex = 0;
+  int maxValue = 0;
+
+  for (int i = 0; i < percentage.length; i++) {
+    if (percentage[i] > 40 && percentage[i] > maxValue) {
+      maxIndex = i + 1; // Assign a value from 1 to 5 instead of from 0 to 4
+      maxValue = percentage[i];
+    }
+  }
+
+  type = maxIndex;
+}
 
   // walking time as String
   String getWalkingTimeText() {

@@ -1,16 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:project/menu/achievements.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:project/menu/explorelater.dart';
 import 'package:project/menu/favorites.dart';
 import 'package:project/menu/sessions.dart';
-import 'package:project/widgets/characterList.dart';
+import 'package:project/menu/trophiespage.dart';
 import 'package:project/objects/characters.dart' ;
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:project/widgets/PieChart.dart';
-import 'package:project/menu/achievements.dart';
-import 'package:project/widgets/achi_progresswidget.dart';
-import 'package:project/menu/trophiesnotifier.dart';
-
+import 'package:project/utils/fabNotifier.dart';
+import 'package:project/widgets/characterList.dart';
 
 
 class HomePage extends StatefulWidget {
@@ -33,8 +29,14 @@ class _HomePageState extends State<HomePage> {
     super.initState();
     _loadUserData();
     _loadValue() ;
+    fabStateNotifier.close();
   }
 
+  @override
+  void dispose() {
+    fabStateNotifier.close(); // Chiudi il FAB quando la pagina viene distrutta
+    super.dispose();
+  }
 
   Future<void> _loadUserData() async {
     final prefs = await SharedPreferences.getInstance();
@@ -64,15 +66,6 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
 
-    //final int steps = Provider.of<DataProvider>(context);
-
-    // notifier per gestire i trofei
-    //final trofeiNotifier = Provider.of<TrofeiNotifier>(context);
-    // Verifica e aggiorna i trofei in base al numero di passi
-    //verificaObiettivi(trofeiNotifier, steps,  context);
-    // Ottieni i valori di progresso per il grafico
-    //final valoriProgresso = trofeiNotifier.trofei.map((trofeo) => trofeo.progresso).toList();
-
     return Scaffold(
       appBar: AppBar(
         //backgroundColor: Theme.of(context).colorScheme.inversePrimary,
@@ -93,14 +86,16 @@ class _HomePageState extends State<HomePage> {
           children: [
             ElevatedButton(
               onPressed: () {
+                fabStateNotifier.close();
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => AchievementsPage()));
+                    MaterialPageRoute(builder: (context) => TrophiesPage()));
               },
               child: const ListTile(
                   leading: Icon(Icons.star), title: Text('Achievements')),
             ),
             ElevatedButton(
               onPressed: () {
+                fabStateNotifier.close();
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => const Favorites()));
               },
@@ -109,6 +104,7 @@ class _HomePageState extends State<HomePage> {
             ),
             ElevatedButton(
               onPressed: () {
+                fabStateNotifier.close();
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => ExploreLater()));
               },
@@ -117,6 +113,7 @@ class _HomePageState extends State<HomePage> {
             ),
             ElevatedButton(
               onPressed: () {
+                fabStateNotifier.close();
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => Sessions()));
               },
