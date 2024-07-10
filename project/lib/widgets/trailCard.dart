@@ -54,7 +54,7 @@ class _TrailCardState extends State<TrailCard> {
         label: 'Undo',
         onPressed: undoAction,
       ),
-      duration: Duration(seconds: 5),
+      duration: Duration(seconds: 3),
     );
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
