@@ -21,12 +21,12 @@ class TrophiesPage extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: Column(
               children: [
-                const Text(
-                  'Explore and Achieve: Your Trophy Collection',
+                Text(
+                  'Explore and Achieve: \n Your Trophy Collection',
                   style: TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
-                    color: Color.fromARGB(255, 132, 159, 138),
+                    color: Theme.of(context).primaryColor,
                   ),
                   textAlign: TextAlign.center,
                 ),
