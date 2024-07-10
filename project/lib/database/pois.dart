@@ -55,7 +55,7 @@ PointOfInterest poi7 = PointOfInterest(
   name: 'Gelateria Portogallo',
   id: 7,
   coordinates: LatLng(45.40073725559155, 11.875941208750046),
-  //imagePath: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTb_CNCNfIP_tkYnM6Zjrtv6tNtGcThbM1LMQ&s,
+  imagePath: 'lib/assets/poi_images/gelateria_portogallo.jpg',
   percentage: [0,0,0,70,30]
 );
 
@@ -63,7 +63,7 @@ PointOfInterest poi8 = PointOfInterest(
   name: 'Piazza Cavour',
   id: 8,
   coordinates: LatLng(45.40829374366174, 11.877911868202197),
-  //imagePath: https://upload.wikimedia.org/wikipedia/commons/a/ad/Padova_Piazza_Cavour.jpg,
+  imagePath: 'lib/assets/poi_images/Padova_Piazza_Cavour.jpg',
   percentage: [0,80,0,10,10]
 );
 
@@ -71,7 +71,7 @@ PointOfInterest poi10 = PointOfInterest(
   name: 'Chiesa di Santa Maria dei Servi',
   id: 10,
   coordinates: LatLng(45.404695032960305, 11.875752516764171),
-  //imagePath: https://www.visitabanomontegrotto.com/wp-content/uploads/2016/01/Chiesa-di-Santa-Maria-dei-Servi-a-Padova.jpg,
+  imagePath: 'lib/assets/poi_images/Chiesa-di-Santa-Maria-dei-Servi-a-Padova.jpg',
   percentage: [0,50,0,0,50]
 );
 
@@ -79,7 +79,7 @@ PointOfInterest poi9 = PointOfInterest(
   name: 'Parco Lonzina',
   id: 9,
   coordinates: LatLng(45.366901553931065, 11.728200602964337),
-  //imagePath: https://parcolonzina.it/assets/uploads/2021/11/bellezze-parco-6.jpg,
+  imagePath: 'lib/assets/poi_images/parco_lonzina.jpg',
   percentage: [80,0,0,0,20]
 );
 
@@ -88,7 +88,7 @@ PointOfInterest poi11 = PointOfInterest(
   name: 'Abbazia di Praglia',
   id: 11,
   coordinates: LatLng(45.363932320433356, 11.734537708134667),
-  //imagePath:https://d2exd72xrrp1s7.cloudfront.net/www/000/1k5/1d/1dqwkjq1iiic665b90n86ka053yd01qly-uhi43595367/0?width=3072&height=2304&crop=false&q=70,
+  imagePath:'lib/assets/poi_images/abbazia_di_praglia.jpg',
   percentage: [10,80,0,0,10]
 );
 
@@ -96,7 +96,7 @@ PointOfInterest poi12 = PointOfInterest(
   name: 'Trattoria al Capitello',
   id: 12,
   coordinates: LatLng(45.35706435749612, 11.732959433448782),
-  // imagePath: https://lh5.googleusercontent.com/p/AF1QipORHwLZ0GNWZjUYzmySK2icwAzCmWXREzuvv1hy,
+  imagePath: 'lib/assets/poi_images/trattoria_al_capitello.jpg',
   percentage: [0,0,0,50,50]
 );
 
@@ -104,7 +104,7 @@ PointOfInterest poi13 = PointOfInterest(
   name: 'Arquà Petrarca',
   id: 13,
   coordinates: LatLng(45.269758808194176, 11.72000142114336),
-  //imagePath:https://www.lecosmopolite.it/wp-content/uploads/2021/07/arqua-petrarca.jpg,
+  imagePath:'lib/assets/poi_images/arqua-petrarca.jpg',
   percentage: [20,20,20,20,20]
 );
 
@@ -114,7 +114,7 @@ PointOfInterest poi14 = PointOfInterest(
   name: 'Croce votiva Monte Orbieso',
   id: 14,
   coordinates: LatLng(45.28954941832666, 11.720207628692902),
-  //imagePath:https://s0.wklcdn.com/image_189/5696079/97928429/63857055Master.jpg,
+  imagePath:'lib/assets/poi_images/croce_votiva.jpg',
   percentage: [100,0,0,0,0]
 );
 
