@@ -16,6 +16,7 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   bool _isLoading = false;
   bool _showSuccessMessage = false;
+  bool _showLoadingMessage = false;
   String _nome = '';
   String _cognome = '';
   int _eta = 0;
@@ -176,18 +177,17 @@ class _ProfilePageState extends State<ProfilePage> {
                           mainAxisSize: MainAxisSize.min,
                           children: <Widget>[
                             ListTile(
-                              leading:
-                                  Image.asset(_avatar, width: 50, height: 50),
-                              title: Text('$_nome $_cognome'),
+                              leading: CircleAvatar(backgroundImage: AssetImage(_avatar)),
+                              title: Text('$_nome $_cognome', style: TextStyle(fontSize: 20),),
                               subtitle: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text('Age: $_eta'),
-                                  Text('Location: $_sede'),
+                                  Text('Age: $_eta', style: TextStyle(fontSize: 16)),
+                                  Text('Location: $_sede',style:TextStyle(fontSize: 16)),
                                   Text(
-                                      'Exercise frequency: $_frequenzaAllenamento'),
+                                      'Exercise frequency: $_frequenzaAllenamento', style: TextStyle(fontSize: 16)),
                                   Text(
-                                    'Level: ${_level.isNotEmpty ? _level : _livelloProvvisorio}',
+                                    'Level: ${_level.isNotEmpty ? _level : _livelloProvvisorio}', style: TextStyle(fontSize: 16)
                                   ), // Display level or provisional level
                                 ],
                               ),
@@ -218,6 +218,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             onPressed: () async {
                               setState(() {
                                 _isLoading = true;
+                                 _showLoadingMessage = true;
                               });
                               await provider.fetchData(provider.showDate);
                               provider.getLevel();
@@ -227,9 +228,10 @@ class _ProfilePageState extends State<ProfilePage> {
                                 _isLoading = false;
                                  _level = sp.getString('level') ?? '';
                                 _showSuccessMessage = true;
+                                _showLoadingMessage = false;
                               });
                               
-                              Future.delayed(Duration(seconds: 3), () {
+                              Future.delayed(Duration(seconds: 1), () {
                                 setState(() {
                                   _showSuccessMessage = false;
                                 });
@@ -238,8 +240,8 @@ class _ProfilePageState extends State<ProfilePage> {
                             child: Stack(
                               alignment: Alignment.center,
                               children: [
-                                if (!_isLoading) Text('Sync your device'),
-                                if (_isLoading)
+                                if (!_isLoading && !_showLoadingMessage) Text('Sync your device'),
+                                if (_isLoading || _showLoadingMessage)
                                   SizedBox(
                                     width: 24,
                                     height: 24,
@@ -289,6 +291,34 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
             ),
           ),
+          if (_showLoadingMessage) // Mostra il messaggio di caricamento
+           Positioned(
+            bottom: 56, 
+            left: 0,
+            right: 0,
+            child: AnimatedOpacity(
+              opacity: _showLoadingMessage ? 1.0 : 0.0,
+              duration: Duration(seconds: 1),
+              child: SizedBox(
+                width: MediaQuery.of(context).size.width * 0.8,
+                child: Card(
+                  color: Colors.yellow.shade800,
+                  elevation: 4.0,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Text(
+                      'Data collection in progress. Please wait and do not leave this page.',
+                      style: TextStyle(color: Colors.white),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ), 
       ]),
     );
   }

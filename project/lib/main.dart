@@ -2,13 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:project/screens/splash.dart';
 import 'package:project/providers/trailstate.dart';
-import 'package:project/screens/bottomnavigationpage.dart';
 
 void main() {
   runApp(
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => TrailState()),
+        /*ChangeNotifierProxyProvider<TrailState, TrophiesNotifier>(
+          create: (_) => TrophiesNotifier(Provider.of<TrailState>(_, listen: false)),
+          update: (_, trailState, trophiesNotifier) => trophiesNotifier!..updateTrailState(trailState),
+        ),*/
       ],
       child: MyApp(),
     ),

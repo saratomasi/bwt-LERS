@@ -12,10 +12,11 @@ class BottomNavigationBarPage extends StatefulWidget {
   const BottomNavigationBarPage({super.key});
 
   @override
-  State<BottomNavigationBarPage> createState() => _HomePageState();
+  //State<BottomNavigationBarPage> createState() => _HomePageState();
+  State<BottomNavigationBarPage> createState() => _BottomNavigationBarState();
 }
 
-class _HomePageState extends State<BottomNavigationBarPage> {
+class _BottomNavigationBarState extends State<BottomNavigationBarPage> {
   int _showIndex = 0;
 
   void _onItemTapped(int index) {

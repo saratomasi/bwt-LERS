@@ -19,7 +19,6 @@ class ActionButton extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text(text),
         Material(
           shape: const CircleBorder(),
           clipBehavior: Clip.antiAlias,
@@ -31,6 +30,7 @@ class ActionButton extends StatelessWidget {
             color: theme.colorScheme.onSecondary,
           ),
         ),
+        Text(text),
       ],
     );
   }

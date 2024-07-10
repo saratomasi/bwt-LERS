@@ -81,7 +81,7 @@ class _QuestionnaireState extends State<Questionnaire> {
       appBar: AppBar(
         title: Text('Questionnaire'),
       ),
-      body: Center(
+      body: SingleChildScrollView( // Aggiunto SingleChildScrollView
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
@@ -189,7 +189,7 @@ class _QuestionnaireState extends State<Questionnaire> {
                   'Provisional Level: $_livelloProvvisorio',
                   style: TextStyle(color: Colors.blue),
                 ),
-              Spacer(), // Spazio flessibile che spinge il pulsante in basso
+              SizedBox(height: 20), // Spazio flessibile che spinge il pulsante in basso
               Align(
                 alignment: Alignment.center,
                 child: ElevatedButton(

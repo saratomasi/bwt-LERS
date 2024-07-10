@@ -4,7 +4,6 @@ import 'package:http/http.dart' as http;
 import 'package:project/models/distance.dart';
 import 'package:project/models/resting_hr.dart';
 import 'package:project/models/steps.dart';
-//import 'package:project/models/steps.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:project/models/heartrate.dart';

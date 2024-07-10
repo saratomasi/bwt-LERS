@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:project/objects/trail.dart';
 import 'package:project/providers/trailstate.dart';
-import 'package:project/screens/trailPage.dart';
 import 'package:project/widgets/customsearchbar.dart';
-import 'package:project/widgets/gpxMap.dart';
 import 'package:project/widgets/trailCard.dart';
 
 

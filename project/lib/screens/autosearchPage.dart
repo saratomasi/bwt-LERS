@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project/widgets/trailCard.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:provider/provider.dart';
 import 'package:project/objects/trail.dart';
@@ -79,7 +80,7 @@ class _AutoSearchState extends State<AutoSearch> {
           children: <Widget>[
             SizedBox(
               width: 500,
-              height: 110,
+              height: 170,
               child: Card(
                 color: Colors.amber.shade100,
                 child: Padding(
@@ -92,8 +93,7 @@ class _AutoSearchState extends State<AutoSearch> {
             ),
             Expanded(
               flex: 3,
-              //child: sessionList(trailState),
-              child: sessionList(filteredTrails),
+              child: autosearchList(trailState),
             ),
           ],
         ),
@@ -101,9 +101,8 @@ class _AutoSearchState extends State<AutoSearch> {
     );
   }
 
-  //Widget sessionList(TrailState trailState) {
-  Widget sessionList(List<Trail> filteredTrails) {
-   //var filteredTrails = _filterTrails(trailState.notDoneTrails);
+Widget autosearchList(TrailState trailState) {
+var filteredTrails = _filterTrails(trailState.notDoneTrails);
 if (filteredTrails.isEmpty) {
       return Center(
         child: Text(
@@ -112,34 +111,26 @@ if (filteredTrails.isEmpty) {
         ),
       );
     }
-
     return ListView.builder(
       padding: const EdgeInsets.all(8.0),
       itemCount: filteredTrails.length,
       itemBuilder: (context, index) {
+        print('1 , ${filteredTrails[index].name}, ${index}');
         Trail tmp = filteredTrails[index];
-        return Card(
-          margin: const EdgeInsets.symmetric(vertical: 8.0),
-          child: ListTile(
-            title: Text('${tmp.name}'),
-            subtitle: Text('${tmp.date.toLocal()}'.split(' ')[0]),
-            trailing: Icon(Icons.arrow_forward_ios),
-            onTap: () async {
-              var updatedTrail = await Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => TrailPage(trail: tmp)),
-              );
-              // Aggiorna undoneTrails se il trail è stato modificato
-              if (updatedTrail != null) {
-                setState(() {
-                  //trailState.updateTrail(updatedTrail);
-                  context.read<TrailState>().updateTrail(updatedTrail);
-                });
-              }
-            },
-          ),
-        );
-      },
+        print('2 ${tmp.name}');
+        return Consumer<TrailState>(
+          builder: (context, trailState, child){
+            return TrailCard(
+              key: ValueKey(filteredTrails[index].id),
+              trail: filteredTrails[index],
+              onToggle: () async {
+                setState(() {});
+              },
+            );});
+      }
     );
   }
+
+
 }
+
