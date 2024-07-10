@@ -94,40 +94,15 @@ void updateTrophyProgress(
     } else if (trophy.type == TrophyType.local) {
       trophy.progress = (typeCounters[4] / trophy.target).clamp(0.0, 1.0);
     } else if (trophy.type == TrophyType.missionNature) { // Aggiornamento per trofei di missioni
-      double progress = doneMissions.where((mission) => mission.type == 0).length / trophy.target;
-      if (progress > 1.0) {
-          trophy.progress = 1.0;
-      } else {
-        trophy.progress = progress.clamp(0.0, 1.0);
-      }
+      trophy.progress = (doneMissions.where((mission) => mission.type == 0).length / trophy.target).clamp(0.0, 1.0);
     } else if (trophy.type == TrophyType.missionHistory) {
-      double progress = doneMissions.where((mission) => mission.type == 1).length / trophy.target;
-      if (progress > 1.0) {
-          trophy.progress = 1.0;
-      } else {
-        trophy.progress = progress.clamp(0.0, 1.0);
-      }
+      trophy.progress = (doneMissions.where((mission) => mission.type == 1).length / trophy.target).clamp(0.0, 1.0);
     } else if (trophy.type == TrophyType.missionArt) {
-      double progress = doneMissions.where((mission) => mission.type == 2).length / trophy.target;
-      if (progress > 1.0) {
-          trophy.progress = 1.0;
-      } else {
-        trophy.progress = progress.clamp(0.0, 1.0);
-      }
+      trophy.progress = (doneMissions.where((mission) => mission.type == 2).length / trophy.target).clamp(0.0, 1.0);
     } else if (trophy.type == TrophyType.missionFood) {
-      double progress = doneMissions.where((mission) => mission.type == 3).length / trophy.target;
-      if (progress > 1.0) {
-          trophy.progress = 1.0;
-      } else {
-        trophy.progress = progress.clamp(0.0, 1.0);
-      }
+      trophy.progress = (doneMissions.where((mission) => mission.type == 3).length / trophy.target).clamp(0.0, 1.0);
     } else if (trophy.type == TrophyType.missionLocal) {
-      double progress = doneMissions.where((mission) => mission.type == 4).length / trophy.target;
-      if (progress > 1.0) {
-          trophy.progress = 1.0;
-      } else {
-        trophy.progress = progress.clamp(0.0, 1.0);
-      }
+      trophy.progress = (doneMissions.where((mission) => mission.type == 4).length / trophy.target).clamp(0.0, 1.0);
     }
 
     trophy.unlocked = trophy.progress >= 1.0;

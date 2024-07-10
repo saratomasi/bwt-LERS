@@ -82,31 +82,31 @@ Trophy(
     ),
 
     Trophy(
-      name: '1st nature mission done!',
+      name: '1st nature mission!',
       type: TrophyType.missionNature,
       target: 1,
     ),
 
     Trophy(
-      name: '1st history mission done!',
+      name: '1st history mission!',
       type: TrophyType.missionHistory,
       target: 1,
     ),
 
     Trophy(
-      name: '1st art mission done!',
+      name: '1st art mission!',
       type: TrophyType.missionArt,
       target: 1,
     ),
 
     Trophy(
-      name: '1st food mission done!',
+      name: '1st food mission!',
       type: TrophyType.missionFood,
       target: 1,
     ),
 
     Trophy(
-      name: '1st local mission done!',
+      name: '1st local mission!',
       type: TrophyType.missionLocal,
       target: 1,
     ),
