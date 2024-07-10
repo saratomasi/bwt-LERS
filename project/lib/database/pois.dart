@@ -122,7 +122,7 @@ PointOfInterest poi15 = PointOfInterest(
   name: 'Enoteca Monte Fasolo',
   id: 15,
   coordinates: LatLng(45.28968523691049, 11.693802511974207),
-  //imagePath:https://www.enotecamontefasolo.it/wp-content/uploads/2022/12/enoteca-colli-euganei-veduta-dallalto-monte-fasolo.jpg,
+  imagePath: 'lib/assets/poi_images/enoteca-colli.jpg',
   percentage: [40,0,0,50,10]
 );
 
@@ -130,7 +130,7 @@ PointOfInterest poi16 = PointOfInterest(
   name: 'Pianoro del Mottolone',
   id: 16,
   coordinates: LatLng(45.282456046976996, 11.705442469388602),
-  //imagePath: https://lh5.googleusercontent.com/p/AF1QipNWLYDYeKK5RS1V7GsDZ96uogWCJKlD16EQpU09=w408-h271-k-no,
+  imagePath: 'lib/assets/poi_images/pianoroMottolone.jpg',
   percentage: [100,0,0,0,0]
 );
 
@@ -138,7 +138,7 @@ PointOfInterest poi17 = PointOfInterest(
   name: 'Villa Contarini',
   id: 17,
   coordinates: LatLng(45.54412629591325, 11.786016988622523),
-  //imagePath:https://villevenetetour.it/docs/gallery/120/Contarini-Facciata-Frontale.jpg.ashx?w=690&h=410&mode=crop&scale=both,
+  imagePath:'lib/assets/poi_images/Contarini-Facciata-Frontale.jpg',
   percentage: [0,40,40,0,20]
 );
 
@@ -147,7 +147,7 @@ PointOfInterest poi18 = PointOfInterest(
   name: 'Anfiteatro Contarini',
   id: 18,
   coordinates: LatLng(45.543314773221404, 11.787122058703522),
-  //imagePath:https://www.ticketone.it/obj/media/IT-eventim/teaser/venue/222x222/2014/anfiteatrocamerini-biglietti.jpg,
+  imagePath:'lib/assets/poi_images/anfiteatro.jpg',
   percentage: [0,100,0,0,0]
 );
 
@@ -155,7 +155,7 @@ PointOfInterest poi19 = PointOfInterest(
   name: 'Fiume Brenta',
   id: 19,
   coordinates: LatLng(45.56795009179353, 11.792480514833196),
-  //imagePath:https://www.magicoveneto.it/Padovano/Piazzola/Area-Naturalistica-Piazzola-sul-Brenta-208.jpg,
+  imagePath: 'lib/assets/poi_images/fiumeBrenta.jpg',
   percentage: [100,0,0,0,0]
 );
 
@@ -163,7 +163,7 @@ PointOfInterest poi20 = PointOfInterest(
   name: 'Porta Padova (Cittadella)',
   id: 20,
   coordinates: LatLng(45.64668762414978, 11.784121137852793),
-  //imagePath:https://www.visitcittadella.it/wp-content/uploads/2018/04/Porta_Padova_Cittadella.jpg,
+  imagePath: 'lib/assets/poi_images/Porta_Padova_Cittadella.jpg',
   percentage: [0,100,0,0,0]
 );
 
@@ -171,7 +171,7 @@ PointOfInterest poi21 = PointOfInterest(
   name: 'Mura di Cittadella',
   id: 21,
   coordinates: LatLng(45.65106163079926, 11.783485502026208),
-  //imagePath:https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTw6jIJoWxAmkVRCMVhsHWcpt9MLRMudbKlaw&s,
+  imagePath: 'lib/assets/poi_images/muraCittadella.jpg',
   percentage: [0,100,0,0,0]
 );
 
@@ -179,7 +179,7 @@ PointOfInterest poi22 = PointOfInterest(
   name: 'Porta Vicenza (Cittadella)',
   id: 22,
   coordinates: LatLng(45.64849004498281, 11.780338682480373),
-  //imagePath:https://lh5.googleusercontent.com/p/AF1QipNdx_S7I2nzoanaZ3zn9HK4Jpa-DazprsNu8Vsi=w408-h306-k-no,
+  imagePath: 'lib/assets/poi_images/portaVicenza.jpg',
   percentage: [0,100,0,0,0]
 );
 

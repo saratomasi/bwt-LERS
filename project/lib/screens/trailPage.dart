@@ -49,7 +49,7 @@ class _TrailPageState extends State<TrailPage> {
         label: 'Undo',
         onPressed: undoAction,
       ),
-      duration: Duration(seconds: 5),
+      duration: Duration(seconds: 3),
     );
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }

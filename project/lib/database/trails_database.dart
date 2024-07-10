@@ -55,7 +55,7 @@ Trail trail4 = Trail(
 Trail trail5 = Trail(
   name: 'Piazzola S.B.: Villa e villaggio operaio Camerini', 
   id: 5, 
-  gpxPath: 'lib/assets/gpx/files/VillaContarini_VillaggioOperaio.gpx', 
+  gpxPath: 'lib/assets/gpx_files/VillaContarini_VillaggioOperaio.gpx', 
   level: 1, 
   lengthKm: 8.45, 
   walkingTime: 120, 
