@@ -17,7 +17,7 @@ class TrophiesPage extends StatelessWidget {
       body: Consumer<TrailState>(
         builder: (context, trailState, child) {
           // Aggiorna i progressi dei trofei
-          updateTrophyProgress(trophiesDatabase, trailState.doneTrails, trailState.allTrails);
+          updateTrophyProgress(trophiesDatabase, trailState.doneTrails, trailState.allTrails, );
           return Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(
@@ -55,11 +55,11 @@ class TrophiesPage extends StatelessWidget {
   }
 }
 
-void updateTrophyProgress(List<Trophy> trophies, List<Trail> doneTrails, List<Trail> allTrails, List<Mission> doneMissions) {
+void updateTrophyProgress(List<Trophy> trophies, List<Trail> doneTrails, List<Trail> allTrails, /*List<Mission> doneMissions*/) {
   int completedTrails = doneTrails.length;
   double totalKm = doneTrails.fold(0.0, (sum, trail) => sum + (trail.lengthKm ?? 0.0));
   List<int> typeCounters = [0, 0, 0, 0, 0]; // Array of counters for each type of trail (from 1 to 5)
-  List<int> missionsCounters = [0, 0, 0, 0, 0];
+  /*List<int> missionsCounters = [0, 0, 0, 0, 0];*/
 
   // Count trails by type
   for (var trail in doneTrails) {
@@ -69,12 +69,12 @@ void updateTrophyProgress(List<Trophy> trophies, List<Trail> doneTrails, List<Tr
     }
   }
 
-  for (var mission in doneMissions) {
+  /*for (var mission in doneMissions) {
     int type = mission.type;
     if (type >= 0 && type <= 4) {
       missionsCounters[type]++; // "Increment the counter for the corresponding type (from 1 to 5)."
     }
-  }
+  }*/
 
   for (var trophy in trophies) {
     if (trophy.type == TrophyType.paths) {
@@ -91,7 +91,7 @@ void updateTrophyProgress(List<Trophy> trophies, List<Trail> doneTrails, List<Tr
       trophy.progress = (typeCounters[3] / trophy.target).clamp(0.0, 1.0);
     } else if (trophy.type == TrophyType.local) {
       trophy.progress = (typeCounters[4] / trophy.target).clamp(0.0, 1.0);
-    } else if (trophy.type == TrophyType.missionNature) {
+    } /*else if (trophy.type == TrophyType.missionNature) {
       trophy.progress = (missionsCounters[0] / trophy.target).clamp(0.0, 1.0);
     } else if (trophy.type == TrophyType.missionHistory) {
       trophy.progress = (missionsCounters[1] / trophy.target).clamp(0.0, 1.0);
@@ -101,7 +101,7 @@ void updateTrophyProgress(List<Trophy> trophies, List<Trail> doneTrails, List<Tr
       trophy.progress = (missionsCounters[3] / trophy.target).clamp(0.0, 1.0);
     } else if (trophy.type == TrophyType.missionLocal) {
       trophy.progress = (missionsCounters[4] / trophy.target).clamp(0.0, 1.0);
-    }
+    }*/
     
     trophy.unlocked = trophy.progress >= 1.0;
     if (trophy.unlocked) {

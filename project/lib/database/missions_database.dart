@@ -1,5 +1,8 @@
 import 'package:latlong2/latlong.dart';
 import 'package:project/objects/mission.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter/foundation.dart';
+import 'dart:convert';
 
 
 Mission m1 = Mission(
@@ -20,7 +23,7 @@ Mission m2 = Mission(
 
 Mission m3 = Mission(
   name: 'dottooooree', 
-  id: 2, 
+  id: 3, 
   coordinates: LatLng(45.40677884320638, 11.877142853121425), 
   type: 4, 
   description: 'Sing the song "Dottore, dottore" for a newly graduated student: you can recognize them by their laurel wreath'
@@ -68,6 +71,3 @@ Map<int, Mission> missionsDatabase = {
   m6.id : m6,
   m7.id : m7,
 };
-
-
-

@@ -1,8 +1,9 @@
 import 'package:latlong2/latlong.dart';
+import 'package:flutter/foundation.dart';
 
 //This class defines the object Mission
 
-class Mission{
+class Mission extends ChangeNotifier{
   String name;
   int id;
   LatLng coordinates;
@@ -33,6 +34,13 @@ class Mission{
     }
   }
 
+
+   void toggleDone() {
+    isDone = !isDone;
+    notifyListeners(); // Notifica i cambiamenti agli ascoltatori (provider)
+  }
+
+
   // Metodo di serializzazione JSON
   Map<String, dynamic> toJson() => {
         'name': name,
@@ -41,6 +49,7 @@ class Mission{
         'imagePath': imagePath,
         'type': type,
         'description': description,
+        'isDone' : isDone,
       };
 
   // Metodo di deserializzazione JSON
@@ -51,6 +60,7 @@ class Mission{
       coordinates: LatLng(json['coordinates'][0], json['coordinates'][1]),
       type: json['type'], 
       description: json['description'],
+      isDone: json['isDone'] ?? false, // Provide a default value (false) if json['isDone'] is null
     );
   }
 }

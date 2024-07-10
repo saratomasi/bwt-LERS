@@ -1,129 +1,148 @@
-import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
-import 'package:latlong2/latlong.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:project/providers/mission_provider.dart';
 import 'package:project/objects/mission.dart';
+import 'package:project/database/missions_database.dart';
 
 class MissionPage extends StatefulWidget {
-  final List<Mission> missions;
+  final List<int> missionIds;
 
-  MissionPage({required this.missions});
+  MissionPage({required this.missionIds});
 
   @override
   _MissionPageState createState() => _MissionPageState();
 }
 
 class _MissionPageState extends State<MissionPage> {
-  SharedPreferences? prefs;
 
+  late List<Mission> missions;
+  
   @override
   void initState() {
     super.initState();
-    _initSharedPreferences();
-  }
-
-  Future<void> _initSharedPreferences() async {
-    prefs = await SharedPreferences.getInstance();
-  }
-
-  void _toggleMissionCompletion(int index) {
-    setState(() {
-      widget.missions[index].isDone = !widget.missions[index].isDone;
-    });
-
-    // Save mission completion status
-    _saveMissions();
-    //notifyListeners();
-    
-    // Show snackbar
-    _showUndoSnackbar(context, widget.missions[index].isDone ? 'Marked as done' : 'Marked as not done', () {
-      setState(() {
-        widget.missions[index].isDone = !widget.missions[index].isDone;
-      });
-      _saveMissions(); // Undo action, revert state
-      //notifyListeners();
-    });
-  }
-
-  Future<void> _saveMissions() async {
-    if (prefs != null) {
-      Map<String, dynamic> serializedMissions = {};
-      widget.missions.forEach((mission) {
-        serializedMissions[mission.id.toString()] = mission.toJson();
-      });
-      await prefs!.setString('missions', json.encode(serializedMissions));
+    if (widget.missionIds.isNotEmpty) {
+      print(widget.missionIds);
+      missions = widget.missionIds.map((id) => missionsDatabase[id]!).toList();
+    } else {
+      missions = [];
     }
-  }
-
-  void _showUndoSnackbar(BuildContext context, String message, VoidCallback undoAction) {
-    final snackBar = SnackBar(
-      content: Text(message),
-      action: SnackBarAction(
-        label: 'Undo',
-        onPressed: undoAction,
-      ),
-      duration: Duration(seconds: 5),
-    );
-    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
   @override
   Widget build(BuildContext context) {
+    final missionProvider = Provider.of<MissionProvider>(context);
+    final sharedPreferences = Provider.of<SharedPreferences>(context, listen: false);
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Mission List'),
       ),
-      body: ListView.builder(
-        itemCount: widget.missions.length,
-        itemBuilder: (context, index) {
-          return Card(
-            child: ListTile(
-              leading: CircleAvatar(
-                backgroundImage: AssetImage(widget.missions[index].imagePath),
+      body: missions.isEmpty
+          ? const Center(
+              child: Text(
+                'No missions available for this trail at the moment.',
               ),
-              title: Text(widget.missions[index].description),
-              subtitle: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(height: 8),
-                  Text('You can start from here'),
-                  SizedBox(height: 8),
-                  Container(
-                    height: 200,
-                    child: FlutterMap(
-                      options: MapOptions(
-                        initialCenter: widget.missions[index].coordinates,
-                        initialZoom: 18.0,
+            )
+      
+      : ListView.builder(
+        itemCount: missions.length,
+        itemBuilder: (context, index) {
+          Mission mission = missions[index];
+          return ChangeNotifierProvider.value(
+            value: mission, // Passa l'istanza di Mission come valore
+            child: Consumer<Mission>(
+              builder: (context, mission, _) => Card(
+                margin: EdgeInsets.all(8.0),
+                child: Padding(
+                  padding: EdgeInsets.all(16.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            width: 80,
+                            height: 80,
+                            child: CircleAvatar(
+                              backgroundImage: AssetImage(mission.imagePath),
+                            ),
+                          ),
+                          SizedBox(width: 16),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  mission.description,
+                                  style: Theme.of(context).textTheme.headline6,
+                                ),
+                                const SizedBox(height: 8),
+                                const Row(
+                                  children: [
+                                    Text('You can find it here'),
+                                    Icon(Icons.arrow_downward),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                          IconButton(
+                            icon: Icon(
+                              mission.isDone ? Icons.task_alt_rounded : Icons.add_task_rounded,
+                              color: Theme.of(context).primaryColor,
+                            ),
+                            onPressed: () {
+                              missionProvider.toggleMissionCompletion(mission.id);
+                              missionProvider.saveMissionsToPrefs(sharedPreferences);
+                              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                content: Text(mission.isDone ? 'Marked as done' : 'Marked as not done'),
+                                action: SnackBarAction(
+                                  label: 'Undo',
+                                  onPressed: () {
+                                    missionProvider.toggleMissionCompletion(mission.id);
+                                    missionProvider.saveMissionsToPrefs(sharedPreferences);
+                                  },
+                                ),
+                              ));
+                            },
+                          ),
+                        ],
                       ),
-                      children: [
-                        TileLayer(
-                          urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-                          userAgentPackageName: 'com.example.app',
-                        ),
-                        MarkerLayer(
-                          markers: [
-                            Marker(
-                              point: widget.missions[index].coordinates,
-                              width: 80, 
-                              height: 80, 
-                              child: Icon(Icons.location_on),
+                      const SizedBox(height: 16),
+                      Container(
+                        height: 200,
+                        width: double.infinity,
+                        child: FlutterMap(
+                          options: MapOptions(
+                            initialCenter: mission.coordinates,
+                            initialRotation: 18.0,
+                            interactionOptions: InteractionOptions(flags: InteractiveFlag.none),
+                          ),
+                          children: [
+                            TileLayer(
+                              urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+                              userAgentPackageName: 'com.example.app',
+                            ),
+                            MarkerLayer(
+                              markers: [
+                                Marker(
+                                  point: mission.coordinates,
+                                  width: 80,
+                                  height: 80,
+                                  child: Icon(Icons.location_on, size: 40, color: Theme.of(context).primaryColor),
+                                ),
+                              ],
                             ),
                           ],
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
-                ],
-              ),
-              trailing: IconButton(
-                icon: Icon(
-                  widget.missions[index].isDone ? Icons.check_circle : Icons.radio_button_unchecked,
-                  color: Theme.of(context).primaryColor,
                 ),
-                onPressed: () {
-                  _toggleMissionCompletion(index);
-                },
               ),
             ),
           );
