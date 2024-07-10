@@ -1,4 +1,5 @@
 import 'package:project/objects/pointOfInterest.dart';
+import 'package:project/objects/mission.dart';
 
 // This class defines the object Trail
 
@@ -17,6 +18,7 @@ class Trail{
   int routeColor;                               //color of the route
   List<PointOfInterest?> pois;                  //points of interest along the route
   List<int> percentage = [20, 20, 20, 20, 20];
+  List<int> missionIds;
   int type = 0;  //characteristics of the route => default: equally distributed
 
   // Constructor
@@ -29,6 +31,7 @@ class Trail{
     required this.walkingTime,
     required this.routeColor,
     required this.pois,
+    required this.missionIds,
     this.isDone = false,
     this.isFavorite = false,
     this.isSaved = false,
@@ -54,6 +57,7 @@ class Trail{
     'date': date.toIso8601String(),
     'routeColor': routeColor,
     'pois': pois.map((poi) => poi?.toJson()).toList(),
+    'missionIds': missionIds,
     'percentage': percentage,
   };
 
@@ -68,6 +72,7 @@ class Trail{
       walkingTime: json['walkingTime'],
       routeColor: json['routeColor'],
       pois: (json['pois'] as List).map((item) => item == null ? null : PointOfInterest.fromJson(item)).toList(),
+      missionIds: json['missionIds'] != null ? List<int>.from(json['missionIds']) : [],
       isDone: json['isDone'],
       isFavorite: json['isFavorite'],
       isSaved: json['isSaved'],

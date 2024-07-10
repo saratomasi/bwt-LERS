@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:project/providers/mission_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:project/database/trophies_database.dart';
+import 'package:project/database/missions_database.dart';
+import 'package:project/objects/mission.dart';
 import 'package:project/objects/trail.dart';
 import 'package:project/objects/trophy.dart';
 import 'package:project/providers/trailstate.dart';
@@ -13,10 +16,13 @@ class TrophiesPage extends StatelessWidget {
       appBar: AppBar(
         title: Text('My Achievements'),
       ),
-      body: Consumer<TrailState>(
-        builder: (context, trailState, child) {
+      body: Consumer2<TrailState, MissionProvider>(
+        builder: (context, trailState, missionProvider, child) {
           // Aggiorna i progressi dei trofei
-          updateTrophyProgress(trophiesDatabase, trailState.doneTrails, trailState.allTrails);
+          List<Mission> completedMissions = missionsDatabase.values.where((mission) {
+            return missionProvider.missions.any((completedMission) => completedMission.id == mission.id && completedMission.isDone);
+          }).toList();
+          updateTrophyProgress(trophiesDatabase, trailState.doneTrails, trailState.allTrails, completedMissions,); // Passiamo le missioni dal MissionProvider);
           return Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(
@@ -54,7 +60,12 @@ class TrophiesPage extends StatelessWidget {
   }
 }
 
-void updateTrophyProgress(List<Trophy> trophies, List<Trail> doneTrails, List<Trail> allTrails) {
+void updateTrophyProgress(
+  List<Trophy> trophies,
+  List<Trail> doneTrails,
+  List<Trail> allTrails,
+  List<Mission> doneMissions,
+) {
   int completedTrails = doneTrails.length;
   double totalKm = doneTrails.fold(0.0, (sum, trail) => sum + (trail.lengthKm ?? 0.0));
   List<int> typeCounters = [0, 0, 0, 0, 0]; // Array of counters for each type of trail (from 1 to 5)
@@ -63,7 +74,7 @@ void updateTrophyProgress(List<Trophy> trophies, List<Trail> doneTrails, List<Tr
   for (var trail in doneTrails) {
     int type = trail.type;
     if (type >= 1 && type <= 5) {
-      typeCounters[type - 1]++; // "Increment the counter for the corresponding type (from 1 to 5)."
+      typeCounters[type - 1]++;
     }
   }
 
@@ -82,7 +93,18 @@ void updateTrophyProgress(List<Trophy> trophies, List<Trail> doneTrails, List<Tr
       trophy.progress = (typeCounters[3] / trophy.target).clamp(0.0, 1.0);
     } else if (trophy.type == TrophyType.local) {
       trophy.progress = (typeCounters[4] / trophy.target).clamp(0.0, 1.0);
+    } else if (trophy.type == TrophyType.missionNature) { // Aggiornamento per trofei di missioni
+      trophy.progress = (doneMissions.where((mission) => mission.type == 0).length / trophy.target).clamp(0.0, 1.0);
+    } else if (trophy.type == TrophyType.missionHistory) {
+      trophy.progress = (doneMissions.where((mission) => mission.type == 1).length / trophy.target).clamp(0.0, 1.0);
+    } else if (trophy.type == TrophyType.missionArt) {
+      trophy.progress = (doneMissions.where((mission) => mission.type == 2).length / trophy.target).clamp(0.0, 1.0);
+    } else if (trophy.type == TrophyType.missionFood) {
+      trophy.progress = (doneMissions.where((mission) => mission.type == 3).length / trophy.target).clamp(0.0, 1.0);
+    } else if (trophy.type == TrophyType.missionLocal) {
+      trophy.progress = (doneMissions.where((mission) => mission.type == 4).length / trophy.target).clamp(0.0, 1.0);
     }
+
     trophy.unlocked = trophy.progress >= 1.0;
     if (trophy.unlocked) {
       trophy.progress = 1.0;

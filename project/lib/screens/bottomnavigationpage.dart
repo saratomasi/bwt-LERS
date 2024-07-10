@@ -68,6 +68,7 @@ class _BottomNavigationBarState extends State<BottomNavigationBarPage> {
         children: [
           ActionButton(
             onPressed: () {
+              fabStateNotifier.close();
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => AutoSearch()),
@@ -78,6 +79,7 @@ class _BottomNavigationBarState extends State<BottomNavigationBarPage> {
           ),
           ActionButton(
             onPressed: () {
+              fabStateNotifier.close();
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => ManualSearch()), 

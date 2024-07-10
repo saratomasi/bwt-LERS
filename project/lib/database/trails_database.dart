@@ -1,3 +1,4 @@
+import 'package:project/database/missions_database.dart';
 import 'package:project/database/pois.dart';
 import 'package:project/objects/trail.dart';
 
@@ -12,6 +13,7 @@ Trail trail1 = Trail(
   walkingTime: 420,
   routeColor: 0xFF004000,
   pois: [poisDatabase[1], poisDatabase[4], poisDatabase[5]],
+  missionIds: [],
 );
 
 Trail trail2 = Trail(
@@ -23,6 +25,7 @@ Trail trail2 = Trail(
   walkingTime: 91,
   routeColor: 0xFFff3380,
   pois: [poisDatabase[2], poisDatabase[3], poisDatabase[6], poisDatabase[7], poisDatabase[8], poisDatabase[10],],
+  missionIds: [1, 2, 3, 4, 5,]
 );
 
 Trail trail3 = Trail(
@@ -34,6 +37,7 @@ Trail trail3 = Trail(
   walkingTime: 171, 
   routeColor: 0xFF4931AF,
   pois: [poisDatabase[9], poisDatabase[11], poisDatabase[12]],
+  missionIds: [],
 );
 
 Trail trail4 = Trail(
@@ -45,6 +49,7 @@ Trail trail4 = Trail(
   walkingTime: 377, 
   routeColor: 0xFF66AB0D,
   pois: [poisDatabase[13], poisDatabase[14], poisDatabase[15], poisDatabase[16]],
+  missionIds: [],
 );
 
 Trail trail5 = Trail(
@@ -56,6 +61,7 @@ Trail trail5 = Trail(
   walkingTime: 120, 
   routeColor: 0xFFB75427,
   pois: [poisDatabase[17], poisDatabase[18]],
+  missionIds: [6, 7]
 );
 
 Trail trail6 = Trail(
@@ -67,6 +73,7 @@ Trail trail6 = Trail(
   walkingTime: 150, 
   routeColor: 0xFF356E26,
   pois: [poisDatabase[17], poisDatabase[18], poisDatabase[19]],
+  missionIds: [6, 7]
 );
 
 Trail trail7 = Trail(
@@ -78,6 +85,7 @@ Trail trail7 = Trail(
   walkingTime: 79, 
   routeColor: 0xFF918993,
   pois: [poisDatabase[20], poisDatabase[21], poisDatabase[22]],
+  missionIds: [],
 );
 
 

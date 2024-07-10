@@ -20,4 +20,17 @@ class Trophy {
   });
 }
 
-enum TrophyType { kmlength, paths, nature, history, art, food, local}
+enum TrophyType { 
+  kmlength, 
+  paths, 
+  nature,
+  history, 
+  art, 
+  food, 
+  local, 
+  missionNature,
+  missionHistory, 
+  missionArt, 
+  missionFood, 
+  missionLocal
+}

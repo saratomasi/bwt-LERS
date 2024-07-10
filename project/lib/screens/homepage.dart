@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:project/database/missions_database.dart';
+import 'package:project/screens/missionPage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:project/menu/explorelater.dart';
 import 'package:project/menu/favorites.dart';
@@ -120,6 +122,17 @@ class _HomePageState extends State<HomePage> {
               child: ListTile(
                   leading: Icon(Icons.run_circle_outlined),
                   title: Text('Sessions') //database delle sessioni
+              ),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                fabStateNotifier.close();
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => MissionPage(missionIds: missionsDatabase.keys.toList(),)));
+              },
+              child: ListTile(
+                  leading: Icon(Icons.explore),
+                  title: Text('Missions') //database delle sessioni
               ),
             ),
           ],
