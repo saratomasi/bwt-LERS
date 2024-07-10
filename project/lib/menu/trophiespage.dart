@@ -11,7 +11,7 @@ class TrophiesPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.green.shade100,
       appBar: AppBar(
-        title: Text('Achievements'),
+        title: Text('My Achievements'),
       ),
       body: Consumer<TrailState>(
         builder: (context, trailState, child) {
@@ -21,12 +21,12 @@ class TrophiesPage extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: Column(
               children: [
-                Text(
-                  'Welcome to the Achievements page!',
+                const Text(
+                  'Explore and Achieve: Your Trophy Collection',
                   style: TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
-                    color: Color.fromARGB(255, 19, 150, 45),
+                    color: Color.fromARGB(255, 132, 159, 138),
                   ),
                   textAlign: TextAlign.center,
                 ),
